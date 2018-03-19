@@ -1,3 +1,11 @@
+<template name="accommodationsList">
+    <ul>
+    {{#each accommodation }}
+        <li>{{ address }}</li>
+    {{/each}}
+    </ul>
+</template>
+<!--
 <template name="accommodation">
     <h2>Proposition de logements</h2>
 
@@ -40,3 +48,4 @@
     </fieldset>
     <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
 </template>
+-->
