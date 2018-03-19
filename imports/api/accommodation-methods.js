@@ -4,5 +4,4 @@ import { check } from 'meteor/check';
 
 
 //Collection pour les logements
-//export const Accommodation = new Mongo.Collection('accommodations');
-
+export const Accommodation = new Mongo.Collection('accommodations');
