@@ -1,0 +1,42 @@
+<template name="accommodation">
+    <h2>Proposition de logements</h2>
+
+    <fieldset>
+        <legend>Où se situe le logement ?</legend>
+        <label for="address">Adresse</label>
+        <input type="text" name="address" id="address">
+
+        <label for="additionnalAddress">Complément d'adresse</label>
+        <input type="text" name="additionnalAddress" id="additionnalAddress">
+
+        <label for="zipCode">NPA</label>
+        <input type="number" name="zipCode" id="zipCode">
+
+        <label for="location">Localité</label>
+        <input type="text" name="location" id="location">
+    </fieldset>
+
+    <fieldset>
+        <legend>Vous pouvez accueillir :</legend>
+
+        <label for="availablePlaces">Nombre de personnes</label>
+        <input type="number" name="availablePlaces" id="availablePlaces">
+
+        <input type="checkbox" name="criteria" value="family" checked>Famille
+        <input type="checkbox" name="criteria" value="single" checked>Célibataire
+        <input type="checkbox" name="criteria" value="man" checked>Homme
+        <input type="checkbox" name="criteria" value="woman" checked>Femme
+
+    </fieldset>
+
+    <fieldset>
+        <legend>À quel période ?</legend>
+
+        <input type="checkbox" name="allTime" value="allTime" checked>En tout temps
+        <input type="date" name="startDate" id="startDate" disabled>
+        <input type="date" name="endDate" id="endDate" disabled>
+        <label for="callHour">Dernière heure d'appel</label>
+        <input type="number" name="callHour" id="callHour">
+    </fieldset>
+    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+</template>
