@@ -1,0 +1,53 @@
+<template name="accommodationsList">
+    <ul>
+    {{#each accommodation }}
+        <li>{{ address }}</li>
+    {{/each}}
+    </ul>
+</template>
+
+<template name="addAccommodation">
+    <h2>Proposition de logements</h2>
+    <form class="addAccommodation">
+
+        <fieldset>
+            <legend>Où se situe le logement ?</legend>
+            <label for="address">Adresse du logement</label> 
+            <input type="text" name="address" id="address" placeholder="Adresse"><br>
+
+            <label for="additionalAddress">Complément d'adresse</label>
+            <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse"><br>
+
+            <label for="zipCode">NPA</label>
+            <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
+
+            <label for="location">Localité</label>
+            <input type="text" name="location" id="location" placeholder="Localité">
+        </fieldset>
+
+        <fieldset>
+            <legend>Vous pouvez accueillir :</legend>
+
+            <label for="availablePlaces">Nombre de personnes</label>
+            <input type="number" name="availablePlaces" id="availablePlaces"><br>
+
+            <input type="checkbox" name="criteria" id="family" value="family" checked> <label for="family">Famille</label> 
+            <input type="checkbox" name="criteria" id="single" value="single" checked> <label for="single">Célibataire</label> 
+            <input type="checkbox" name="criteria" id="man" value="man" checked> <label for="man">Homme</label> 
+            <input type="checkbox" name="criteria" id="woman" value="woman" checked> <label for="woman">Femme</label> 
+
+        </fieldset>
+
+        <fieldset>
+            <legend>À quel période ?</legend>
+
+            <input type="checkbox" name="allTime" id="allTime" value="allTime" checked> <label for="allTime">En tout temps</label><br>
+            du <input type="date" name="startDate" id="startDate" disabled>
+            au <input type="date" name="endDate" id="endDate" disabled><br>
+            <label for="callHour">Dernière heure d'appel</label>
+            <input type="number" name="callHour" id="callHour">
+        </fieldset>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+        <button class="submit">Terminer</button>
+    </form>
+</template>

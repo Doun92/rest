@@ -30,3 +30,4 @@ Template.test.helpers({
     return text
   }
 })
+import '../imports/ui/body.js';
