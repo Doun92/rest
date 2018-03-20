@@ -20,3 +20,13 @@ Template.hello.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+
+Template.test.onCreated(function testOnCreated(){
+  this.text = String;
+});
+
+Template.test.helpers({
+  text(){
+    return text
+  }
+})

@@ -4,10 +4,15 @@
 
 <body>
   <h1>Welcome to Meteor!</h1>
-
+  {{> loginButtons}}
   {{> hello}}
   {{> info}}
+  {{> test}}
 </body>
+
+<template name="test">
+  <p>{{text}}</p>
+</template>
 
 <template name="hello">
   <button>Click Me</button>
