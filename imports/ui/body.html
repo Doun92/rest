@@ -3,6 +3,7 @@
     {{> loginButtons}}
     <h2>Liste des logements</h2>
     {{> accommodationsList }}
-
+    {{#if currentUser}}
     {{> addAccommodation }}
+    {{/if}}
 </body>
