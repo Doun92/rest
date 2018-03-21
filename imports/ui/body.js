@@ -11,7 +11,14 @@ Template.affich_us.helpers({
         data = Meteor.user();
         address = data && data.emails[0].verified;
         if (!address){
-            return 'true'
+            return `account verified is : true`
+        }else{
+            return `account verified is : false`
         }
-    }
+    },
+    'address': function(){
+        data = Meteor.user();
+        address = data && data.emails[0].address;
+        return `adresse mail de l'accueillant : ${address}`;
+    }    
 })
