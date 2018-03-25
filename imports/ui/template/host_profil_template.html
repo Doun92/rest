@@ -1,19 +1,32 @@
 <template name="affich_us">
     {{#if currentUser}}
-    <h1>Vos informations</h1>
-        <p>{{address}}</p>
-        <p>{{email}}</p>
-        <h1>Nom:</h1>
-        <input type="text" name="name" id="name" value="Votre nom">
-        <h1>Prénom:</h1>
-        <input type="text" name="lastname" id="lastname" value="Votre prénom">
-        <h1>Adresse:</h1>
-        <input type="text" name="address" id="address" value="Votre adresse">
-        <h1>Numéro postal:</h1>
-        <input type="text" name="postcode" id="postcode" value="Numéro postal">
-        <h1>Ville:</h1>
-        <input type="text" name="city" id="city" value="Votre ville">
-        <h1>Numéro de téléphonne:</h1>
-        <input type="text" name="phone" id="phone" value="Votre numéro de téléphone">
+    <h1>Vos informations : résumé </h1>
+        <p>
+            adresse mail de l'accueillant : {{mail}}<br>
+            Prénom de l'accueillant : {{firstname}}<br>
+            Nom de l'accueillant : {{lastname}}<br>
+            Adresse de l'accueillant : {{userAddress}}<br>
+            Téléphone de l'accueillant : {{phone}}
+        </p>
+
+        <form class="profilForm">
+                <h1>Email:</h1>
+                <input type="text" name="mail" placeholder="{{mail}}">
+                <h1>Prénom:</h1>
+                <input type="text" name="firstname" placeholder="{{firstname}}">
+                <h1>Nom:</h1>
+                <input type="text" name="lastname" placeholder="{{lastname}}">
+                <h1>Adresse:</h1>
+                <input type="text" name="address" placeholder="{{address}}">
+                <h1>Numéro postal:</h1>
+                <input type="text" name="postcode" placeholder="{{postCode}}">
+                <h1>Ville:</h1>
+                <input type="text" name="city" placeholder="{{city}}">
+                <h1>Numéro de téléphone:</h1>
+                <input type="text" name="phone" placeholder="{{phone}}">
+                <br>
+                <br>
+            <button class="submit" value="submit" type="submit">Modifier</button>
+        </form>
     {{/if}}
 </template>
