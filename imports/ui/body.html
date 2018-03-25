@@ -6,16 +6,20 @@
         </main>
 </template>
 
-<template name="accomodationRoute">
+<template name="accommodationsRoute">
     <body>
-        {{> loginButtons}}
-        <h1>REST</h1>
         <h2>Liste des logements</h2>
         {{> accommodationsList }}
-        {{#if currentUser}}
-        {{> addAccommodation }}
-        {{/if}}
+
+        <!--temporairement -->
+        <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
     </body>
+</template>
+
+<template name="addAccommodationRoute">
+    {{#if currentUser}}
+    {{> addAccommodation }}
+    {{/if}}
 </template>
 
 <template name="hostRoute">

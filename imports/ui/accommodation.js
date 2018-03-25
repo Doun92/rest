@@ -48,6 +48,7 @@ Template.addAccommodation.events({
             comment : comment,
             
         });
+        FlowRouter.go('/logements');
     }
 });
 
