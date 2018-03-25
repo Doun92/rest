@@ -1,10 +1,24 @@
-<body>
-    {{> loginButtons}}
-    {{> affich_us}}
-    <h1>REST</h1>
-    <h2>Liste des logements</h2>
-    {{> accommodationsList }}
-    {{#if currentUser}}
-    {{> addAccommodation }}
-    {{/if}}
-</body>
+<template name="mainRoute">
+        <h1>R.E.S.T.</h1>
+        {{> loginButtons}}
+        <main>
+            {{> Template.dynamic template=main}}
+        </main>
+</template>
+
+<template name="accomodationRoute">
+    <body>
+        {{> loginButtons}}
+        <h1>REST</h1>
+        <h2>Liste des logements</h2>
+        {{> accommodationsList }}
+        {{#if currentUser}}
+        {{> addAccommodation }}
+        {{/if}}
+    </body>
+</template>
+
+<template name="hostRoute">
+        {{> loginButtons}}
+        {{> affich_us}}
+</template>

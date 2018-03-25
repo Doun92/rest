@@ -1,0 +1,19 @@
+<template name="affich_us">
+    {{#if currentUser}}
+    <h1>Vos informations</h1>
+        <p>{{address}}</p>
+        <p>{{email}}</p>
+        <h1>Nom:</h1>
+        <input type="text" name="name" id="name" value="Votre nom">
+        <h1>Prénom:</h1>
+        <input type="text" name="lastname" id="lastname" value="Votre prénom">
+        <h1>Adresse:</h1>
+        <input type="text" name="address" id="address" value="Votre adresse">
+        <h1>Numéro postal:</h1>
+        <input type="text" name="postcode" id="postcode" value="Numéro postal">
+        <h1>Ville:</h1>
+        <input type="text" name="city" id="city" value="Votre ville">
+        <h1>Numéro de téléphonne:</h1>
+        <input type="text" name="phone" id="phone" value="Votre numéro de téléphone">
+    {{/if}}
+</template>

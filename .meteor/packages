@@ -24,3 +24,5 @@ accounts-ui
 accounts-password
 msavin:mongol
 twbs:bootstrap
+kadira:flow-router
+kadira:blaze-layout
