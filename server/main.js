@@ -14,7 +14,11 @@ Meteor.publish('userData', function () {
         firstname : 1,
         lastname : 1,
         phone_number : 1,
-        user_address : [{}]
+        user_address : [{
+          address : 1,
+          city : 1,
+          postcode : 1
+        }]
       }
     });
   } else {

@@ -33,49 +33,48 @@ Template.affich_us.helpers({
     'userAddress': function(){
         data = Meteor.user();
 
-        if (data.user_address[0]){
-            if(data.user_address[0].address || data.user_address[0].city || data.user_address[0].postcode != ''){
-                rue = data && data.user_address[0].address;
-                ville = data && data.user_address[0].city;
-                npa = data && data.user_address[0].postcode;
-                return `${rue}, ${ville}, ${npa}`;
-            }else{
-                return `Non renseigné `;     
-            }       
+        if (data.user_address.address){
+            rue = data && data.user_address.address;
+            ville = data && data.user_address.city;
+            npa = data && data.user_address.postcode;
+            return `${rue}, ${ville}, ${npa}`;         
         }else{
-            return `Adresse de l'accueillant : `;     
+            return `Champ obligatoire `; 
         }
     },
     'address': function(){
         data = Meteor.user();
 
-        if (data.user_address[0].address){
-            rue = data && data.user_address[0].address;
+        if (data.user_address.address){
+            rue = data && data.user_address.address;
             return rue;    
         }else{
             return `Champ obligatoire`
         }
     },
+
     'city': function(){
         data = Meteor.user();
 
-        if (data.user_address[0].city){
-            ville = data && data.user_address[0].city;
+        if (data.user_address.city){
+            ville = data && data.user_address.city;
             return ville;    
         }else{
             return `Champ obligatoire`
         }
     },
+
     'postCode': function(){
         data = Meteor.user();
 
-        if (data.user_address[0].postcode){
-            npa = data && data.user_address[0].postcode;
+        if (data.user_address.postcode){
+            npa = data && data.user_address.postcode;
             return npa;    
         }else{
             return `Champ obligatoire`
         }
     },
+
     'mail': function(){
         data = Meteor.user();
         if(data.emails[0].address){
@@ -85,6 +84,7 @@ Template.affich_us.helpers({
             return `Champ obligatoire`
         }
     },
+    
     'phone': function(){
         data = Meteor.user();
         if(data.phone_number){
@@ -118,12 +118,12 @@ Template.affich_us.events({
                 firstname: name,
                 lastname: lastname,
                 phone_number: phone,
-                user_address:[{
+                user_address:{
                     address : address,
                     city:city,
                     postcode: postcode
                 }
-                ] 
+                
             } }
           );
     }
