@@ -1,10 +1,10 @@
 import { Accommodation } from "../api/accommodation-methods.js";
 
-Template.accommodationsList.helpers({
-    accommodation() {
-        return Accommodation.find({});
-    },
-});
+// Template.accommodationsList.helpers({
+//     accommodation() {
+//         return Accommodation.find({});
+//     },
+// });
 
 Template.addAccommodation.events({
     'submit .addAccommodation' (event) {
@@ -29,6 +29,8 @@ Template.addAccommodation.events({
         const callHour = target.callHour.value;
         const comment = target.comment.value;
 
+        const creator = Meteor.userId();
+
         Accommodation.insert({
             address : address,
             additionalAddress : additionalAddress,
@@ -46,9 +48,22 @@ Template.addAccommodation.events({
             endDate : endDate,
             callHour : callHour,
             comment : comment,
+
+            creator : creator,
             
         });
         FlowRouter.go('/logements');
     }
 });
 
+if(Meteor.isServer){
+    Meteor.publish('accommodations.public', function(creator){
+        return Accommodation.find({
+            creator : this.userId()
+        });
+    });
+}
+
+Template.body.onCreated(function() {
+    Meteor.subscribe('accommodations.public');
+});
