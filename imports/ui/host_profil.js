@@ -128,15 +128,14 @@ Template.affich_us.events({
     }
 });
 
-// login logout redirect callback
-/*
 Accounts.onLogin(function () {
-    FlowRouter.go('hostProfilPage')
+    if(FlowRouter.current().route.group.name === 'public'){
+        FlowRouter.go('hostProfilPage')
+    }
   })
-Tracker.autorun(function () {
+  
+  Tracker.autorun(function () {
     if (!Meteor.userId()) {
       FlowRouter.go('mainPage')
     }
   })
-*/
-  
