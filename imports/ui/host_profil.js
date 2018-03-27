@@ -123,8 +123,7 @@ Template.affich_us.events({
                     city:city,
                     postcode: postcode
                 }
-                
-            } }
+            }}
           );
     }
 });

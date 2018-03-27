@@ -1,10 +1,13 @@
 import { Accommodation } from "../api/accommodation-methods.js";
+import './template/accommodation.html';
 
-// Template.accommodationsList.helpers({
-//     accommodation() {
-//         return Accommodation.find({});
-//     },
-// });
+Meteor.subscribe('accommodations');
+
+Template.accommodationsList.helpers({
+     accommodation() {
+         return Accommodation.find({});
+     },
+ });
 
 Template.addAccommodation.events({
     'submit .addAccommodation' (event) {
@@ -56,6 +59,7 @@ Template.addAccommodation.events({
     }
 });
 
+/*
 if(Meteor.isServer){
     Meteor.publish('accommodations.public', function(creator){
         return Accommodation.find({
@@ -63,7 +67,7 @@ if(Meteor.isServer){
         });
     });
 }
-
 Template.body.onCreated(function() {
     Meteor.subscribe('accommodations.public');
 });
+*/
