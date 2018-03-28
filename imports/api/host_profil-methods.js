@@ -33,7 +33,8 @@ Accounts.onCreateUser((options, user) => {
               address : 1,
               city : 1,
               postcode : 1
-            }]
+            }],
+            social_worker:1
           }
         });
       } else {
