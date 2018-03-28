@@ -1,5 +1,6 @@
 <template name="mainRoute">
         <h1>R.E.S.T.</h1>
+        {{>loginbar}}
         {{> loginButtons}}
         {{> coltemp}}
         <main>
@@ -32,7 +33,7 @@
 <!-- code à intégrer dans les templates et en tenant compte du système de route 
 
 <body>
-    {{>loginbar}}
+    
     {{> affich_us}}
     <h1>REST</h1>
     <h2>Liste des logements</h2>
