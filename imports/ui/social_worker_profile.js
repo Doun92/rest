@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Colltest } from '../api/colltest.js';
+import { Social_worker  } from '../api/social_worker_profile.js';
 
 
 // récupère la publication du fichier server main.js
