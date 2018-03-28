@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
 Accounts.onCreateUser((options, user) => {
+
   
     const new_user_address = {
         address : '',
