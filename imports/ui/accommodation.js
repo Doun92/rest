@@ -1,5 +1,11 @@
+import { ReactiveDict } from 'meteor/reactive-dict';
 import { Accommodation } from "../api/accommodation-methods.js";
 import './template/accommodation.html';
+
+// WIP
+//Template.body.onCreated(function bodyOnCreated() {
+//     this.state = new ReactiveDict();
+//   });
 
 Meteor.subscribe('accommodations');
 
@@ -56,18 +62,9 @@ Template.addAccommodation.events({
             
         });
         FlowRouter.go('/logements');
-    }
+    },
+    // Pour activer/désactiver les champs date
+    // 'change #allTime input'(event,instance) {
+    //     instance.state.set('allTimeUnchecked', event.target.unchecked);
+    // },
 });
-
-/*
-if(Meteor.isServer){
-    Meteor.publish('accommodations.public', function(creator){
-        return Accommodation.find({
-            creator : this.userId()
-        });
-    });
-}
-Template.body.onCreated(function() {
-    Meteor.subscribe('accommodations.public');
-});
-*/
