@@ -20,3 +20,24 @@ Accounts.onCreateUser((options, user) => {
     
     return user;
   });
+  
+  if (Meteor.isServer) {
+    Meteor.publish('userData', function () {
+      if (this.userId) {
+        return Meteor.users.find({ _id: this.userId }, {
+          fields: { 
+            firstname : 1,
+            lastname : 1,
+            phone_number : 1,
+            user_address : [{
+              address : 1,
+              city : 1,
+              postcode : 1
+            }]
+          }
+        });
+      } else {
+        this.ready();
+      }
+    });
+  }
