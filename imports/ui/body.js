@@ -20,5 +20,5 @@ import './host_profil.js';
 import './template/colltest_template.html';
 import './colltest.js';
 
-//import './template/social_worker_profile.html';
-//import './social_worker_profile.js';
+import './template/social_worker_profile.html';
+import './social_worker_profile.js';
