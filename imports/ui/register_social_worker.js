@@ -1,4 +1,4 @@
-Template.register.events({
+Template.register_social_worker.events({
     'click #register-button': function(e, t) {
         e.preventDefault();
         // Retrieve the input field values
