@@ -28,7 +28,5 @@ reactive-dict
 stylus@=2.513.14
 accounts-ui
 arillo:flow-router-helpers
-semantic:ui
 kevohagan:sweetalert
-flemay:less-autoprefixer
-jquery
+standard-minifier-css
