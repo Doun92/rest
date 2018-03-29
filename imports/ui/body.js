@@ -2,15 +2,15 @@ import { Template } from 'meteor/templating';
 
 import './body.html';
 
-//import './template/loginbar.html';
+import './template/loginbar.html';
 import './accommodation.js';
 import './template/register.html';
 
-import './template/login_host.html';
+import './template/login.html';
 import './template/main-layout.html';
 
 
-import './login_host.js';
+import './login.js';
 
 import './register.js';
 import './register_ts.js';
