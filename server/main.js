@@ -8,7 +8,9 @@ Meteor.startup(() => {
   // code to run on server at startup
 });
 
-const userProf = Meteor.users
+//var postSignup = function(userId, info )
+
+const userProf = Meteor.users;
 userProf.allow({
   insert: function () { return true; },
   update: function () { return true; },

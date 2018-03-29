@@ -11,3 +11,6 @@ import './host_profil.js';
 
 import './template/colltest_template.html';
 import './colltest.js';
+
+import './template/register_host.html';
+import './template/register_host.js';
