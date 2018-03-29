@@ -45,7 +45,7 @@ Template.register_social_worker.events({
                     type: "error"
                 });
                 } else {
-                    FlowRouter.go('/');
+                    FlowRouter.go('/profile_travailleur_social');
                 }
             });
         }
