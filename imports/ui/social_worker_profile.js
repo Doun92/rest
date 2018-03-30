@@ -61,7 +61,7 @@ Template.profile_travailleur_social.helpers({
 
 //*********************************************** *//
 //a déplacer dans server/account_creation.js
-
+/*
 Template.profile_travailleur_social.events({
     'submit .profilForm' : function(event) {
 
@@ -85,7 +85,7 @@ Template.profile_travailleur_social.events({
           );
     }
 });
-
+*/
 //**************************************************** */
 
 Accounts.onLogin(function () {

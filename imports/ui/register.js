@@ -33,8 +33,8 @@ Template.register.events({
         if (isValidPassword(password, passwordAgain)) { 
             Accounts.createUser({
                 email: email,
-                firstName: firstName,
-                lastName: lastName,
+                firstname: firstName,
+                lastname: lastName,
                 password: password,
                 sw : false
             }, function(error) {

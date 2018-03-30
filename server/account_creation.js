@@ -4,6 +4,7 @@ Accounts.onCreateUser((options, user) => {
   // user.profile = options.profile || {};
   // Assigns the first and last names to the newly created user object
   // user.profile.sw = options.sw;
+  
   status = options.sw;
 
   if(!options.sw){
@@ -13,8 +14,8 @@ Accounts.onCreateUser((options, user) => {
           city : '',
           postcode : ''
       } 
-      user.firstname = options.firstName;
-      user.lastname = options.lastName;
+      user.firstname = options.firstname;
+      user.lastname = options.lastname;
       user.phone_number = '';
       user.user_address = new_user_address;
     
@@ -23,14 +24,18 @@ Accounts.onCreateUser((options, user) => {
       }
   
       return user; 
-  }
-  else{
-    user,sw = option.sw;
-    socialWorker.firstname = '';
-    socialWorker.lastname = '';
-    socialWorker.institute = '';
-    socialWorker.phone_number = '';
-    socialWorker.pro_mail = '';
+  }else{
+    const new_user_address = {
+      address : '',
+      city : '',
+      postcode : ''
+    } 
+    user.sw = options.sw;
+    user.firstname = options.firstname;
+    user.lastname = options.lastname;
+    user.institution = options.institution;
+    user.phone_number = '';
+    user.user_address = new_user_address;
   }
 
   if (options.profile) {
@@ -38,6 +43,7 @@ Accounts.onCreateUser((options, user) => {
   }
 
   return user; 
+
 });
 
   if (Meteor.isServer) {
@@ -49,7 +55,8 @@ Accounts.onCreateUser((options, user) => {
             lastname : 1,
             phone_number : 1,
             user_address : 1,
-            sw : 1
+            sw : 1,
+            institution : 1
           }
         });
       } else {

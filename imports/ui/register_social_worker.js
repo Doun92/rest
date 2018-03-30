@@ -3,8 +3,9 @@ Template.register_social_worker.events({
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
-            firstName = $('#sw-first-name').val(),
-            lastName = $('#sw-last-name').val(),
+            firstName = $('#firstname').val(),
+            lastName = $('#lastname').val(),
+            institution = $('#institution').val(),
             password = $('#password').val(),
             passwordAgain = $('#password-again').val();
 
@@ -33,9 +34,11 @@ Template.register_social_worker.events({
         if (isValidPassword(password, passwordAgain)) { 
             Accounts.createUser({
                 email: email,
-                firstName: firstName,
-                lastName: lastName,
-                password: password
+                firstname: firstName,
+                lastname: lastName,
+                institution: institution,
+                password: password,
+                sw : true
             }, function(error) {
                 if (error) {
                     return swal({
@@ -49,7 +52,6 @@ Template.register_social_worker.events({
                 }
             });
         }
-
         return false;
     }
 });
