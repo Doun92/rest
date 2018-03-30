@@ -1,15 +1,9 @@
-
-<template name="SocialWorker">
-               
-        </template>
-        
-
-
 <template name="loginbar">
         <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="text-right">
-                <a href="{{pathFor 'inscription_ts'}}">Travailleurs Sociaux</a> ||
-                {{> login align="right"}}
+                                <a href="{{pathFor '/'}}" textalign="left">Page d'acceuil</a>
+                                <a href="{{pathFor 'inscription'}}">Inscription</a> || 
+                                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Se connecter</button>
                 </div>
         </nav>
 </template>

@@ -1,19 +1,134 @@
 <template name="login">
-    <h2>Se connecter</h2>
-    <div>
-            <div>
-                    <input type="email" placeholder="Adresse Email" id="login-email" />
-            </div>
-            <div>
-                    <input type="password" placeholder="Mots de passe" id="login-password" />
+                <h2>Se connecter</h2>
+                <div>
+                        <div>
+                                <input type="email" placeholder="Adresse Email" id="login-email" />
+                        </div>
+                        <div>
+                                <input type="password" placeholder="Mots de passe" id="login-password" />
+                        </div>
+                            <button id="login-button" type="submit">Se connecter</button>
                 </div>
-                <button id="login-button" type="submit">Se connecter</button>
-    </div>
-    <div>
-            <ul>
-                <li><a href="{{pathFor 'inscription'}}">Inscription</a></li>
-                <li><a href="{{pathFor 'inscription_ts'}}">Inscription travailleurs sociaux</a></li>
-            </ul>
-    </div>
-</template>
+                <div>
+                        <ul>
+                            <li><a href="{{pathFor 'inscription'}}">Inscription</a></li>
+                            <li><a href="{{pathFor 'inscription_ts'}}">Inscription travailleurs sociaux</a></li>
+                            <li><a href="{{pathFor '/'}}" textalign="left">Page d'acceuil</a></li>
+                        </ul>
+                </div>
+            </template>
+            
+            
+
+<template name="loginstyled">
+
+                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Se connecter</button>
+                <div id="id01" class="modal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <form class="modal-content" action="/action_page.php">   
+                    <div class="container">
+                                <input type="email" placeholder="Adresse Email" id="login-email" />
+                                <input type="password" placeholder="Mots de passe" id="login-password" />
+                    </div>
+                            <button id="login-button" type="submit" classe="login-button">Se connecter</button>
+                    <div>
+                        <ul>
+                        <hr>
+                            <li><a href="{{pathFor 'inscription'}}">Inscription</a></li>
+                            <li><a href="{{pathFor 'inscription_ts'}}">Inscription travailleurs sociaux</a></li>
+                        </ul>
+                </div>
+                </form>
+                </div>
+
+                <style>
+    
+                                body {font-family: Arial, Helvetica, sans-serif;}
+                                * {box-sizing: border-box}
+                                
+                                input[type=text], input[type=password], input[type=email] {
+                                    width: 100%;
+                                    padding: 15px;
+                                    margin: 5px 0 22px 0;
+                                    display: inline-block;
+                                    border: none;
+                                    background: #f1f1f1;
+                                }
+                                
+                                input[type=text]:focus, input[type=password], input[type=email] :focus {
+                                    background-color: #ddd;
+                                    outline: none;
+                                }
+                                
+                                #login-button { 
+                                    background-color: #4CAF50;
+                                    color: white;
+                                    padding: 14px 20px;
+                                    margin: 8px 0;
+                                    border: none;
+                                    cursor: pointer;
+                                    width: 100%;
+                                    opacity: 0.9;
+                                }
+                                
+                                #login-button:hover {
+                                    opacity:1;
+                                }
+                                
+                                .container {
+                                    padding: 16px;
+                                }
+                                
+                                .modal {
+                                    display: none;
+                                    position: fixed;
+                                    z-index: 1;
+                                    left: 0;
+                                    top: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    overflow: auto;
+                                    background-color: #474e5d;
+                                    padding-top: 50px;
+                                }
+                                
+                                .modal-content {
+                                    background-color: #fefefe;
+                                    margin: 5% auto 15% auto;
+                                    border: 1px solid #888;
+                                    width: 80%;
+                                }
+                                
+                                hr {
+                                    border: 1px solid #f1f1f1;
+                                    margin-bottom: 25px;
+                                }
+                                 
+                                .close {
+                                    position: absolute;
+                                    right: 35px;
+                                    top: 47px;
+                                    font-size: 40px;
+                                    font-weight: bold;
+                                    color: #f1f1f1;
+                                }
+                                
+                                .close:hover,
+                                .close:focus {
+                                    color: #f44336;
+                                    cursor: pointer;
+                                }
+                                
+                                .clearfix::after {
+                                    content: "";
+                                    clear: both;
+                                    display: table;
+                                }
+                                
+                                    </style>
+                                
+            </template>
+            
+            
+
 
