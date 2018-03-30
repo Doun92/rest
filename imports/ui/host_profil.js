@@ -7,7 +7,7 @@ import './template/host_profil_template.html';
 
 Meteor.subscribe('userData');
 
-// Ces helpers récupèrent des données dans la collection Metero.users
+// Ces helpers récupèrent des données dans la collection Meteor.users
 // attention ne pas confondre la collection Meteor.users et 
 // l entrée qui correspond à un utilisateur meteor.user()
 

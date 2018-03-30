@@ -1,0 +1,29 @@
+<template name="profile_travailleur_social">
+    {{#if SocialWorker}}
+        {{>login}}
+        {{> affich_us}}
+        <h1>REST</h1>
+            <h1>Bonjour </h1>
+            <p>Institut : </p>
+            <p>Téléphone : </p>
+            <p>Adresse e-mail :</p>
+        <br>
+        <br>
+        {{> accommodationsRoute}}
+        <br>
+        <br>
+     <h5>Changement de profil du travailleur social</h5>
+     <form class="profilForm">
+        <h6>Email:</h6>
+        <input type="text" name="mail" placeholder="{{mail}}">
+        <h6>Numéro de téléphone:</h6>
+        <input type="text" name="phone" placeholder="{{phone}}">
+        <br>
+        <br>
+    </form>
+    <button class="submit" value="submit" type="submit">Modifier</button>
+    <br>
+    <br>
+    {{/if}}
+            <div classe="FrontPage">REST (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.</div>
+        </template>

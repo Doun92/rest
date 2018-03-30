@@ -1,11 +1,18 @@
 <template name="mainRoute">
         <h1>R.E.S.T.</h1>
-        {{> loginButtons}}
+       <!--{{>loginbar}}-->
+        {{>login}}
         {{> coltemp}}
         <main>
             {{> Template.dynamic template=main}}
         </main>
+        <br>
+        <div classe="FrontPage">REST (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.
+        </div>
 </template>
+
+
+
 
 <template name="accommodationsRoute">
     <body>
@@ -29,6 +36,11 @@
         {{> affich_us}}
 </template>
 
+<template name="workerRoute">
+    {{> profile_travailleur_social}}
+    {{> affich_us}}
+</template>
+
 <template name="registerRoute">
     {{> register}}
     {{> Template.dynamic template=second}}
@@ -37,7 +49,7 @@
 <!-- code à intégrer dans les templates et en tenant compte du système de route 
 
 <body>
-    {{>loginbar}}
+    
     {{> affich_us}}
     <h1>REST</h1>
     <h2>Liste des logements</h2>

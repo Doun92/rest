@@ -1,3 +1,5 @@
+
+/*
 Accounts.onCreateUser((options, user) => {
 
   //user.profile = options.profile || {};
@@ -49,3 +51,4 @@ Accounts.onCreateUser((options, user) => {
       }
     });
   }
+  */
