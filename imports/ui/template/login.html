@@ -1,4 +1,25 @@
 <template name="login">
+    <h2>Se connecter</h2>
+    <div>
+            <div>
+                    <input type="email" placeholder="Adresse Email" id="login-email" />
+            </div>
+            <div>
+                    <input type="password" placeholder="Mots de passe" id="login-password" />
+                </div>
+                <button id="login-button" type="submit">Se connecter</button>
+    </div>
+    <div>
+            <ul>
+                <li><a href="{{pathFor 'inscription'}}">Inscription</a></li>
+                <li><a href="{{pathFor 'inscription_ts'}}">Inscription travailleurs sociaux</a></li>
+            </ul>
+    </div>
+</template>
+
+
+
+<template name="loginold">
     <div class="ui vertical center aligned segment">
         <div class="ui stackable container grid">
             <div class="row">
