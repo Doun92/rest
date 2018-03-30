@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Social_worker  } from '../api/social_worker_profile.js';
+import './template/social_worker_profile.html';
 
 
 // récupère la publication du fichier server main.js
@@ -8,7 +8,7 @@ Meteor.subscribe('socialWorkerData');
 
 Template.profile_travailleur_social.helpers({
  'firstname': function() {
-     data = Meteor.user();
+     data = Meteor.socialWorker();
      if(data.firstname){
          firstname = data && data.firstname;
          return firstname;
@@ -17,7 +17,7 @@ Template.profile_travailleur_social.helpers({
   }
 },
     'lastname': function(){
-        data = Meteor.user();
+        data = Meteor.socialWorker();
         if(data.lastname){
             lastname = data && data.lastname;
             return lastname;    
@@ -26,7 +26,7 @@ Template.profile_travailleur_social.helpers({
         }
     },
     'institute': function(){
-        data = Meteor.user();
+        data = Meteor.socialWorker();
         if (data.institute){
             institute = data && data.institute;
             return institute;         
@@ -35,7 +35,7 @@ Template.profile_travailleur_social.helpers({
         }
     },
     'pro_mail': function(){
-        data = Meteor.user();
+        data = Meteor.socialWorker();
         if(data.pro_mail){
             address = data && data.pro_mail;
             return pro_mail;    
@@ -45,8 +45,8 @@ Template.profile_travailleur_social.helpers({
     },
     
     'phone': function(){
-        data = Meteor.user();
-        if(data.phone_number){
+        data = Meteor.socialWorker();
+        if(data.phone){
             phone = data && data.phone_number;
             return phone;    
         }else{
@@ -71,8 +71,8 @@ Template.profile_travailleur_social.events({
         const pro_mail = target.pro_mail.value;
         const phone = target.phone.value;
 
-        Meteor.users.update(
-            Meteor.userId(), { $set: { 
+        Meteor.socialWorker.update(
+            Meteor.socialWorkerID(), { $set: { 
                 firstname: name,
                 lastname: lastname,
                 institute: institute,

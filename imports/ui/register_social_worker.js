@@ -1,5 +1,5 @@
 Template.register_social_worker.events({
-    'click #register-button': function(e, t) {
+    'click #register-buttonsocialworker': function(e, t) {
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
@@ -20,8 +20,8 @@ Template.register_social_worker.events({
                 return pwd.length >= 6 ? true : false;
             } else {
                 return swal({
-                    title: "Passwords don't match",
-                    text: "Please try again",
+                    title: "Les mots de passes ne correspondent pas",
+                    text: "Veuillez ressayer",
                     showConfirmButton: true,
                     type: "error"
                 });
@@ -40,7 +40,7 @@ Template.register_social_worker.events({
                 if (error) {
                     return swal({
                     title: error.reason,
-                    text: "Please try again",
+                    text: "Ressayer",
                     showConfirmButton: true,
                     type: "error"
                 });

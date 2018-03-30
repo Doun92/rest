@@ -7,10 +7,9 @@ Template.login.events({
         Meteor.loginWithPassword(email, password, function(error) {
             if (error) {
                 return swal({
-                    title: "Email or password Incorect",
-                    text: "Please try again or create an account",
-                    timer: 1700,
-                    showConfirmButton: false,
+                    title: "Mauvaise adresse email ou mots de passe",
+                    text: "Veuillez essayer de nouveau ou créer un compte",
+                    showConfirmButton: true,
                     type: "error"
                 });
             } else {

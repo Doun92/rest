@@ -3,25 +3,35 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
 
+<<<<<<< HEAD
 Accounts.onCreateUser((options, user) => {
+=======
+Accounts.onCreateUser((options, socialWorker) => {
+
+  if(Meteor.user.profile.social_worker == True){
+    console.log('sw')
+  }else{
+    console.log('not sw')
+  }
+>>>>>>> 2c4b803cbf01cf4018dfdc291a5bf40ba2646bab
   
-  user.firstname = '';
-  user.lastname = '';
-  user.institute = '';
-  user.phone_number = '';
-  user.pro_mail = '';
+  socialWorker.firstname = '';
+  socialWorker.lastname = '';
+  socialWorker.institute = '';
+  socialWorker.phone_number = '';
+  socialWorker.pro_mail = '';
 
   if (options.profile) {
-    user.profile = options.profile;
+    socialWorker.profile = options.profile;
   }
   
-  return user;
+  return socialWorker;
 });
 
 if (Meteor.isServer) {
-  Meteor.publish('socialWorkerData', function tasksPublication() {
-    if (this.userId) {
-      return Meteor.users.find({ _id: this.userId }, {
+  Meteor.publish('socialWorkerData', function() {
+    if (this.socialWorkerId) {
+      return Meteor.socialWorker.find({ _id: this.socialWorkerId }, {
         fields: { 
           firstname : 1,
           lastname : 1,
