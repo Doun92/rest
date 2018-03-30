@@ -35,7 +35,8 @@ Template.register.events({
                 email: email,
                 firstName: firstName,
                 lastName: lastName,
-                password: password
+                password: password,
+                sw : false
             }, function(error) {
                 if (error) {
                     return swal({
