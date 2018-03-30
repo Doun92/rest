@@ -4,6 +4,11 @@ import { check } from 'meteor/check';
 
 Accounts.onCreateUser((options, user) => {
 
+  if(Meteor.user.profile.social_worker == True){
+    console.log('sw')
+  }else{
+    console.log('not sw')
+  }
   
     const new_user_address = {
         address : '',

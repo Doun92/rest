@@ -1,12 +1,13 @@
 <template name="profile_travailleur_social">
+    {{> affich_us}}
+    
     {{#if SocialWorker}}
-        {{>login}}
-        {{> affich_us}}
+    
         <h1>REST</h1>
-            <h1>Bonjour </h1>
-            <p>Institut : </p>
-            <p>Téléphone : </p>
-            <p>Adresse e-mail :</p>
+            <h1>Bonjour {{firstname}} {{lastname}}</h1>
+            <p>Institut : {{institut}} </p>
+            <p>Téléphone : {{phone_number}} </p>
+            <p>Adresse e-mail {{pro_mail}} :</p>
         <br>
         <br>
         {{> accommodationsRoute}}
@@ -15,9 +16,9 @@
      <h5>Changement de profil du travailleur social</h5>
      <form class="profilForm">
         <h6>Email:</h6>
-        <input type="text" name="mail" placeholder="{{mail}}">
+        <input type="text" name="mail" placeholder="{{pro_mail}}">
         <h6>Numéro de téléphone:</h6>
-        <input type="text" name="phone" placeholder="{{phone}}">
+        <input type="text" name="phone" placeholder="{{phone_number}}">
         <br>
         <br>
     </form>
