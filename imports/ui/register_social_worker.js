@@ -3,8 +3,8 @@ Template.register_social_worker.events({
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
-            firstName = $('#first-name').val(),
-            lastName = $('#last-name').val(),
+            firstName = $('#sw-first-name').val(),
+            lastName = $('#sw-last-name').val(),
             password = $('#password').val(),
             passwordAgain = $('#password-again').val();
 

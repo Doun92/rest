@@ -24,7 +24,20 @@ Accounts.onCreateUser((options, user) => {
   
       return user; 
   }
-  //else{code de daniel ici}
+  else{
+    user,sw = option.sw;
+    socialWorker.firstname = '';
+    socialWorker.lastname = '';
+    socialWorker.institute = '';
+    socialWorker.phone_number = '';
+    socialWorker.pro_mail = '';
+  }
+
+  if (options.profile) {
+    user.profile = options.profile;
+  }
+
+  return user; 
 });
 
   if (Meteor.isServer) {
