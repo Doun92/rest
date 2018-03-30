@@ -1,5 +1,4 @@
 
-/*
 Accounts.onCreateUser((options, user) => {
 
   //user.profile = options.profile || {};
@@ -22,8 +21,8 @@ Accounts.onCreateUser((options, user) => {
         city : '',
         postcode : ''
     } 
-    user.firstname = '';
-    user.lastname = '';
+    user.firstname = options.firstName;
+    user.lastname = options.lastName;
     user.phone_number = '';
     user.user_address = new_user_address;
   
@@ -51,4 +50,3 @@ Accounts.onCreateUser((options, user) => {
       }
     });
   }
-  */
