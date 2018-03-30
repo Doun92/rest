@@ -59,6 +59,9 @@ Template.profile_travailleur_social.helpers({
 // ici l event est le submit du formulaire (click sur le bouton submit)
 // la fonction consiste à mettre à jour les champs de la collection
 
+//*********************************************** *//
+//a déplacer dans server/account_creation.js
+
 Template.profile_travailleur_social.events({
     'submit .profilForm' : function(event) {
 
@@ -82,6 +85,8 @@ Template.profile_travailleur_social.events({
           );
     }
 });
+
+//**************************************************** */
 
 Accounts.onLogin(function () {
     if(FlowRouter.current().route.group.name === 'SocialWorker'){

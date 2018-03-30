@@ -1,11 +1,10 @@
 
 Accounts.onCreateUser((options, user) => {
 
-  //user.profile = options.profile || {};
+  // user.profile = options.profile || {};
   // Assigns the first and last names to the newly created user object
-  //user.profile.sw = options.sw;
+  // user.profile.sw = options.sw;
   status = options.sw;
-  console.log(status);
 
   if(!options.sw){
     user.sw = options.sw;
