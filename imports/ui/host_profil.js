@@ -18,7 +18,7 @@ Template.affich_us.helpers({
             firstname = data && data.firstname;
             return firstname;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
     'lastname': function(){
@@ -27,7 +27,7 @@ Template.affich_us.helpers({
             lastname = data && data.lastname;
             return lastname;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
     'userAddress': function(){
@@ -39,17 +39,16 @@ Template.affich_us.helpers({
             npa = data && data.user_address.postcode;
             return `${rue}, ${ville}, ${npa}`;         
         }else{
-            return `Champ obligatoire `; 
+            return "Champ obligatoire"; 
         }
     },
     'address': function(){
         data = Meteor.user();
-
         if (data.user_address.address){
             rue = data && data.user_address.address;
             return rue;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
 
@@ -60,7 +59,7 @@ Template.affich_us.helpers({
             ville = data && data.user_address.city;
             return ville;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
 
@@ -71,7 +70,7 @@ Template.affich_us.helpers({
             npa = data && data.user_address.postcode;
             return npa;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
 
@@ -81,7 +80,7 @@ Template.affich_us.helpers({
             address = data && data.emails[0].address;
             return address;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
     
@@ -91,7 +90,7 @@ Template.affich_us.helpers({
             phone = data && data.phone_number;
             return phone;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     }   
 })
@@ -120,22 +119,24 @@ Template.affich_us.events({
                 phone_number: phone,
                 user_address:{
                     address : address,
-                    city:city,
+                    city: city,
                     postcode: postcode
                 }
-            }}
+            } }
           );
     }
 });
 
+/*
 Accounts.onLogin(function () {
     if(FlowRouter.current().route.group.name === 'public'){
         FlowRouter.go('hostProfilPage')
     }
   })
-  
-  Tracker.autorun(function () {
-    if (!Meteor.userId()) {
-      FlowRouter.go('mainPage')
+ 
+Tracker.autorun(function () {
+if (!Meteor.userId()) {
+    FlowRouter.go('mainPage')
     }
-  })
+})
+*/

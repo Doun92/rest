@@ -24,6 +24,7 @@ twbs:bootstrap
 kadira:flow-router
 kadira:blaze-layout
 alanning:roles
+gwendall:auth-client-callbacks
 reactive-dict
 stylus@=2.513.14
 accounts-ui

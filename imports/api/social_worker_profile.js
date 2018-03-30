@@ -3,6 +3,9 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
 
+<<<<<<< HEAD
+Accounts.onCreateUser((options, user) => {
+=======
 Accounts.onCreateUser((options, socialWorker) => {
 
   if(Meteor.user.profile.social_worker == True){
@@ -10,6 +13,7 @@ Accounts.onCreateUser((options, socialWorker) => {
   }else{
     console.log('not sw')
   }
+>>>>>>> 2c4b803cbf01cf4018dfdc291a5bf40ba2646bab
   
   socialWorker.firstname = '';
   socialWorker.lastname = '';
