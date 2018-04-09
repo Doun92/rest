@@ -52,7 +52,7 @@ Template.profile_travailleur_social.helpers({
         }else{
             return `Champ obligatoire`
         }
-    }   
+    } 
 });
 
 // events attache un évènement et une fonction à un template 

@@ -1,7 +1,6 @@
 <template name="profile_travailleur_social">
-    {{> affich_us}}
     
-    {{#if SocialWorker}}
+    {{#if currentUser}}
     
         <h1>REST</h1>
             <h1>Bonjour {{firstname}} {{lastname}}</h1>
@@ -10,7 +9,7 @@
             <p>Adresse e-mail {{pro_mail}} :</p>
         <br>
         <br>
-        {{> accommodationsRoute}}
+        {{> accommodationsList}}
         <br>
         <br>
      <h5>Changement de profil du travailleur social</h5>
