@@ -4,20 +4,20 @@ import './template/social_worker_profile.html';
 
 // récupère la publication du fichier server main.js
 // permet notamment de récupérer les champs ajouté dans la collection
-Meteor.subscribe('socialWorkerData');
+Meteor.subscribe('userData');
 
 Template.profile_travailleur_social.helpers({
- 'firstname': function() {
-     data = Meteor.socialWorker();
+ 'test': function() {
+     data = Meteor.user();
      if(data.firstname){
-         firstname = data && data.firstname;
-         return firstname;
+         test = data && data.firstname;
+         return test;
      }else{
     return 'Champ obligatoire'
   }
 },
     'lastname': function(){
-        data = Meteor.socialWorker();
+        data = Meteor.user();
         if(data.lastname){
             lastname = data && data.lastname;
             return lastname;    
@@ -26,7 +26,7 @@ Template.profile_travailleur_social.helpers({
         }
     },
     'institute': function(){
-        data = Meteor.socialWorker();
+        data = Meteor.user();
         if (data.institute){
             institute = data && data.institute;
             return institute;         
@@ -35,7 +35,7 @@ Template.profile_travailleur_social.helpers({
         }
     },
     'pro_mail': function(){
-        data = Meteor.socialWorker();
+        data = Meteor.user();
         if(data.pro_mail){
             address = data && data.pro_mail;
             return pro_mail;    
@@ -45,7 +45,7 @@ Template.profile_travailleur_social.helpers({
     },
     
     'phone': function(){
-        data = Meteor.socialWorker();
+        data = Meteor.user();
         if(data.phone){
             phone = data && data.phone_number;
             return phone;    
