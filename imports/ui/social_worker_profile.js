@@ -35,23 +35,24 @@ Template.social_worker_profil.helpers({
             return `Champ obligatoire `; 
         }
     },
-    'pro_mail': function(){
+
+    'mail': function(){
         data = Meteor.user();
-        if(data.pro_mail){
-            address = data && data.pro_mail;
-            return pro_mail;    
+        if(data.emails[0].address){
+            address = data && data.emails[0].address;
+            return address;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     },
     
     'phone': function(){
         data = Meteor.user();
         if(data.phone){
-            phone = data && data.phone_number;
+            phone = data && data.phone;
             return phone;    
         }else{
-            return `Champ obligatoire`
+            return "Champ obligatoire"
         }
     } 
 });
