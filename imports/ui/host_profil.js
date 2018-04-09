@@ -92,7 +92,7 @@ Template.affich_us.helpers({
         }else{
             return "Champ obligatoire"
         }
-    }   
+    },   
 })
 
 // events attache un évènement et une fonction à un template 
