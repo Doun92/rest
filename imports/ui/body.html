@@ -1,9 +1,6 @@
 <template name="mainRoute">
         <h1>R.E.S.T.</h1>
-       <!--{{>loginbar}}-->
-        <!--{{>loginstyled}}-->
         {{>login}}
-        {{> coltemp}}
         <main>
             {{> Template.dynamic template=main}}
         </main>
@@ -12,58 +9,43 @@
         </div>
 </template>
 
-
-
-
 <template name="accommodationsRoute">
-    <body>
-        <h2>Liste des logements</h2>
-        {{> accommodationsList }}
-
-        <!--temporairement -->
-        <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
-    </body>
+        {{#if Template.subscriptionsReady}}
+            {{#if isSocialWorker}}
+                <body>
+                    <h2>Liste des logements</h2>
+                    {{> accommodationsList }}
+            
+                    <!--temporairement -->
+                    <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
+                </body>
+            {{else}}
+                {{> loginButtons}}
+                <h1>ERROR 404 : you'r not allowed on that page</h1>
+            {{/if}}
+        {{/if}}
 </template>
 
 <template name="addAccommodationRoute">
     {{#if currentUser}}
-    {{> addAccommodation }}
+        {{> addAccommodation }}
     {{/if}}
 </template>
 
-<!-- Template host profil page -->
-<template name="hostRoute">
-        {{> loginButtons}}
-        {{> affich_us}}
-</template>
-
-<template name="workerRoute">
-    {{> profile_travailleur_social}}
-</template>
-
-<template name="socialWorkerRoute">
-    {{> profile_travailleur_social}}
+<!-- Template host/social worker profil page -->
+<template name="profilRoute">
+    {{#if Template.subscriptionsReady}}
+        {{#if isSocialWorker}}
+            {{> loginButtons}}
+            {{> social_worker_profil}}
+        {{else}}
+            {{> loginButtons}}
+            {{> host_profil_template}}
+        {{/if}}
+    {{/if}}    
 </template>
 
 <template name="registerRoute">
     {{> register}}
     {{> Template.dynamic template=second}}
 </template>
-
-<!-- code à intégrer dans les templates et en tenant compte du système de route 
-
-<body>
-    
-    {{> affich_us}}
-    <h1>REST</h1>
-    <h2>Liste des logements</h2>
-    {{> accommodationsList }}
-    {{#if currentUser}}
-    {{> addAccommodation }}
-    {{else}}
-    <div classe="FrontPage">REST (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.
-            </div>
-    {{/if}}
-</body>
-
--->

@@ -1,4 +1,4 @@
-<template name="affich_us">
+<template name="host_profil_template">
     {{#if currentUser}}
     <h1>Vos informations : résumé </h1>
         <p>
@@ -11,19 +11,19 @@
 
         <form class="profilForm">
                 <h1>Email:</h1>
-                <input type="text" name="mail" placeholder="{{mail}}">
+                    <input type="text" name="mail" value="{{mail}}">
                 <h1>Prénom:</h1>
-                <input type="text" name="firstname" placeholder="{{firstname}}">
+                    <input type="text" name="firstname" value="{{firstname}}">
                 <h1>Nom:</h1>
-                <input type="text" name="lastname" placeholder="{{lastname}}">
+                    <input type="text" name="lastname" value="{{#if Template.subscriptionsReady}}{{lastname}}{{else}}champ obligatoire{{/if}}">
                 <h1>Adresse:</h1>
-                <input type="text" name="address" placeholder="{{address}}">
+                    <input type="text" name="address" value="{{address}}">
                 <h1>Numéro postal:</h1>
-                <input type="text" name="postcode" placeholder="{{postCode}}">
+                    <input type="text" name="postcode" value="{{postCode}}">
                 <h1>Ville:</h1>
-                <input type="text" name="city" placeholder="{{city}}">
+                    <input type="text" name="city" value="{{city}}">
                 <h1>Numéro de téléphone:</h1>
-                <input type="text" name="phone" placeholder="{{phone}}">
+                    <input type="text" name="phone" value="{{phone}}">
                 <br>
                 <br>
             <button class="submit" value="submit" type="submit">Modifier</button>

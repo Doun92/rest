@@ -3,7 +3,7 @@ import './template/host_profil_template.html';
 
 // récupère la publication du fichier server main.js
 // permet notamment de récupérer les champs ajouté dans la collection
-// ATTENTION : nécessite la suppression du la librarie "autopublish"
+// ATTENTION : nécessite la suppression de la librarie "autopublish"
 
 Meteor.subscribe('userData');
 
@@ -11,7 +11,7 @@ Meteor.subscribe('userData');
 // attention ne pas confondre la collection Meteor.users et 
 // l entrée qui correspond à un utilisateur meteor.user()
 
-Template.affich_us.helpers({
+Template.host_profil_template.helpers({
     'firstname': function(){
         data = Meteor.user();
         if(data.firstname){
@@ -34,10 +34,28 @@ Template.affich_us.helpers({
         data = Meteor.user();
 
         if (data.user_address.address){
-            rue = data && data.user_address.address;
-            ville = data && data.user_address.city;
-            npa = data && data.user_address.postcode;
-            return `${rue}, ${ville}, ${npa}`;         
+            if (data.user_address.address=='Champ obligatoire'){
+                rue = '';
+            }else{
+                rue = data && data.user_address.address;
+                rue = rue+', '
+            }
+            if(data.user_address.city=='Champ obligatoire'){
+                ville = '';
+            }else{
+                ville = data && data.user_address.city;
+                ville = ville+', '
+            }
+            if(data.user_address.postcode=='Champ obligatoire'){
+                npa = '';
+            }else{
+                npa = data && data.user_address.postcode;
+            }
+            if(rue == '' && ville == '' && npa == ''  ){
+                return 'Champ obligatoire'
+            }else{
+                return `${rue}${ville}${npa}`;         
+            }
         }else{
             return "Champ obligatoire"; 
         }
@@ -92,14 +110,14 @@ Template.affich_us.helpers({
         }else{
             return "Champ obligatoire"
         }
-    },   
+    }   
 })
 
 // events attache un évènement et une fonction à un template 
 // ici l event est le submit du formulaire (click sur le bouton submit)
 // la fonction consiste à mettre à jour les champs de la collection
 
-Template.affich_us.events({
+Template.host_profil_template.events({
     'submit .profilForm' : function(event) {
 
         event.preventDefault();
@@ -127,16 +145,30 @@ Template.affich_us.events({
     }
 });
 
-/*
-Accounts.onLogin(function () {
-    if(FlowRouter.current().route.group.name === 'public'){
-        FlowRouter.go('hostProfilPage')
+// subscribing user datas for the user profil route
+
+Template.profilRoute.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.profilRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
     }
-  })
- 
-Tracker.autorun(function () {
-if (!Meteor.userId()) {
-    FlowRouter.go('mainPage')
+});
+
+// subscribing user datas for the accomodations route
+
+Template.accommodationsRoute.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.accommodationsRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
     }
-})
-*/
+});
