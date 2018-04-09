@@ -47,7 +47,7 @@ Template.register.events({
                     type: "error"
                 });
                 } else {
-                    FlowRouter.go('/profile_accueillant');
+                    FlowRouter.go('/profile_utilisateur');
                 }
             });
         }
