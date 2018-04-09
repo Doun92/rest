@@ -30,6 +30,7 @@ Template.register.events({
 
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
+        
         if (isValidPassword(password, passwordAgain)) { 
             Accounts.createUser({
                 email: email,
