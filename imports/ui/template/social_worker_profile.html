@@ -1,13 +1,14 @@
 <template name="social_worker_profil">
     {{#if currentUser}}
         <h1>REST</h1>
-            <h1>Bonjour {{test}} {{lastname}}</h1>
-            <p>Institution : {{institute}} </p>
-            <p>Téléphone : {{phone_number}} </p>
-            <p>Adresse e-mail {{mail}} :</p>
+            <h2>Bonjour {{test}} {{lastname}}</h2>
+            <h3>Institution : <b>{{institute}}</b> </h3>
+            <p>Téléphone : <u>{{phone_number}}</u> </p>
+            <p>Adresse e-mail : <u>{{mail}}</u></p>
         <br>
         <br>
         <!-- Faire en sorte que le travailleur social puisse voir un ou deux jours les chambres dispo -->
+        <!-- Lorsque le travaileur clic sur une adresse : montre les coordonnées de la personne -->
         {{> accommodationsList}}
         <br>
         <br>
