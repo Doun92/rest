@@ -1,0 +1,21 @@
+<template name="calendar_template">
+    <h1>
+        {{#each calendArray}}
+        {{#if toSix @index}}
+            <br>{{> task}}
+        {{else}}
+            {{#if getActualDate this}}
+                    <span style="color: blueviolet">
+                        {{getActualDate this}}
+                    </span>
+                {{else}}
+                    {{> task}}
+            {{/if}}
+        {{/if}}    
+        {{/each}}
+    </h1>
+</template>
+
+<template name="task">
+    <span>{{this}}</span>
+</template>
