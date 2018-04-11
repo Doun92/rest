@@ -5,19 +5,18 @@ Template.register_social_worker.events({
         var email = $('#email').val(),
             firstName = $('#firstname').val(),
             lastName = $('#lastname').val(),
-            institution = $('#institution').val(),
+            institute = $('#institute').val(),
             password = $('#password').val(),
             passwordAgain = $('#password-again').val(),
             phone = $('phone').val();
 
-        /*
+        
         // Trim Helper
         var trimInput = function(val) {
             return val.replace(/^\s*|\s*$/g, "");
         }
         var email = trimInput(email);
-        */
-
+        
         // Check password is at least 6 chars long
         var isValidPassword = function(pwd, pwd2) {
             if (pwd === pwd2) {
@@ -34,12 +33,12 @@ Template.register_social_worker.events({
 
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
-        // if (isValidPassword(password, passwordAgain)) { 
+        if (isValidPassword(password, passwordAgain)) { 
             Accounts.createUser({
                 email: email,
                 firstname: firstName,
                 lastname: lastName,
-                institution: institution,
+                institute: institute,
                 password: password,
                 phone: phone,
                 sw : true
@@ -55,7 +54,7 @@ Template.register_social_worker.events({
                     FlowRouter.go('/profile_utilisateur');
                 }
             });
-        // }
+        }
         return false;
     }
 });
