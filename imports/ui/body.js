@@ -26,3 +26,6 @@ import './colltest.js';
 
 import './template/social_worker_profile.html';
 import './social_worker_profile.js';
+
+import './template/calendar.html';
+import './calendar.js';
