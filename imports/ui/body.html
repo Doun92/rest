@@ -16,19 +16,18 @@
                     {{> loginButtons}}
                     <h2>Liste des logements</h2>
                     {{> accommodationsList }}
-            
-                    <!--temporairement -->
-                    <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
                 </body>
             {{else}}
                 {{> loginButtons}}
-                <h1>ERROR 404 : you'r not allowed on that page</h1>
+                <h1>ERROR 404 : you're not allowed on that page</h1>
             {{/if}}
         {{/if}}
 </template>
 
 <template name="addAccommodationRoute">
-    {{#if currentUser}}
+    {{#if isSocialWorker}}
+        <p>You're not allowed on that page.</p>
+    {{else}}
         {{> addAccommodation }}
     {{/if}}
 </template>
