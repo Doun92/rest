@@ -16,7 +16,7 @@ Accounts.onCreateUser((options, user) => {
       } 
       user.firstname = options.firstname;
       user.lastname = options.lastname;
-      user.phone_number = '';
+      user.phone_number = options.phone_number;
       user.user_address = new_user_address;
     
       if (options.profile) {
@@ -34,7 +34,7 @@ Accounts.onCreateUser((options, user) => {
     user.firstname = options.firstname;
     user.lastname = options.lastname;
     user.institution = options.institution;
-    user.phone_number = '';
+    user.phone_number = options.phone_number;
     user.user_address = new_user_address;
   }
 

@@ -28,8 +28,8 @@ Template.social_worker_profil.helpers({
     },
     'institute': function(){
         data = Meteor.user();
-        if (data.institute){
-            institute = data && data.institute;
+        if (data.institution){
+            institute = data && data.institution;
             return institute;         
         }else{
             return `Champ obligatoire `; 
@@ -46,11 +46,11 @@ Template.social_worker_profil.helpers({
         }
     },
     
-    'phone': function(){
+    'phone_number': function(){
         data = Meteor.user();
-        if(data.phone){
-            phone = data && data.phone;
-            return phone;    
+        if(data.phone_number){
+            phone_number = data && data.phone_number;
+            return phone_number;    
         }else{
             return "Champ obligatoire"
         }

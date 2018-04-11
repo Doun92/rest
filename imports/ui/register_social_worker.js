@@ -8,7 +8,7 @@ Template.register_social_worker.events({
             institute = $('#institute').val(),
             password = $('#password').val(),
             passwordAgain = $('#password-again').val(),
-            phone = $('phone').val();
+            phone_number = $('#phone_number').val();
 
         
         // Trim Helper
@@ -38,9 +38,9 @@ Template.register_social_worker.events({
                 email: email,
                 firstname: firstName,
                 lastname: lastName,
-                institute: institute,
+                institution: institute,
                 password: password,
-                phone: phone,
+                phone_number: phone_number,
                 sw : true
             }, function(error) {
                 if (error) {
