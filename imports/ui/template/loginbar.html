@@ -1,9 +1,56 @@
 <template name="loginbar">
-        <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="text-right">
-                                <a href="{{pathFor '/'}}" textalign="left">Page d'acceuil</a>
-                                <a href="{{pathFor 'inscription'}}">Inscription</a> || 
-                                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Se connecter</button>
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">        
+                        <ul class="nav navbar-nav">
+                                <li><a class="navbar-brand" href="{{pathFor '/'}}">Page d'acceuil</a></li> 
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> <span class="glyphicon glyphicon-user"></span> Inscription <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="{{pathFor 'inscription'}}">  Acceuillant</a></li>
+                                <li><a href="{{pathFor 'inscription_ts'}}">Travailleurs sociaux</a></li>
+                                <!--possible d'utilisé modale pour faire des pop-up <li><button type="button" data-toggle="modal" data-target="#myModal">Se connecter</button></li>-->
+                        </ul>
+                        </li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+                        <ul class="dropdown-menu">
+                                <li>{{>login}}</li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.container-fluid -->
+        </nav>
+</template>
+
+<template name="navbarHost">
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">            
+                        <ul class="nav navbar-nav">
+                                <li><a class="navbar-brand" href="{{pathFor '/'}}">Page d'acceuil</a></li> 
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
+                        <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
+                        <li>{{>loginButtons}}</li>
+                        </ul>
                 </div>
         </nav>
 </template>
+
+<template name="navbarSocialWorker">
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">            
+                        <ul class="nav navbar-nav">
+                                <li><a class="navbar-brand" href="{{pathFor '/'}}">Page d'acceuil</a></li> 
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
+                        <li>{{>loginButtons}}</li>
+                        </ul>
+                </div>
+        </nav>
+</template>
+
+
