@@ -68,3 +68,22 @@ Template.addAccommodation.events({
     //     instance.state.set('allTimeUnchecked', event.target.unchecked);
     // },
 });
+
+// À continuer
+Template.accommodationsList.events({
+    'click .adresse': function(){
+        let selectedLogement = Session.get('selectedLogement');
+        let logementID = this._id;
+
+        Session.set('selectedLogement', logementID);
+        console.log(selectedLogement);
+    },
+
+    'selectedAdresse': function(){
+        let adresseID = this._id
+        let selectedLogement = Session.get('selectedLogement');
+
+        if(logementID == selectedLogement)
+        return 'selected'
+    }
+});

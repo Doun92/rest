@@ -30,3 +30,4 @@ accounts-ui
 arillo:flow-router-helpers
 kevohagan:sweetalert
 standard-minifier-css
+session
