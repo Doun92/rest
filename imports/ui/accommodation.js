@@ -69,7 +69,7 @@ Template.addAccommodation.events({
     // },
 });
 
-// À continuer
+// À continuer -> Question à Loris
 Template.accommodationsList.events({
     'click .adresse': function(){
         let selectedLogement = Session.get('selectedLogement');
@@ -84,6 +84,6 @@ Template.accommodationsList.events({
         let selectedLogement = Session.get('selectedLogement');
 
         if(logementID == selectedLogement)
-        return 'selected'
+        return "selected"
     }
 });
