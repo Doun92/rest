@@ -1,4 +1,5 @@
 /* CSS declarations go here */
+<<<<<<< HEAD
 
 /* SimpleCalendar */
 .calendarGrill{
@@ -52,3 +53,8 @@ span.actualDay{
     width: 50px;
     border: solid 1px rgb(189, 189, 189);
 }
+=======
+body {
+    margin-left:500px;
+}
+>>>>>>> 00c9890d02b2488f730aacda43bff329686ff2d3

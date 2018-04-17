@@ -1,6 +1,16 @@
+<body>
+{{#if currentUser}}
+    {{#if isSocialWorker}}
+        {{> navbarSocialWorker}}
+    {{else}}
+        {{> navbarHost}}
+    {{/if}}
+    {{else}}
+    {{>loginbar}}
+{{/if}}
+</body>
 <template name="mainRoute">
         <h1>R.E.S.T.</h1>
-        {{>login}}
         <main>
             {{> Template.dynamic template=main}}
         </main>
@@ -13,22 +23,19 @@
         {{#if Template.subscriptionsReady}}
             {{#if isSocialWorker}}
                 <body>
-                    {{> loginButtons}}
                     <h2>Liste des logements</h2>
                     {{> accommodationsList }}
-            
-                    <!--temporairement -->
-                    <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
                 </body>
             {{else}}
-                {{> loginButtons}}
-                <h1>ERROR 404 : you'r not allowed on that page</h1>
+                <h1>ERROR 404 : you're not allowed on that page</h1>
             {{/if}}
         {{/if}}
 </template>
 
 <template name="addAccommodationRoute">
-    {{#if currentUser}}
+    {{#if isSocialWorker}}
+        <p>You're not allowed on that page.</p>
+    {{else}}
         {{> addAccommodation }}
     {{/if}}
 </template>
@@ -37,10 +44,8 @@
 <template name="profilRoute">
     {{#if Template.subscriptionsReady}}
         {{#if isSocialWorker}}
-            {{> loginButtons}}
             {{> social_worker_profil}}
         {{else}}
-            {{> loginButtons}}
             {{> host_profil_template}}
         {{/if}}
     {{/if}}    
