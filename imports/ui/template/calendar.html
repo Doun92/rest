@@ -1,21 +1,52 @@
+<!--SimpleCalendar created and added by RD-->
+
 <template name="calendar_template">
-    <h1>
+    <div>
+        <form id="yearForm">
+            <select size="1">
+                {{#each yearOptions}}
+                    <option>{{this}}</option>
+                {{/each}}
+            </select>
+        </form>
+    </div>
+    <div>
+        <form id="monthForm" >
+            <select size="1">
+                {{#each monthOptions}}
+                    {{#if isActualMonth this}}
+                    <option selected>{{this}}</option>
+                    {{else}}
+                    <option>{{this}}</option>
+                    {{/if}}
+                {{/each}}                
+            </select>
+        </form>
+    </div>
+    <div class="dayGrill">
+        {{#each daysAcr}}
+            <span>{{this}}</span>
+        {{/each}}
+    </div>
+    <div class="calendarGrill">
         {{#each calendArray}}
         {{#if toSix @index}}
-            <br>{{> task}}
+            {{#if getActualDate this}}
+            <span class="actualDay">{{this}}</span><br>
+            {{else}}
+            <span class="{{setClass @index this}}">{{this}}</span><br>
+            {{/if}}
         {{else}}
             {{#if getActualDate this}}
-                    <span style="color: blueviolet">
-                        {{getActualDate this}}
-                    </span>
+                    <span class="actualDay">{{this}}</span>
                 {{else}}
-                    {{> task}}
+                    <span class="{{setClass @index this}}">{{this}}</span>
             {{/if}}
         {{/if}}    
         {{/each}}
-    </h1>
+    </div>
 </template>
 
 <template name="task">
-    <span>{{this}}</span>
+    {{this}}
 </template>

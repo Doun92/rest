@@ -8,11 +8,26 @@ import './template/accommodation.html';
 //   });
 
 Meteor.subscribe('accommodations');
+Meteor.subscribe('userData');
 
 Template.accommodationsList.helpers({
      accommodation() {
          return Accommodation.find({});
      },
+ });
+
+ Template.addAccommodation.helpers({
+
+     // utilise la fonction actual location comme condition de 
+     // l'apparition d'un formulaire d'ajout d'adresse
+     // si la valeur n'est pas renseignée affiché le formulaire par défaut
+     // ps: crée un template pour le formulaire
+
+    'actual_location':function(){
+        userId = Meteor.userId();
+        data = Meteor.user();
+        console.log(data.user_address);
+    }
  });
 
 Template.addAccommodation.events({

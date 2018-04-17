@@ -8,22 +8,9 @@
 
 <template name="addAccommodation">
     <h2>Proposition de logements</h2>
+    <h1>{{actual_location}}</h1>
     <form class="addAccommodation">
 
-        <fieldset>
-            <legend>Où se situe le logement ?</legend>
-            <label for="address">Adresse du logement</label> 
-            <input type="text" name="address" id="address" placeholder="Adresse"><br>
-
-            <label for="additionalAddress">Complément d'adresse</label>
-            <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse"><br>
-
-            <label for="zipCode">NPA</label>
-            <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
-
-            <label for="location">Localité</label>
-            <input type="text" name="location" id="location" placeholder="Localité">
-        </fieldset>
 
         <fieldset>
             <legend>Vous pouvez accueillir :</legend>
@@ -40,6 +27,7 @@
 
         <fieldset>
             <legend>À quel période ?</legend>
+            {{> calendar_template}}
 
             <input type="checkbox" name="allTime" id="allTime" value="allTime" checked> <label for="allTime">En tout temps</label><br>
             du <input type="date" name="startDate" id="startDate" disabled>
@@ -50,4 +38,25 @@
         <textarea name="comment" id="comment" cols="30" rows="10"></textarea><br>
         <button class="btn btn-default" value="submit" type="submit">Terminer</button>
     </form>
+</template>
+
+<template name="addAdress">
+
+    <fieldset>
+        <legend>Ajouter une adresse</legend>
+        <label for="address">Adresse du logement</label> 
+        <input type="text" name="address" id="address" placeholder="Adresse"><br>
+
+        <label for="num">N°</label> 
+        <input type="text" name="location_number" id="location_number" placeholder="Numéro"><br>
+
+        <label for="additionalAddress">Complément d'adresse</label>
+        <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse"><br>
+
+        <label for="zipCode">NPA</label>
+        <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
+
+        <label for="location">Localité</label>
+        <input type="text" name="location" id="location" placeholder="Localité">
+    </fieldset>
 </template>

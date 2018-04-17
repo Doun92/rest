@@ -1,1 +1,54 @@
 /* CSS declarations go here */
+
+/* SimpleCalendar */
+.calendarGrill{
+    font-size: 0px;
+}
+.dayGrill{
+    font-size: 0px;
+}
+
+.calendarGrill span:hover{
+    background-color: rgb(223, 223, 223);
+}
+span.grey{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
+.grey{
+    color: grey;
+    font-size: 25px;
+}
+span.grey:hover{
+    background-color: rgb(255, 255, 255);
+}
+.calDay{
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+}
+span.calDay{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
+.actualDay{
+    font-size: 25px;
+    color: rgb(228, 211, 64);
+    font-weight: bolder;
+}
+span.actualDay{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
