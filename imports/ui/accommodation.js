@@ -1,7 +1,9 @@
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Accommodation } from "../api/accommodation-methods.js";
-import {register_host} from 'register'
 import './template/accommodation.html';
+import { Template } from 'meteor/templating';
+import { register } from './template/register.html';
+//import { register } from 'register.js';
 
 // WIP
 //Template.body.onCreated(function bodyOnCreated() {
@@ -85,16 +87,17 @@ Template.addAccommodation.events({
     // },
 });
 
-// À continuer -> Question à Loris
+// À continuer mais avant, importer la database users
 Template.accommodationsList.events({
     'click .adresse': function(){   
-        let prenom = users.firstname;
-        let nom = users.lastname;
-        let mail = users.mail;
-        let phone = users.phone;
+        let prenom = db.users.firstname;
+        //let nom = this.lastname;
+        //let mail = this.mail;
+        //let phone = this.phone;
 
         //Session.set('selectedLogement', logementID);
-        Session.set('selectedLogement',prenom+' '+nom+' '+mail+' '+phone)
+        Session.set('selectedLogement',prenom)
+        //+' '+nom+' '+mail+' '+phone)
         let selectedPersonne = Session.get('selectedPersonne');
         console.log(selectedPersonne);
     },
