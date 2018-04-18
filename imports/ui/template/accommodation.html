@@ -1,7 +1,7 @@
 <template name="accommodationsList">
     <ul>
     {{#each accommodation }}
-        <li class='adresse {{selectedAdresse}}'>{{ address }}</li>
+        <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}}</li>
     {{/each}}
     </ul>
 </template>
@@ -9,20 +9,30 @@
 <template name="addAccommodation">
     <h2>Proposition de logements</h2>
     <h1>{{actual_location}}</h1>
-    <form class="addAccommodation">
+    <form class="addAccommodation form-horizontal">
+
+        {{> addAddress}}
 
 
         <fieldset>
             <legend>Vous pouvez accueillir :</legend>
+            <div class="form-group">
+                <label for="availablePlaces">Nombre de personnes</label>
+                <input type="number" name="availablePlaces" id="availablePlaces">
+            </div>
 
-            <label for="availablePlaces">Nombre de personnes</label>
-            <input type="number" name="availablePlaces" id="availablePlaces"><br>
-
-            <input type="checkbox" name="criteria" id="family" value="family" checked> <label for="family">Famille</label> 
-            <input type="checkbox" name="criteria" id="single" value="single" checked> <label for="single">Célibataire</label> 
-            <input type="checkbox" name="criteria" id="man" value="man" checked> <label for="man">Homme</label> 
-            <input type="checkbox" name="criteria" id="woman" value="woman" checked> <label for="woman">Femme</label> 
-
+            <div class="checkbox">
+                <label for="family"><input type="checkbox" name="criteria" id="family" value="family" checked> Famille</label> 
+            </div>
+            <div class="checkbox">
+                <label for="single"><input type="checkbox" name="criteria" id="single" value="single" checked>Célibataire</label>
+            </div>
+            <div class="checkbox">
+                <label for="man"><input type="checkbox" name="criteria" id="man" value="man" checked>Homme</label>
+            </div>
+            <div class="checkbox">
+                <label for="woman"><input type="checkbox" name="criteria" id="woman" value="woman" checked>Femme</label> 
+            </div>
         </fieldset>
 
         <fieldset>
@@ -40,23 +50,32 @@
     </form>
 </template>
 
-<template name="addAdress">
+<template name="addAddress">
 
     <fieldset>
         <legend>Ajouter une adresse</legend>
-        <label for="address">Adresse du logement</label> 
-        <input type="text" name="address" id="address" placeholder="Adresse"><br>
+        <div class="form-group">
+            <label for="address">Adresse du logement</label> 
+            <input type="text" name="address" id="address" placeholder="Adresse">
+        </div>
 
-        <label for="num">N°</label> 
-        <input type="text" name="location_number" id="location_number" placeholder="Numéro"><br>
+        <div class="form-group">
+            <label for="num">N°</label> 
+            <input type="text" name="location_number" id="location_number" placeholder="Numéro">
+        </div>
 
-        <label for="additionalAddress">Complément d'adresse</label>
-        <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse"><br>
+        <div class="form-group">
+            <label for="additionalAddress">Complément d'adresse</label>
+            <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse">
+        </div>
 
-        <label for="zipCode">NPA</label>
-        <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
-
-        <label for="location">Localité</label>
-        <input type="text" name="location" id="location" placeholder="Localité">
+        <div class="form-group">
+            <label for="zipCode">NPA</label>
+            <input type="number" name="zipCode" id="zipCode" placeholder="NPA">
+        </div>
+        <div class="form-group">
+            <label for="location">Localité</label>
+            <input type="text" name="location" id="location" placeholder="Localité">
+        </div>
     </fieldset>
 </template>
