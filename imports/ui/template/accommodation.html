@@ -1,7 +1,7 @@
 <template name="accommodationsList">
     <ul>
     {{#each accommodation }}
-        <li class='adresse {{selectedAdresse}}'>{{ address }}</li>
+        <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}}</li>
     {{/each}}
     </ul>
 </template>

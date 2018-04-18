@@ -1,5 +1,6 @@
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Accommodation } from "../api/accommodation-methods.js";
+import {register_host} from 'register'
 import './template/accommodation.html';
 
 // WIP
@@ -86,19 +87,16 @@ Template.addAccommodation.events({
 
 // À continuer -> Question à Loris
 Template.accommodationsList.events({
-    'click .adresse': function(){
-        let selectedLogement = Session.get('selectedLogement');
-        let logementID = this._id;
+    'click .adresse': function(){   
+        let prenom = users.firstname;
+        let nom = users.lastname;
+        let mail = users.mail;
+        let phone = users.phone;
 
-        Session.set('selectedLogement', logementID);
-        console.log(selectedLogement);
+        //Session.set('selectedLogement', logementID);
+        Session.set('selectedLogement',prenom+' '+nom+' '+mail+' '+phone)
+        let selectedPersonne = Session.get('selectedPersonne');
+        console.log(selectedPersonne);
     },
 
-    'selectedAdresse': function(){
-        let adresseID = this._id
-        let selectedLogement = Session.get('selectedLogement');
-
-        if(logementID == selectedLogement)
-        return "selected"
-    }
 });
