@@ -23,6 +23,20 @@ span.grey{
     color: grey;
     font-size: 25px;
 }
+.selected{
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+}
+span.selected{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+    background-color: rgb(138, 195, 228);
+}
 span.grey:hover{
     background-color: rgb(255, 255, 255);
 }
@@ -53,5 +67,5 @@ span.actualDay{
     border: solid 1px rgb(189, 189, 189);
 }
 body {
-    margin-left:500px;
+    margin-left:0px;
 }
