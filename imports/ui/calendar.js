@@ -173,7 +173,23 @@ Template.calendar_template.helpers({
         return ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
     },
     'tmp' : function(){
+        /* test blaze do not delete until the end of the project 
+
+        arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        //tmpData = Accommodation.find({}).fetch();
+        //tmp = Object.keys(tmpData[0].availability);
+        //sess = Session.get();
+        for(i=0;i<arr.length;i++){
+            for(y=0;y<tmp.length;y++){
+                if(arr[i] == tmp[y]){
+                    //console.log(tmp[y]);
+                }
+            }
+        }
+        //console.log(tmp.map((x, y) => x))
+        //arr = tmp.map(x=> x == value);
         //console.log(Session.get())
+        */ 
     },
     'setClass' : function(index, value){
         
@@ -192,24 +208,29 @@ Template.calendar_template.helpers({
 
             tmpData = Accommodation.find({}).fetch();
             tmp = Object.keys(tmpData[0].availability);
+            tmp.unshift('0');
+
+            //that one was F... HARD!!!
+
+            //console.log(`value 1 : ${tmp[value]}`)
             //sess = Session.get();
-            //console.log(tmp)
+            //console.log(tmp.forEach(x=>{if(x==value){console.log(x)}}))
             //arr = tmp.map(x=> x == value);
             //console.log(`cal value : ${value}`)
             //console.log(`availability : ${tmp[value-1]}`)
-
+            function test (ind){
+                return ind == value;
+            }
             if(index-value <= -10){
                 return 'grey';
             }else if(index-value >= 10){
                 return 'grey';             
+            }else if(tmp.find(test)){
+                    return 'selected';
             }else{
-                if(tmp.forEach(x=>{x=value})){
-                    console.log(tmp[value-1]);
-                    return 'selected'
+                    return 'calDay';
                 }
-                return 'calDay';
             }
-       }
     },
     'getActualAddress' : function(){
         data = Meteor.user()
@@ -250,7 +271,7 @@ Template.calendar_template.events({
         date = date.toDateString();
         //console.log(tmpValue);
         Session.set(Number(tmpValue), date)
-        //console.log(Session.keys);
+        console.log(Session.keys);
         //console.log(Session.get(tmpValue));
         target.className = 'selected'
     },
