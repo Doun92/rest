@@ -1,4 +1,10 @@
 /* CSS declarations go here */
+/* Pour les fois où on doit travailler avec mongol, ajouter une marge ~500px */
+body {
+    margin-left:0px;
+}
+
+
 
 /* SimpleCalendar */
 .calendarGrill{
@@ -65,7 +71,4 @@ span.actualDay{
     height: 50px;
     width: 50px;
     border: solid 1px rgb(189, 189, 189);
-}
-body {
-    margin-left:0px;
 }
