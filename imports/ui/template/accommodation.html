@@ -48,32 +48,32 @@
         {{#if isLocation}}
                 <legend>Adresse d'accueil actuelle</legend>
                 <label for="address">Adresse du logement</label>
-                <input type="text" name="address" id="address" placeholder="{{availableLocation.[0]}}"><br>
+                <input type="text" name="address" id="address" value="{{availableLocation.[0]}}"><br>
 
                 <label for="num">N°</label> 
-                <input type="text" name="location_number" id="location_number" placeholder="{{availableLocation.[1]}}"><br>
+                <input type="text" name="location_number" id="location_number" value="{{availableLocation.[1]}}"><br>
 
                 <label for="zipCode">NPA</label>
-                <input type="number" name="zipCode" id="zipCode" placeholder="{{availableLocation.[3]}}"><br>
+                <input type="number" name="zipCode" id="zipCode" value="{{availableLocation.[3]}}"><br>
     
                 <label for="location">Localité</label>
-                <input type="text" name="location" id="location" placeholder="{{availableLocation.[2]}}"><br> 
+                <input type="text" name="location" id="location" value="{{availableLocation.[2]}}"><br> 
                 
                 <label for="availablePlaces">Nombre de personnes</label>
                 <input type="number" name="availablePlaces" id="availablePlaces">
             {{else}}
                 <legend>Ajouter une adresse</legend> 
                 <label for="address">Rue</label>        
-                <input type="text" name="address" id="address" placeholder="Adresse"><br>
+                <input type="text" name="address" id="address" value="Adresse"><br>
 
                 <label for="num">N°</label> 
-                <input type="text" name="location_number" id="location_number" placeholder="Numéro"><br>
+                <input type="text" name="location_number" id="location_number" value="Numéro"><br>
 
                 <label for="zipCode">NPA</label>
-                <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
+                <input type="number" name="zipCode" id="zipCode" value="NPA"><br>
     
                 <label for="location">Localité</label>
-                <input type="text" name="location" id="location" placeholder="Localité"><br> 
+                <input type="text" name="location" id="location" value="Localité"><br> 
 
                 <label for="availablePlaces">Nombre de personnes</label>
                 <input type="number" name="availablePlaces" id="availablePlaces">
@@ -105,12 +105,16 @@
 
 <template name="updateAccommodation">
 
-<!-- Update accommodation template -->
+        {{#if Template.subscriptionsReady}}
+
+        <!-- Update accommodation template -->
 
         <h2>Proposition de logements</h2>
-        <form>
+        <form class="updateAccommodation">
             {{> addressForm}}        
             {{> calendar_template}}
             <button type="submit">Mettre à jour</button>
         </form>
+
+        {{/if}}
 </template>

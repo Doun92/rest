@@ -160,6 +160,59 @@ Template.updateAccommodation.onCreated(function() {
 })
 
 Template.updateAccommodation.helpers({
+    'lastStorage' : function(){
+        tmpData = Accommodation.find({}).fetch();
+        tmp = Object.keys(tmpData[0].availability);
+        tmp.forEach(x => {
+            Session.set(x,tmp[x]);
+        });
+    }
+})
+
+Template.updateAccommodation.events({
+    'submit .updateAccommodation' (event, template) {
+
+        collection = Accommodation.find({host_id:Meteor.userId()}).fetch() 
+        //console.log(collection[0]._id)
+        event.preventDefault();
+
+        const target = event.target;
+
+        const address = template.find('#address').value;
+        const location_number = template.find('#location_number').value;
+        const zipCode = template.find('#zipCode').value;
+        const location = template.find('#location').value;
+        const availablePlaces = template.find('#availablePlaces').value;
+
+        //à rajouter
+
+        //const allTime 
+        //const last_call_hour
+
+        delete Session.keys['link_value'];
+        availability = Session.keys;
+        console.log(availability);
+
+        const creator = Meteor.userId();
+
+        Accommodation.update(collection[0]._id, {
+            $set: {
+                address : address,
+                loc_number : location_number,
+                zipCode : zipCode,
+                location : location,
+                availablePlaces : availablePlaces,
+                availability : availability,
+                host_id : creator
+            }
+
+            //à rajouter
+
+            //allTime : allTime,
+            //last_call_hour : last_call_hour
+            
+        });
+    },
 })
 
 Template.addressForm.onCreated(function() {

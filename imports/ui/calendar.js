@@ -5,6 +5,11 @@ import { Session } from 'meteor/session'
 import { stringify } from 'querystring';
 import { Accommodation } from '../api/accommodation-methods';
 
+Template.calendar_template.onCreated(function(){
+    this.subscribe('userData');
+    this.subscribe('accomodations');
+})
+
 Template.calendar_template.helpers({
 
     'calendArray' : function(){
@@ -168,27 +173,43 @@ Template.calendar_template.helpers({
         return ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
     },
     'tmp' : function(){
-        tmpData = Accommodation.find({}).fetch();
-        console.log(tmpData[0].availability);
+        //console.log(Session.get())
     },
     'setClass' : function(index, value){
         
-        /****  change class and the color value
-         * of the current day of the month */
+        /****  change class and the color value of the current day of the month 
+        * + check for existing availabilities and return class color */
+       if(Accommodation.find().count() === 0){
+            
+            if(index-value <= -10){
+                return 'grey';
+            }else if(index-value >= 10){
+                return 'grey';
+            }else{
+                return 'calDay';
+            }
+       }else{
 
-        //console.log(`index : ${index}, value : ${value}`);
-        //console.log(index-value)
+            tmpData = Accommodation.find({}).fetch();
+            tmp = Object.keys(tmpData[0].availability);
+            //sess = Session.get();
+            //console.log(tmp)
+            //arr = tmp.map(x=> x == value);
+            //console.log(`cal value : ${value}`)
+            //console.log(`availability : ${tmp[value-1]}`)
 
-        if(index-value <= -10){
-            //console.log('ok')
-            return 'grey';
-        }
-        else if(index-value >= 10){
-            //console.log('ok')
-            return 'grey';
-        }else{
-            return 'calDay';
-        }
+            if(index-value <= -10){
+                return 'grey';
+            }else if(index-value >= 10){
+                return 'grey';             
+            }else{
+                if(tmp.forEach(x=>{x=value})){
+                    console.log(tmp[value-1]);
+                    return 'selected'
+                }
+                return 'calDay';
+            }
+       }
     },
     'getActualAddress' : function(){
         data = Meteor.user()

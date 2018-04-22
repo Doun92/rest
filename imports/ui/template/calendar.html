@@ -1,6 +1,7 @@
 <!--SimpleCalendar created and added by RD-->
 
 <template name="calendar_template">
+    {{#if Template.subscriptionsReady}}
     {{tmp}}
     <legend> Ajouter/supprimer des nuitées : </legend>
     <div>
@@ -47,8 +48,5 @@
         {{/if}}    
         {{/each}}
     </div>
-</template>
-
-<template name="task">
-    {{this}}
+    {{/if}}
 </template>
