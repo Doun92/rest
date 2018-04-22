@@ -1,62 +1,116 @@
 <template name="accommodationsList">
     <ul>
     {{#each accommodation }}
-        <li class='adresse {{selectedAdresse}}'>{{ address }}</li>
+        <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}}</li>
     {{/each}}
     </ul>
 </template>
 
+<!--Super template-->
+
+<template name="accommodationTemplate">
+    <!-- check if there is a host room for the current user-->
+    {{#if isAccommodation}}
+        {{> updateAccommodation}}
+    {{else}}
+        {{> addAccommodation}}
+    {{/if}}
+</template>
+
 <template name="addAccommodation">
+
+    <!-- add accommotations templates -->
+
     <h2>Proposition de logements</h2>
-    <h1>{{actual_location}}</h1>
-    <form class="addAccommodation">
+    <form class="addAccommodation">    
+    {{#if Template.subscriptionsReady}}
 
+    <!-- look for host profil address -->
 
-        <fieldset>
-            <legend>Vous pouvez accueillir :</legend>
+        {{#if actual_location}}
+            {{> actualAddress}}
+        {{else}}
+            {{> addressForm}}
+        {{/if}}
+    {{/if}}
 
-            <label for="availablePlaces">Nombre de personnes</label>
-            <input type="number" name="availablePlaces" id="availablePlaces"><br>
+    <!-- Fire simpleCal template -->
+    {{> calendar_template}}
 
-            <input type="checkbox" name="criteria" id="family" value="family" checked> <label for="family">Famille</label> 
-            <input type="checkbox" name="criteria" id="single" value="single" checked> <label for="single">Célibataire</label> 
-            <input type="checkbox" name="criteria" id="man" value="man" checked> <label for="man">Homme</label> 
-            <input type="checkbox" name="criteria" id="woman" value="woman" checked> <label for="woman">Femme</label> 
-
-        </fieldset>
-
-        <fieldset>
-            <legend>À quel période ?</legend>
-            {{> calendar_template}}
-
-            <input type="checkbox" name="allTime" id="allTime" value="allTime" checked> <label for="allTime">En tout temps</label><br>
-            du <input type="date" name="startDate" id="startDate" disabled>
-            au <input type="date" name="endDate" id="endDate" disabled><br>
-            <label for="callHour">Dernière heure d'appel</label>
-            <input type="number" name="callHour" id="callHour">
-        </fieldset>
-        <textarea name="comment" id="comment" cols="30" rows="10"></textarea><br>
-        <button class="btn btn-default" value="submit" type="submit">Terminer</button>
+    <button type="submit">Terminer</button>
     </form>
 </template>
 
-<template name="addAdress">
-
+<template name="addressForm">
+    <!-- add/update address form : available for addAccommodation template and updateAccomodation -->
     <fieldset>
-        <legend>Ajouter une adresse</legend>
-        <label for="address">Adresse du logement</label> 
-        <input type="text" name="address" id="address" placeholder="Adresse"><br>
+        {{#if Template.subscriptionsReady}}
+        {{#if isLocation}}
+                <legend>Adresse d'accueil actuelle</legend>
+                <label for="address">Adresse du logement</label>
+                <input type="text" name="address" id="address" placeholder="{{availableLocation.[0]}}"><br>
 
-        <label for="num">N°</label> 
-        <input type="text" name="location_number" id="location_number" placeholder="Numéro"><br>
+                <label for="num">N°</label> 
+                <input type="text" name="location_number" id="location_number" placeholder="{{availableLocation.[1]}}"><br>
 
-        <label for="additionalAddress">Complément d'adresse</label>
-        <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Complément d'adresse"><br>
+                <label for="zipCode">NPA</label>
+                <input type="number" name="zipCode" id="zipCode" placeholder="{{availableLocation.[3]}}"><br>
+    
+                <label for="location">Localité</label>
+                <input type="text" name="location" id="location" placeholder="{{availableLocation.[2]}}"><br> 
+                
+                <label for="availablePlaces">Nombre de personnes</label>
+                <input type="number" name="availablePlaces" id="availablePlaces">
+            {{else}}
+                <legend>Ajouter une adresse</legend> 
+                <label for="address">Rue</label>        
+                <input type="text" name="address" id="address" placeholder="Adresse"><br>
 
-        <label for="zipCode">NPA</label>
-        <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
+                <label for="num">N°</label> 
+                <input type="text" name="location_number" id="location_number" placeholder="Numéro"><br>
 
-        <label for="location">Localité</label>
-        <input type="text" name="location" id="location" placeholder="Localité">
+                <label for="zipCode">NPA</label>
+                <input type="number" name="zipCode" id="zipCode" placeholder="NPA"><br>
+    
+                <label for="location">Localité</label>
+                <input type="text" name="location" id="location" placeholder="Localité"><br> 
+
+                <label for="availablePlaces">Nombre de personnes</label>
+                <input type="number" name="availablePlaces" id="availablePlaces">
+
+        {{/if}}
+        {{/if}}
     </fieldset>
+</template>
+
+<template name="actualAddress">
+
+    <!-- check if host profil has an address if true suggest add the same address -->
+
+    {{#if sessionReady}}
+        {{#if linkValue}}
+            {{#each actualAddressValue}}
+                <span>{{this}}</span><br>
+            {{/each}}
+        {{else}}
+            {{> addressForm}}
+        {{/if}}
+
+    {{else}}
+        <p>Vous avez déjà donné une adresse :</p><br>
+        <a href="" class="actualAddresslink1"><p>Je souhaite mettre à disposition mon adresse actuelle </p></a>
+        <a href="" class="actualAddresslink2"><p>Je souhaite ajouter une autre adresse </p></a>
+    {{/if}}
+</template>
+
+<template name="updateAccommodation">
+
+<!-- Update accommodation template -->
+
+        <h2>Proposition de logements</h2>
+        <form>
+            {{> addressForm}}        
+            {{> calendar_template}}
+            <button type="submit">Mettre à jour</button>
+        </form>
 </template>

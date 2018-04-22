@@ -2,6 +2,8 @@
 
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session'
+import { stringify } from 'querystring';
+import { Accommodation } from '../api/accommodation-methods';
 
 Template.calendar_template.helpers({
 
@@ -165,6 +167,10 @@ Template.calendar_template.helpers({
     'daysAcr' : function(){
         return ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
     },
+    'tmp' : function(){
+        tmpData = Accommodation.find({}).fetch();
+        console.log(tmpData[0].availability);
+    },
     'setClass' : function(index, value){
         
         /****  change class and the color value
@@ -183,6 +189,10 @@ Template.calendar_template.helpers({
         }else{
             return 'calDay';
         }
+    },
+    'getActualAddress' : function(){
+        data = Meteor.user()
+        console.log(data.user_address);
     }
 });
 
@@ -208,5 +218,43 @@ Template.calendar_template.events({
             'day_selected': tmp[0].options[tmp[0].selectedIndex].value,
             });
         //console.log(Session.get('year_selected'));
+    },
+    'click .calDay': function(event){
+        event.preventDefault();
+        const target = event.target;
+        tmpValue = target.innerText;
+
+        date = new Date();
+        date.setDate(tmpValue);
+        date = date.toDateString();
+        //console.log(tmpValue);
+        Session.set(Number(tmpValue), date)
+        //console.log(Session.keys);
+        //console.log(Session.get(tmpValue));
+        target.className = 'selected'
+    },
+    'click .actualDay': function(event){
+        event.preventDefault();
+        const target = event.target;
+        tmpValue = target.innerText;
+
+        date = new Date();
+        date.setDate(tmpValue);
+        date = date.toDateString();
+        //console.log(tmpValue);
+        Session.set(Number(tmpValue), date)
+        //console.log(Session.keys);
+        //console.log(Session.get(tmpValue));
+        target.className = 'selected'
+    },
+    'click .selected':function(event){
+        event.preventDefault();
+        const target = event.target;
+        tmpValue = target.innerText;
+        if(Session.get(Number(tmpValue))){
+            delete Session.keys[Number(tmpValue)];
+            target.className = 'calDay'
+            //console.log(Session.keys);
+        }
     }
 })
