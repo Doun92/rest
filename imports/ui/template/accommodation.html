@@ -9,11 +9,13 @@
 <!--Super template-->
 
 <template name="accommodationTemplate">
+    {{#if currentUser}}
     <!-- check if there is a host room for the current user-->
     {{#if isAccommodation}}
         {{> updateAccommodation}}
     {{else}}
         {{> addAccommodation}}
+    {{/if}}
     {{/if}}
 </template>
 

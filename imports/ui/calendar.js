@@ -195,7 +195,7 @@ Template.calendar_template.helpers({
         
         /****  change class and the color value of the current day of the month 
         * + check for existing availabilities and return class color */
-       if(Accommodation.find().count() === 0){
+       if(Accommodation.find({_id:Meteor.userId()}).count() === 0){
             
             if(index-value <= -10){
                 return 'grey';

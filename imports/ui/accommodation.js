@@ -68,9 +68,6 @@ Template.addAccommodation.helpers({
         }else{
             return true
         }
-    },
-    'testDisplay':function(){
-        return 'nice'
     }
  });
 
@@ -97,7 +94,7 @@ Template.actualAddress.helpers({
         tmpArray.push(route, city, postcode);
         return tmpArray;
     }
-}) 
+}); 
 
 Template.actualAddress.events({
     'click .actualAddresslink1' (event){
@@ -161,7 +158,7 @@ Template.updateAccommodation.onCreated(function() {
 
 Template.updateAccommodation.helpers({
     'lastStorage' : function(){
-        tmpData = Accommodation.find({}).fetch();
+        tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
         tmp = Object.keys(tmpData[0].availability);
         tmp.forEach(x => {
             Session.set(x,tmp[x]);
@@ -173,7 +170,7 @@ Template.updateAccommodation.events({
     'submit .updateAccommodation' (event, template) {
 
         collection = Accommodation.find({host_id:Meteor.userId()}).fetch() 
-        //console.log(collection[0]._id)
+        console.log(collection[0]._id)
         event.preventDefault();
 
         const target = event.target;
