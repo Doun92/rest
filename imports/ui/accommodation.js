@@ -57,10 +57,12 @@ Template.addAccommodation.helpers({
         route = data && data.user_address && data.user_address.address;
         city = data && data.user_address && data.user_address.city;
         postcode = data && data.user_address && data.user_address.postcode;
-        if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
-            return false
-        }else{
-            return true
+        if(route || city || postcode){
+            if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
+                return true
+            }else{
+                return false
+            }
         }
     },
     'verifyActualLocation':function(value){
