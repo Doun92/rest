@@ -6,10 +6,15 @@
             <p>Adresse e-mail : <u>{{mail}}</u></p>
         <br>
         <br>
-        <!-- Faire en sorte que le travailleur social puisse voir un ou deux jours les chambres dispo -->
-        <!-- Lorsque le travaileur clic sur une adresse : montre les coordonnées de la personne -->
-        {{> accommodationsList}}
         <br>
-        <br>
+        <h2>Modification des données</h2>
+    <form class="profilForm">
+            <h3>Email:</h3>
+                <input type='text' name='email' value='{{mail}}'>
+            <h3>Numéro de téléhpone professionnel</h3>
+                <input type='text' name='new_phone_number' value='{{phone_number}}'>
+            <br>
+        <button class='submit' value='submit' type='submit'>Modifier</button>
+    </form>   
     {{/if}}
 </template>
