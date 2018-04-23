@@ -221,6 +221,7 @@ Template.calendar_template.helpers({
             //arr = tmp.map(x=> x == value);
             //console.log(`cal value : ${value}`)
             //console.log(`availability : ${tmp[value-1]}`)
+            
             function test (ind){
                 return ind == value;
             }

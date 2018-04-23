@@ -58,9 +58,9 @@ Template.addAccommodation.helpers({
         city = data && data.user_address && data.user_address.city;
         postcode = data && data.user_address && data.user_address.postcode;
         if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
-            return true
-        }else{
             return false
+        }else{
+            return true
         }
     },
     'verifyActualLocation':function(value){
@@ -168,9 +168,9 @@ Template.updateAccommodation.helpers({
             Session.set(x,tmp[x]);
         });
     },
-    'clearSession':function(){
-        Session.keys = {}
-    }
+    //'clearSession':function(){
+      //  Session.keys = {}
+    //}
 })
 
 Template.updateAccommodation.events({
@@ -226,7 +226,7 @@ Template.addressForm.onCreated(function() {
 
 Template.addressForm.helpers({
     'isLocation':function(){
-        tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
+        //tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
         if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             return false
         }else{
@@ -235,10 +235,12 @@ Template.addressForm.helpers({
     },
     'availableLocation' : function(){
         tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
-        tmpArr = [tmp[0].address, tmp[0].loc_number, tmp[0].location, tmp[0].zipCode ]
+        //console.log(tmp[0].zipCode)
+        tmpArr = [tmp[0].address, tmp[0].loc_number, tmp[0].location, tmp[0].zipCode, tmp[0].availablePlaces]
         return tmpArr
     }
 })
+
 
 
 

@@ -63,7 +63,7 @@
                 <input type="text" name="location" id="location" value="{{availableLocation.[2]}}"><br> 
                 
                 <label for="availablePlaces">Nombre de personnes</label>
-                <input type="number" name="availablePlaces" id="availablePlaces">
+                <input type="number" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" >
             {{else}}
                 <legend>Ajouter une adresse</legend> 
                 <label for="address">Rue</label>        
@@ -73,13 +73,13 @@
                 <input type="text" name="location_number" id="location_number" value="Numéro"><br>
 
                 <label for="zipCode">NPA</label>
-                <input type="number" name="zipCode" id="zipCode" value="NPA"><br>
+                <input type="text" name="zipCode" id="zipCode" value="NPA"><br>
     
                 <label for="location">Localité</label>
                 <input type="text" name="location" id="location" value="Localité"><br> 
 
                 <label for="availablePlaces">Nombre de personnes</label>
-                <input type="number" name="availablePlaces" id="availablePlaces">
+                <input type="text" name="availablePlaces" id="availablePlaces" value="Nombre de personnes">
 
         {{/if}}
         {{/if}}
@@ -107,7 +107,6 @@
 </template>
 
 <template name="updateAccommodation">
-        {{clearSession}}  
         {{#if Template.subscriptionsReady}}
 
         <!-- Update accommodation template -->

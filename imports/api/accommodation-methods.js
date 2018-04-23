@@ -19,7 +19,8 @@ if (Meteor.isServer) {
             _id : 1,
             address : 1,
             loc_number : 1,
-            zip_code : 1,
+            zipCode : 1,
+            location : 1, 
             availablePlaces : 1,
             availability : 1,
             host_id : 1
