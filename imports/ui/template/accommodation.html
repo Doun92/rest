@@ -24,7 +24,8 @@
     <!-- add accommotations templates -->
 
     <h2>Proposition de logements</h2>
-    <form class="addAccommodation">    
+    <form class="addAccommodation">  
+    {{clearSession}}  
     {{#if Template.subscriptionsReady}}
 
     <!-- look for host profil address -->
@@ -106,7 +107,7 @@
 </template>
 
 <template name="updateAccommodation">
-
+        {{clearSession}}  
         {{#if Template.subscriptionsReady}}
 
         <!-- Update accommodation template -->

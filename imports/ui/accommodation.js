@@ -42,6 +42,7 @@ Template.accommodationTemplate.helpers({
 
 Template.addAccommodation.onCreated(function() {
         this.subscribe('userData');
+        this.subscribe('accomodations');
 })
 
 Template.addAccommodation.helpers({
@@ -93,6 +94,9 @@ Template.actualAddress.helpers({
         tmpArray = [];
         tmpArray.push(route, city, postcode);
         return tmpArray;
+    },
+    'clearSession':function(){
+        Session.keys = {}
     }
 }); 
 
@@ -163,6 +167,9 @@ Template.updateAccommodation.helpers({
         tmp.forEach(x => {
             Session.set(x,tmp[x]);
         });
+    },
+    'clearSession':function(){
+        Session.keys = {}
     }
 })
 
