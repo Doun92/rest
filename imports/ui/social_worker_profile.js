@@ -99,3 +99,17 @@ Template.accommodationsRoute.helpers({
         return sw;
     }
 });
+
+// subscribing for the layout template, like a global helper
+
+Template.mainRoute.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.mainRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+});
