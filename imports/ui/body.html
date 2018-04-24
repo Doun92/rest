@@ -1,35 +1,28 @@
 <body>
-
-{{#if currentUser}}
-    {{#if isSocialWorker}} <!-- Loïc : cf. ligne 13 -->
-        {{> navbarSocialWorker}}
-    {{else}}
-        {{> navbarHost}}
-    {{/if}}
-{{else}}
-    {{>loginbar}}
-{{/if}}
-
-<!-- Loïc : ne fonctionne pas, car isSocialWorker n'est pas défini pour ce "template" -->
-<!-- {{> superNavbar}} -->
-
-
-<!-- doun92 : quelqu'un a appelé deux fois le template principal. C'était ça le problème -->
-<!-- Loïc : voir commentaire ligne 22 pour les raisons de cette tentative. -->
-<!-- {{> mainRoute }} -->
-
 </body>
 <template name="mainRoute">
-        <div class="container">
-            <h1>R.E.S.T.</h1>
-            <main>
-                    <!-- Loïc : ligne commentée car pas utilisé. Pourtant devrait être l'endroit où appeler les autres templates avant de bénéficier du layout. -->
-                    <!-- {{> Template.dynamic template=main}} --> 
-            </main>
-            <br>
-            <div classe="FrontPage">R.E.S.T. (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.
-                </div>
-        </div>
+    {{#if currentUser}}
+        {{#if isSocialWorker}} <!-- non-fonctionnel -->
+            {{> navbarSocialWorker}} 
+        {{else}}
+            {{> navbarHost}}
+        {{/if}}
+    {{else}}
+        {{>loginbar}}
+    {{/if}}
+
+    <!-- Loïc : ne fonctionne pas totalement, cf. template -->
+    <!--{{> superNavbar}} -->
+
+    <div class="container">
+        <h1>R.E.S.T.</h1>
+        <main>
+            {{> Template.dynamic template=main}} 
+        </main>
+        <footer>
+            <p>R.E.S.T. (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.</p>
+        </footer>
+    </div>
 </template>
 
 <template name="accommodationsRoute">

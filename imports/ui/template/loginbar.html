@@ -33,7 +33,7 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
                         <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
-                        <li><a href="{{pathFor '/profile_utilisateur'}}">Mon profil</a></li>
+                        <li><a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a></li>
                         <li><button id="delete-button">Supprimer compte </button></li>
                         <li>{{>loginButtons}}</li>
                         </ul>
@@ -56,7 +56,7 @@
 </template>
 
 <!-- Loïc : Proposition de SuperNavbar -->
-<!-- ne fonctionne pas, car isSocialWorker n'est pas défini pour ce "template" sans route -->
+<!-- ne fonctionne pas totalement, car isSocialWorker n'est pas défini, mon helper global ne marchant pas-->
 <template name="superNavbar">
         <nav class="navbar navbar-default">
                 <div class="container-fluid">            
@@ -71,7 +71,7 @@
                                 {{else}}
                                         <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
                                 {{/if}}
-                                <li><a href="{{pathFor '/profile_utilisateur'}}">Mon profil</a></li>
+                                <li><a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a></li>
                                 <li><button id="delete-button">Supprimer compte </button></li>
                                 <li>{{>loginButtons}}</li>                                
                         {{else}}
