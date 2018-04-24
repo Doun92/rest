@@ -31,5 +31,6 @@ if (Meteor.isServer) {
       }
     });
   }
+
 //Collection pour les logements
 export const Accommodation = new Mongo.Collection('accommodations');

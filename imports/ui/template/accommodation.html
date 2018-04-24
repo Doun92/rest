@@ -1,10 +1,12 @@
+<!--
 <template name="accommodationsList">
     <ul>
     {{#each accommodation }}
-        <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}}</li>
+        <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{loc_number}}</li>
     {{/each}}
     </ul>
 </template>
+-->
 
 <!--Super template-->
 
@@ -89,7 +91,7 @@
 <template name="actualAddress">
 
     <!-- check if host profil has an address if true suggest add the same address -->
-
+    <!-- actualAdress template reloads the actual adress of the host from hes profil information -->
     {{#if sessionReady}}
         {{#if linkValue}}
 
@@ -101,10 +103,10 @@
             <input type="text" name="location_number" id="location_number" value="empty"><br>
 
             <label for="zipCode">NPA</label>
-            <input type="text" name="zipCode" id="zipCode" value="{{availableLocation.[3]}}"><br>
+            <input type="text" name="zipCode" id="zipCode" value="{{actualAddressValue.[2]}}"><br>
 
             <label for="location">Localité</label>
-            <input type="text" name="location" id="location" value="{{actualAddressValue.[2]}}"><br> 
+            <input type="text" name="location" id="location" value="{{actualAddressValue.[1]}}"><br> 
             
             <label for="availablePlaces">Nombre de personnes</label>
             <input type="text" name="availablePlaces" id="availablePlaces" value="à remplir" >
@@ -127,6 +129,8 @@
 
 <template name="updateAccommodation">
         {{#if Template.subscriptionsReady}}
+        {{clearSession}}
+        {{lastStorage}}
 
         <!-- Update accommodation template -->
 

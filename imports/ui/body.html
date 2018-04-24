@@ -47,10 +47,18 @@
 
 <template name="addAccommodationRoute">
         {{#if isSocialWorker}}
-            <p>You're not allowed on that page.</p>
+            <h1>ERROR 404 : you're not allowed on that page</h1>
         {{else}}
             {{> accommodationTemplate }}
         {{/if}}
+</template>
+
+<template name="placesListRoute">
+    {{#if isSocialWorker}}
+        {{> placesList}}
+    {{else}}
+        <h1>ERROR 404 : you're not allowed on that page</h1>
+    {{/if}}
 </template>
 
 <!-- Template host/social worker profil page -->

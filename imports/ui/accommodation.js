@@ -13,12 +13,20 @@ window.onbeforeunload = function(){
 
 Meteor.subscribe('accommodations');
 Meteor.subscribe('userData');
+//Meteor.subscribe('accommodationsAll')
 
+//Template.accommodationsList.onCreated(function(){
+  //  this.subscribe('accommodationsAll');
+//})
+/*
 Template.accommodationsList.helpers({
      accommodation() {
+         tmp = Accommodation.find({}).fetch();
+         //console.log(tmp);
          return Accommodation.find({});
      },
  });
+*/
 
 Template.accommodationTemplate.onCreated(function(){
     this.subscribe('userData');
@@ -155,6 +163,28 @@ Template.addAccommodation.events({
     },
 });
 
+Template.addAccommodationRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
+
+Template.accommodationsRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
+Template.placesListRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
 //update accomodations template helpers and event handlers
 
 Template.updateAccommodation.onCreated(function() {
@@ -167,12 +197,12 @@ Template.updateAccommodation.helpers({
         tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
         tmp = Object.keys(tmpData[0].availability);
         tmp.forEach(x => {
-            Session.set(x,tmp[x]);
+            Session.set(x,tmpData[0].availability[x]);
         });
     },
-    //'clearSession':function(){
-      //  Session.keys = {}
-    //}
+    'clearSession':function(){
+       Session.keys = {}
+    }
 })
 
 Template.updateAccommodation.events({
@@ -242,23 +272,3 @@ Template.addressForm.helpers({
         return tmpArr
     }
 })
-
-
-
-
-// À continuer mais avant, importer la database users
-Template.accommodationsList.events({
-    'click .adresse': function(){   
-        let prenom = db.users.firstname;
-        //let nom = this.lastname;
-        //let mail = this.mail;
-        //let phone = this.phone;
-
-        //Session.set('selectedLogement', logementID);
-        Session.set('selectedLogement',prenom)
-        //+' '+nom+' '+mail+' '+phone)
-        let selectedPersonne = Session.get('selectedPersonne');
-        console.log(selectedPersonne);
-    },
-
-});
