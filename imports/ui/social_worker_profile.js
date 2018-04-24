@@ -56,3 +56,46 @@ Template.social_worker_profil.helpers({
         }
     } 
 });
+
+Template.social_worker_profil.events({
+    'submit .profilForm' : function(event) {
+
+        event.preventDefault();
+
+        const target = event.target;
+        const phone_number = target.new_phone_number.value;
+        const newMail = target.email.value;
+
+        Meteor.users.update(
+            Meteor.userId(), { $set: { 
+                phone_number: phone_number,
+                'emails.0.address': newMail,
+            } }
+          );
+    }
+});
+Template.profilRoute.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.profilRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+});
+
+// subscribing user datas for the accomodations route
+
+Template.accommodationsRoute.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.accommodationsRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+});

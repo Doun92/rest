@@ -5,6 +5,9 @@ import { Session } from 'meteor/session'
 import { stringify } from 'querystring';
 import { Accommodation } from '../api/accommodation-methods';
 
+Meteor.subscribe('accommodations');
+Meteor.subscribe('userData');
+
 Template.calendar_template.onCreated(function(){
     this.subscribe('userData');
     this.subscribe('accomodations');
@@ -195,7 +198,7 @@ Template.calendar_template.helpers({
         
         /****  change class and the color value of the current day of the month 
         * + check for existing availabilities and return class color */
-       if(Accommodation.find({_id:Meteor.userId()}).count() === 0){
+       if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             
             if(index-value <= -10){
                 return 'grey';
@@ -206,7 +209,7 @@ Template.calendar_template.helpers({
             }
        }else{
 
-            tmpData = Accommodation.find({}).fetch();
+            tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
             tmp = Object.keys(tmpData[0].availability);
             tmp.unshift('0');
 
@@ -218,6 +221,7 @@ Template.calendar_template.helpers({
             //arr = tmp.map(x=> x == value);
             //console.log(`cal value : ${value}`)
             //console.log(`availability : ${tmp[value-1]}`)
+            
             function test (ind){
                 return ind == value;
             }
@@ -265,6 +269,7 @@ Template.calendar_template.events({
         event.preventDefault();
         const target = event.target;
         tmpValue = target.innerText;
+        console.log(tmpValue)
 
         date = new Date();
         date.setDate(tmpValue);

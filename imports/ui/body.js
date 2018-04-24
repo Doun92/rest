@@ -29,3 +29,6 @@ import './social_worker_profile.js';
 
 import './template/calendar.html';
 import './calendar.js';
+
+import './template/placesList.html'
+import './placesList.js'
