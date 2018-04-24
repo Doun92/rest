@@ -4,6 +4,7 @@ import './body.html';
 import './template/loginbar.html';
 import './accommodation.js';
 import './template/register.html';
+import './delete_account.js';
 
 import './template/login.html';
 import './template/main-layout.html';
