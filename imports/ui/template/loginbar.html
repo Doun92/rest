@@ -29,12 +29,12 @@
                 <div class="container-fluid">            
                         <ul class="nav navbar-nav">
                                 <li><a class="navbar-brand" href="{{pathFor '/'}}">Page d'accueil</a></li> 
+                                <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
+                                <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
-                        <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
                         <li><a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a></li>
-                        <li><button id="delete-button">Supprimer compte </button></li>
+                        <li><button id="delete-button" onclick="DeleteMe()" type="button" class="btn btn-danger">Supprimer compte </button></li>
                         <li>{{>loginButtons}}</li>
                         </ul>
                 </div>
