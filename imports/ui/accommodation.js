@@ -125,6 +125,8 @@ Template.actualAddress.events({
 
 Template.addAccommodation.events({
     'submit .addAccommodation' (event, template) {
+
+
         event.preventDefault();
 
         const target = event.target;
@@ -143,6 +145,7 @@ Template.addAccommodation.events({
         delete Session.keys['link_value'];
         availability = Session.keys;
 
+
         const creator = Meteor.userId();
 
         Accommodation.insert({
@@ -151,7 +154,39 @@ Template.addAccommodation.events({
             zipCode : zipCode,
             location : location,
             availablePlaces : availablePlaces,
-            availability : availability,
+            availability : {
+                1:Session.get(1),
+                2:Session.get(2),
+                3:Session.get(3),
+                4:Session.get(4),
+                5:Session.get(5),
+                6:Session.get(6),
+                7:Session.get(7),
+                8:Session.get(8),
+                9:Session.get(9),
+                10:Session.get(10),
+                11:Session.get(11),
+                12:Session.get(12),
+                13:Session.get(13),
+                14:Session.get(14),
+                15:Session.get(15),
+                16:Session.get(16),
+                17:Session.get(17),
+                18:Session.get(18),
+                19:Session.get(19),
+                20:Session.get(20),
+                21:Session.get(21),
+                22:Session.get(22),
+                23:Session.get(23),
+                24:Session.get(24),
+                25:Session.get(25),
+                26:Session.get(26),
+                27:Session.get(27),
+                28:Session.get(28),
+                29:Session.get(29),
+                30:Session.get(30),
+                31:Session.get(31),
+            },
             host_id : creator
 
             //à rajouter
@@ -178,6 +213,7 @@ Template.accommodationsRoute.helpers({
         return sw;
     }
 })
+
 Template.placesListRoute.helpers({
     'isSocialWorker': function() {
         data = Meteor.user();
@@ -194,22 +230,31 @@ Template.updateAccommodation.onCreated(function() {
 
 Template.updateAccommodation.helpers({
     'lastStorage' : function(){
+        /*
         tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
+        //console.log(`tmpData : ${tmpData[0].availability[1]}`)
+        //Session.set(tmpData[0].availability);
+        console.log(`Session storage : ${JSON.stringify(Session.keys)}`)
+
         tmp = Object.keys(tmpData[0].availability);
         tmp.forEach(x => {
             Session.set(x,tmpData[0].availability[x]);
         });
+        console.log(`Session storage : ${Session.keys}`)
     },
     'clearSession':function(){
        Session.keys = {}
+    */
     }
 })
 
 Template.updateAccommodation.events({
     'submit .updateAccommodation' (event, template) {
 
-        collection = Accommodation.find({host_id:Meteor.userId()}).fetch() 
-        console.log(collection[0]._id)
+        collection = Accommodation.find({host_id:Meteor.userId()}).fetch()
+
+        console.log(collection[0].availability)
+
         event.preventDefault();
 
         const target = event.target;
@@ -227,10 +272,10 @@ Template.updateAccommodation.events({
 
         delete Session.keys['link_value'];
         availability = Session.keys;
-        console.log(availability);
 
         const creator = Meteor.userId();
 
+        
         Accommodation.update(collection[0]._id, {
             $set: {
                 address : address,
@@ -238,10 +283,43 @@ Template.updateAccommodation.events({
                 zipCode : zipCode,
                 location : location,
                 availablePlaces : availablePlaces,
-                availability : availability,
+                //availability : Session.keys,
+
+                'availability.1' : Session.get(1),
+                'availability.2' : Session.get(2),
+                'availability.3' : Session.get(3),
+                'availability.4' : Session.get(4),
+                'availability.5' : Session.get(5),
+                'availability.6' : Session.get(6),
+                'availability.7' : Session.get(7),
+                'availability.8' : Session.get(8),
+                'availability.9' : Session.get(9),
+                'availability.10' : Session.get(10),
+                'availability.11' : Session.get(11),
+                'availability.12' : Session.get(12),
+                'availability.13' : Session.get(13),
+                'availability.14' : Session.get(14),
+                'availability.15' : Session.get(15),
+                'availability.16' : Session.get(16),
+                'availability.17' : Session.get(17),
+                'availability.18' : Session.get(18),
+                'availability.19' : Session.get(19),
+                'availability.20' : Session.get(20),
+                'availability.21' : Session.get(21),
+                'availability.22' : Session.get(22),
+                'availability.23' : Session.get(23),
+                'availability.24' : Session.get(24),
+                'availability.25' : Session.get(25),
+                'availability.26' : Session.get(26),
+                'availability.27' : Session.get(27),
+                'availability.28' : Session.get(28),
+                'availability.29' : Session.get(29),
+                'availability.30' : Session.get(30),
+                'availability.31' : Session.get(31),
+
                 host_id : creator
             }
-
+            
             //à rajouter
 
             //allTime : allTime,

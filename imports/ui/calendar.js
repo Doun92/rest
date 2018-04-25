@@ -146,10 +146,8 @@ Template.calendar_template.helpers({
     'isActualMonth' : function(value){
         monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         indexMonth = monthArr.indexOf(value);
-        //console.log(`month index : ${indexMonth}`)
         tempDate = new Date();
         actMonth = tempDate.getMonth();
-        //console.log(`actual month : ${actMonth}`);
         if(actMonth == indexMonth){
             return true;
         }
@@ -214,13 +212,6 @@ Template.calendar_template.helpers({
             tmp.unshift('0');
 
             //that one was F... HARD!!!
-
-            //console.log(`value 1 : ${tmp[value]}`)
-            //sess = Session.get();
-            //console.log(tmp.forEach(x=>{if(x==value){console.log(x)}}))
-            //arr = tmp.map(x=> x == value);
-            //console.log(`cal value : ${value}`)
-            //console.log(`availability : ${tmp[value-1]}`)
             
             function test (ind){
                 return ind == value;
@@ -273,10 +264,10 @@ Template.calendar_template.events({
 
         date = new Date();
         date.setDate(tmpValue);
-        date = date.toDateString();
-        //console.log(tmpValue);
-        Session.set(Number(tmpValue), date)
-        console.log(Session.keys);
+        dateSet = date.toDateString();
+        //console.log(typeof(tmpValue));
+        Session.set(Number(tmpValue), dateSet)
+        //console.log(JSON.parse(dateSet));
         //console.log(Session.get(tmpValue));
         target.className = 'selected'
     },

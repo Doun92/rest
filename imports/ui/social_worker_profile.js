@@ -57,6 +57,7 @@ Template.social_worker_profil.helpers({
     } 
 });
 
+// Fonction pour changer des données dans la base de données
 Template.social_worker_profil.events({
     'submit .profilForm' : function(event) {
 
@@ -74,6 +75,7 @@ Template.social_worker_profil.events({
           );
     }
 });
+
 Template.profilRoute.onCreated(function() {
     this.subscribe('userData');
 });
