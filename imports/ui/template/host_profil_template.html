@@ -2,7 +2,7 @@
     {{#if currentUser}}
     <h1>Vos informations : résumé </h1>
         <p>
-            adresse mail de l'accueillant : {{mail}}<br>
+            Adresse mail de l'accueillant : {{mail}}<br>
             Prénom de l'accueillant : {{firstname}}<br>
             Nom de l'accueillant : {{lastname}}<br>
             Adresse de l'accueillant : {{userAddress}}<br>
@@ -11,22 +11,28 @@
         <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
 
         <form class="profilForm">
-                <h1>Email:</h1>
-                    <input type="text" name="mail" value="{{mail}}">
-                <h1>Prénom:</h1>
-                    <input type="text" name="firstname" value="{{firstname}}">
-                <h1>Nom:</h1>
-                    <input type="text" name="lastname" value="{{#if Template.subscriptionsReady}}{{lastname}}{{else}}champ obligatoire{{/if}}">
-                <h1>Adresse:</h1>
-                    <input type="text" name="address" value="{{address}}">
-                <h1>Numéro postal:</h1>
-                    <input type="text" name="postcode" value="{{postCode}}">
-                <h1>Ville:</h1>
-                    <input type="text" name="city" value="{{city}}">
-                <h1>Numéro de téléphone:</h1>
-                    <input type="text" name="phone" value="{{phone}}">
-                <br>
-                <br>
+            <label for="mail">Email:</label><br>
+            <input type="text" name="mail" value="{{mail}}"><br>
+
+            <label>Prénom:</label><br>
+            <input type="text" name="firstname" value="{{firstname}}"><br>
+
+            <label>Nom:</label><br>
+            <input type="text" name="lastname" value="{{#if Template.subscriptionsReady}}{{lastname}}{{else}}champ obligatoire{{/if}}"><br>
+
+            <label>Adresse:</label><br>
+            <input type="text" name="address" value="{{address}}"><br>
+
+            <label>Numéro postal:</label><br>
+            <input type="text" name="postcode" value="{{postCode}}"><br>
+
+            <label>Ville:</label><br>
+            <input type="text" name="city" value="{{city}}"><br>
+
+            <label>Numéro de téléphone:</label><br>
+            <input type="text" name="phone" value="{{phone}}"><br>
+            
+            <br>
             <button class="submit" value="submit" type="submit">Modifier</button>
         </form>
     {{/if}}

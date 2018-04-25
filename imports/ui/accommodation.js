@@ -13,12 +13,20 @@ window.onbeforeunload = function(){
 
 Meteor.subscribe('accommodations');
 Meteor.subscribe('userData');
+//Meteor.subscribe('accommodationsAll')
 
+//Template.accommodationsList.onCreated(function(){
+  //  this.subscribe('accommodationsAll');
+//})
+/*
 Template.accommodationsList.helpers({
      accommodation() {
+         tmp = Accommodation.find({}).fetch();
+         //console.log(tmp);
          return Accommodation.find({});
      },
  });
+*/
 
 Template.accommodationTemplate.onCreated(function(){
     this.subscribe('userData');
@@ -42,6 +50,7 @@ Template.accommodationTemplate.helpers({
 
 Template.addAccommodation.onCreated(function() {
         this.subscribe('userData');
+        this.subscribe('accomodations');
 })
 
 Template.addAccommodation.helpers({
@@ -56,10 +65,12 @@ Template.addAccommodation.helpers({
         route = data && data.user_address && data.user_address.address;
         city = data && data.user_address && data.user_address.city;
         postcode = data && data.user_address && data.user_address.postcode;
-        if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
-            return true
-        }else{
-            return false
+        if(route || city || postcode){
+            if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
+                return true
+            }else{
+                return false
+            }
         }
     },
     'verifyActualLocation':function(value){
@@ -93,6 +104,9 @@ Template.actualAddress.helpers({
         tmpArray = [];
         tmpArray.push(route, city, postcode);
         return tmpArray;
+    },
+    'clearSession':function(){
+        Session.keys = {}
     }
 }); 
 
@@ -149,6 +163,28 @@ Template.addAccommodation.events({
     },
 });
 
+Template.addAccommodationRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
+
+Template.accommodationsRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
+Template.placesListRoute.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+})
 //update accomodations template helpers and event handlers
 
 Template.updateAccommodation.onCreated(function() {
@@ -161,8 +197,11 @@ Template.updateAccommodation.helpers({
         tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
         tmp = Object.keys(tmpData[0].availability);
         tmp.forEach(x => {
-            Session.set(x,tmp[x]);
+            Session.set(x,tmpData[0].availability[x]);
         });
+    },
+    'clearSession':function(){
+       Session.keys = {}
     }
 })
 
@@ -219,7 +258,7 @@ Template.addressForm.onCreated(function() {
 
 Template.addressForm.helpers({
     'isLocation':function(){
-        tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
+        //tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
         if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             return false
         }else{
@@ -228,26 +267,8 @@ Template.addressForm.helpers({
     },
     'availableLocation' : function(){
         tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
-        tmpArr = [tmp[0].address, tmp[0].loc_number, tmp[0].location, tmp[0].zipCode ]
+        //console.log(tmp[0].zipCode)
+        tmpArr = [tmp[0].address, tmp[0].loc_number, tmp[0].location, tmp[0].zipCode, tmp[0].availablePlaces]
         return tmpArr
     }
 })
-
-
-
-// À continuer mais avant, importer la database users
-Template.accommodationsList.events({
-    'click .adresse': function(){   
-        let prenom = db.users.firstname;
-        //let nom = this.lastname;
-        //let mail = this.mail;
-        //let phone = this.phone;
-
-        //Session.set('selectedLogement', logementID);
-        Session.set('selectedLogement',prenom)
-        //+' '+nom+' '+mail+' '+phone)
-        let selectedPersonne = Session.get('selectedPersonne');
-        console.log(selectedPersonne);
-    },
-
-});

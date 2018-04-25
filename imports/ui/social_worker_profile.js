@@ -101,3 +101,17 @@ Template.accommodationsRoute.helpers({
         return sw;
     }
 });
+
+// subscribing for the layout template, like a global helper. Does'nt work
+
+Template.mainLayout.onCreated(function() {
+    this.subscribe('userData');
+});
+
+Template.mainLayout.helpers({
+    'isSocialWorker': function() {
+        data = Meteor.user();
+        sw = data && data.sw;
+        return sw;
+    }
+});

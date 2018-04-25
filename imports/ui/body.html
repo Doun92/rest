@@ -1,29 +1,28 @@
 <body>
-
-{{#if currentUser}}
-    {{#if isSocialWorker}}
-        {{> navbarSocialWorker}}
-    {{else}}
-        {{> navbarHost}}
-    {{/if}}
-    {{else}}
-    {{>loginbar}}
-{{/if}}
-
-<!-- doun92 : quelqu'un a appelé deux fois le template principal. C'était ça le problème -->
-<!-- {{> mainRoute }} -->
-
 </body>
 <template name="mainRoute">
-        <div class="container">
-            <h1>R.E.S.T.</h1>
-            <main>
-                    {{> Template.dynamic template=main}}
-            </main>
-            <br>
-            <div classe="FrontPage">R.E.S.T. (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.
-                </div>
-        </div>
+    {{#if currentUser}}
+        {{#if isSocialWorker}} <!-- non-fonctionnel -->
+            {{> navbarSocialWorker}} 
+        {{else}}
+            {{> navbarHost}}
+        {{/if}}
+    {{else}}
+        {{>loginbar}}
+    {{/if}}
+
+    <!-- Loïc : ne fonctionne pas totalement, cf. template -->
+    <!--{{> superNavbar}} -->
+
+    <div class="container">
+        <h1>R.E.S.T.</h1>
+        <main>
+            {{> Template.dynamic template=main}} 
+        </main>
+        <footer>
+            <p>R.E.S.T. (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.</p>
+        </footer>
+    </div>
 </template>
 
 <template name="accommodationsRoute">
@@ -47,10 +46,18 @@
 
 <template name="addAccommodationRoute">
         {{#if isSocialWorker}}
-            <p>You're not allowed on that page.</p>
+            <h1>ERROR 404 : you're not allowed on that page</h1>
         {{else}}
             {{> accommodationTemplate }}
         {{/if}}
+</template>
+
+<template name="placesListRoute">
+    {{#if isSocialWorker}}
+        {{> placesList}}
+    {{else}}
+        <h1>ERROR 404 : you're not allowed on that page</h1>
+    {{/if}}
 </template>
 
 <!-- Template host/social worker profil page -->

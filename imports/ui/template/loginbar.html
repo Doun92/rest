@@ -33,6 +33,8 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
                         <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
+                        <li><a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a></li>
+                        <li><button id="delete-button">Supprimer compte </button></li>
                         <li>{{>loginButtons}}</li>
                         </ul>
                 </div>
@@ -53,4 +55,42 @@
         </nav>
 </template>
 
+<!-- Loïc : Proposition de SuperNavbar -->
+<!-- ne fonctionne pas totalement, car isSocialWorker n'est pas défini, mon helper global ne marchant pas-->
+<template name="superNavbar">
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">            
+                        <ul class="nav navbar-nav">
+                                <li><a class="navbar-brand" href="{{pathFor '/'}}">Page d'accueil</a></li> 
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        {{#if currentUser}}
 
+                                {{#if isSocialWorker=false}}
+                                        <li><a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a></li>
+                                {{else}}
+                                        <li><a href="{{pathFor '/logements'}}">Disponibilité</a></li>
+                                {{/if}}
+                                <li><a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a></li>
+                                <li><button id="delete-button">Supprimer compte </button></li>
+                                <li>{{>loginButtons}}</li>                                
+                        {{else}}
+                                <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> <span class="glyphicon glyphicon-user"></span> Inscription <span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                        <li><a href="{{pathFor 'inscription'}}">  Accueillant</a></li>
+                                                        <li><a href="{{pathFor 'inscription_ts'}}">Travailleurs sociaux</a></li>
+                                                        <!--possible d'utilisé modale pour faire des pop-up <li><button type="button" data-toggle="modal" data-target="#myModal">Se connecter</button></li>-->
+                                                </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+                                                <ul class="dropdown-menu">
+                                                        <li>{{>login}}</li>
+                                                </ul>
+                                        </li>
+                        {{/if}}
+                        </ul>
+                </div>
+        </nav>
+</template>
