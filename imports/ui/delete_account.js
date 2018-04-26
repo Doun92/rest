@@ -1,37 +1,33 @@
 import { Accommodation } from "../api/accommodation-methods";
 
 Template.navbarHost.events({
-  'click #delete-button': function(event){
-    
-    data = Accommodation.find({host_id:Meteor.userId()}).fetch()
-    var username = Meteor.userId();
-    //var accId = Accommodation[0]._id
-    console.log(data[0]._id);
-    Meteor.users.remove(username)
-    Accommodation.remove(data[0]._id)
-  }});
-
-
-/* document.querySelector('#from1').onsubmit = function(){
-
- swal({
-    title: "Are you sure?",
-    text: "You will not be able to recover this imaginary file!",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: '#DD6B55',
-    confirmButtonText: 'Yes, I am sure!',
-    cancelButtonText: "No, cancel it!",
-    closeOnConfirm: false,
-    closeOnCancel: false
- },
- function(isConfirm){
-
-   if (isConfirm){
-     swal("Shortlisted!", "Candidates are successfully shortlisted!", "success");
-
-    } else {
-      swal("Cancelled", "Your imaginary file is safe :)", "error");
-    }
- });
-};   */
+  'click #delete-button':function(){
+    swal({
+      title:"Attention!",
+      text: "Vous êtes sur le point de supprimer votre compte. Votre compte et les disponbilité que vous proposiez seront supprimés à jamais!",
+      type: "warning",
+      showCancelButton:true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Oui! Faites le',
+      cancelButtonText: "Non! Aidez-moi!",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function(isConfirm){
+      if (isConfirm){
+        //Delete account based on user Id
+        var username = Meteor.userId();
+        //console.log(username);
+        Meteor.users.remove(username);
+        //Delete accommodation based on accommodations id !! Verifier que supprime tout les logements dans les cas de propositions multiples !!
+        var data = Accommodation.findOne()._id;
+        //console.log(data);
+        Accommodation.remove(data);
+        swal("Supprimer", "Votre compte a été supprimé.")
+      }
+      else{
+        swal("Annulée","Votre compte est sauf :)")
+      }
+    })
+  }
+})
