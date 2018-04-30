@@ -3,14 +3,11 @@ import './body.html';
 
 import './template/loginbar.html';
 import './accommodation.js';
-import './template/register.html';
+import './template/registers.html';
 import './delete_account.js';
 
 import './template/login.html';
 import './template/main-layout.html';
-import './template/register_social_worker.html';
-
-
 import './login.js';
 
 import './register.js';
@@ -20,9 +17,6 @@ import './host_profil.js';
 
 import './template/colltest_template.html';
 import './colltest.js';
-
-//import './template/register_host.html';
-//import './template/register_host.js';
 
 import './template/social_worker_profile.html';
 import './social_worker_profile.js';

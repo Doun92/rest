@@ -46,11 +46,11 @@ Template.social_worker_profil.helpers({
         }
     },
     
-    'phone_number': function(){
+    'phoneNumber': function(){
         data = Meteor.user();
-        if(data.phone_number){
-            phone_number = data && data.phone_number;
-            return phone_number;    
+        if(data.phoneNumber){
+            phoneNumber = data && data.phoneNumber;
+            return phoneNumber;    
         }else{
             return "Champ obligatoire"
         }
@@ -64,12 +64,12 @@ Template.social_worker_profil.events({
         event.preventDefault();
 
         const target = event.target;
-        const phone_number = target.new_phone_number.value;
+        const phoneNumber = target.newPhoneNumber.value;
         const newMail = target.email.value;
 
         Meteor.users.update(
             Meteor.userId(), { $set: { 
-                phone_number: phone_number,
+                phoneNumber: phoneNumber,
                 'emails.0.address': newMail,
             } }
           );

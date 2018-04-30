@@ -4,7 +4,7 @@ Template.navbarHost.events({
   'click #delete-button':function(){
     swal({
       title:"Attention!",
-      text: "Vous êtes sur le point de supprimer votre compte. Votre compte et les disponbilité que vous proposiez seront supprimés à jamais!",
+      text: "Vous êtes sur le point de supprimer votre compte. Votre compte et les disponbilités que vous proposiez seront supprimés à jamais!",
       type: "warning",
       showCancelButton:true,
       confirmButtonColor: '#DD6B55',

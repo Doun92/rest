@@ -1,5 +1,5 @@
 Template.register_social_worker.events({
-    'click #register-buttonsocialworker': function(e, t) {
+    'click #register-button': function(e, t) {
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
@@ -7,8 +7,8 @@ Template.register_social_worker.events({
             lastName = $('#lastname').val(),
             institute = $('#institute').val(),
             password = $('#password').val(),
-            passwordAgain = $('#password-again').val(),
-            phone_number = $('#phone_number').val();
+            passwordAgain = $('#passwordAgain').val(),
+            phoneNumber = $('#phoneNumber').val();
 
         
         // Trim Helper
@@ -23,8 +23,8 @@ Template.register_social_worker.events({
                 return pwd.length >= 6 ? true : false;
             } else {
                 return swal({
-                    title: "Les mots de passes ne correspondent pas",
-                    text: "Veuillez ressayer",
+                    title: "Les mots de passe ne correspondent pas",
+                    text: "Veuillez réessayer",
                     showConfirmButton: true,
                     type: "error"
                 });
@@ -40,18 +40,18 @@ Template.register_social_worker.events({
                 lastname: lastName,
                 institution: institute,
                 password: password,
-                phone_number: phone_number,
+                phoneNumber: phoneNumber,
                 sw : true
             }, function(error) {
                 if (error) {
                     return swal({
                     title: error.reason,
-                    text: "Ressayer",
+                    text: "Réessayer",
                     showConfirmButton: true,
                     type: "error"
                 });
                 } else {
-                    FlowRouter.go('/profile_utilisateur');
+                    FlowRouter.go('/profil_utilisateur');
                 }
             });
         }

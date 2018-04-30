@@ -3,10 +3,10 @@ Template.register.events({
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
-            firstName = $('#first-name').val(),
-            lastName = $('#last-name').val(),
+            firstName = $('#firstname').val(),
+            lastName = $('#lastname').val(),
             password = $('#password').val(),
-            passwordAgain = $('#password-again').val();
+            passwordAgain = $('#passwordAgain').val();
 
         // Trim Helper
         var trimInput = function(val) {
@@ -20,8 +20,8 @@ Template.register.events({
                 return pwd.length >= 6 ? true : false;
             } else {
                 return swal({
-                    title: "Les mots de passes ne correspondent pas",
-                    text: "Veuillez ressayer",
+                    title: "Les mots de passe ne correspondent pas",
+                    text: "Veuillez réessayer",
                     showConfirmButton: true,
                     type: "error"
                 });
@@ -47,7 +47,7 @@ Template.register.events({
                     type: "error"
                 });
                 } else {
-                    FlowRouter.go('/profile_utilisateur');
+                    FlowRouter.go('/profil_utilisateur');
                 }
             });
         }

@@ -1,8 +1,10 @@
 <template name="placesList">
         <ul>           
         {{#each places }}
-            <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{loc_number}}</li>
+            <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{locNumber}}</li>
         {{/each}}
         </ul>
 </template>
+
+<!-- Attention franglais avec selectedAdresse... -->
     

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import '../imports/api/accommodation-methods.js';
-import '../imports/api/host_profil-methods.js';
+//import '../imports/api/host_profil-methods.js';
 import '../imports/api/colltest.js';
 import '../imports/api/placesList_methods.js';
 

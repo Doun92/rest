@@ -6,7 +6,7 @@ Template.register.events({
 
         const email = target.email.value;
         const pass = target.pass.value;
-        const re_pass = target.repeat_pass.value;
+        const re_pass = target.repeat_pass.value; // utilisé ?
 
         // Trim Helper
         

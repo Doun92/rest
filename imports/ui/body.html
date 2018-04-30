@@ -12,15 +12,31 @@
     {{/if}} -->
     {{> super_navbar}}
 
+    {{> Template.dynamic template=home }}
+
     <div class="container">
-        <h1>R.E.S.T.</h1>
         <main>
             {{> Template.dynamic template=main}} 
         </main>
         <footer>
-            <p>R.E.S.T. (Réseau d'Entraide Sociale pour Tous) Projet du groupe 1 pour le cours de Programmation pour Internet II : Meteor.js. Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose). Le projet a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abris par l'intermédiaire d'un travailleur social.</p>
+            <p>R.E.S.T. : Projet pour le cours de Programmation pour Internet II : Meteor.js.</p>
+            <p>Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose).</p>
         </footer>
     </div>
+</template>
+
+<template name="homepage">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>R.E.S.T.</h1>
+            <p>Le Réseau d'Entraide Sociale pour Tous a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abri par l'intermédiaire d'un travailleur social.</p>
+            <p><a class="btn btn-primary btn-lg" role="button" href="{{pathFor 'inscription'}}">Proposez un lit...</a></p>
+        </div>
+    </div>
+</template>
+
+<template name="homepage_content">
+    <p>Ce texte pourrait détailler notre idée et le concept général du projet.</p>
 </template>
 
 <template name="accommodationsRoute">
@@ -31,20 +47,20 @@
                     {{> accommodationsList }}
                 </body>
             {{else}}
-                <h1>ERROR 404 : you're not allowed on that page</h1>
+                {{> lost }}
             {{/if}}
         {{/if}}
 </template>
 
-<template name="Lost">
-            <h1>ERREUR 404 </h1>
-            <h2>Faites demi-tour, la page recherchée n'existe pas :( </h2>
+<template name="lost">
+            <h2>ERREUR 404 </h2>
+            <p>Faites demi-tour, la page recherchée n'existe pas. :( </p>
 </template>
 
 
 <template name="addAccommodationRoute">
         {{#if isSocialWorker}}
-            <h1>ERROR 404 : you're not allowed on that page</h1>
+            {{> lost }}
         {{else}}
             {{> accommodationTemplate }}
         {{/if}}
@@ -54,7 +70,7 @@
     {{#if isSocialWorker}}
         {{> placesList}}
     {{else}}
-        <h1>ERROR 404 : you're not allowed on that page</h1>
+        {{> lost }}
     {{/if}}
 </template>
 

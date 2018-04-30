@@ -229,7 +229,7 @@ Template.calendar_template.helpers({
     },
     'getActualAddress' : function(){
         data = Meteor.user()
-        console.log(data.user_address);
+        console.log(data.userAddress);
     }
 });
 
