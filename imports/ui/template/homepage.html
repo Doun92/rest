@@ -1,0 +1,20 @@
+<template name="homepage">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>R.E.S.T.</h1>
+            <p>Le Réseau d'Entraide Sociale pour Tous a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abri par l'intermédiaire d'un travailleur social.</p>
+            {{#if currentUser}} 
+                <p><a class="btn btn-primary btn-lg" role="button"
+                href="{{pathFor 'profil_utilisateur'}}">Proposez un lit...</a></p>
+            {{else}}
+                <p><a class="btn btn-primary btn-lg" role="button"
+                    href="{{pathFor 'inscription'}}">Proposez un lit...</a></p>
+            {{/if}}
+            
+        </div>
+    </div>
+</template>
+
+<template name="homepage_content">
+    <p>Ce texte pourrait détailler notre idée et le concept général du projet.</p>
+</template>

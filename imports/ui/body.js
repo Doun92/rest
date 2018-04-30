@@ -1,10 +1,12 @@
 import { Template } from 'meteor/templating';
 import './body.html';
 
+import './template/homepage.html'
 import './template/loginbar.html';
+
 import './accommodation.js';
 import './template/registers.html';
-import './delete_account.js';
+
 
 import './template/login.html';
 import './template/main-layout.html';
@@ -26,3 +28,4 @@ import './calendar.js';
 
 import './template/placesList.html'
 import './placesList.js'
+import './delete_account.js';

@@ -1,6 +1,6 @@
 import { Accommodation } from "../api/accommodation-methods";
 
-Template.navbarHost.events({
+Template.host_profil_template.events({
   'click #delete-button':function(){
     swal({
       title:"Attention!",

@@ -1,18 +1,10 @@
 <body>
 </body>
+
 <template name="mainRoute">
-    <!-- {{#if currentUser}}
-        {{#if isSocialWorker}}
-            {{> navbarSocialWorker}} 
-        {{else}}
-            {{> navbarHost}}
-        {{/if}}
-    {{else}}
-        {{>loginbar}}
-    {{/if}} -->
     {{> super_navbar}}
 
-    {{> Template.dynamic template=home }}
+    {{> Template.dynamic template=home }} <!-- Special jumbotron -->
 
     <div class="container">
         <main>
@@ -25,38 +17,18 @@
     </div>
 </template>
 
-<template name="homepage">
-    <div class="jumbotron">
-        <div class="container">
-            <h1>R.E.S.T.</h1>
-            <p>Le Réseau d'Entraide Sociale pour Tous a pour but de faciliter la liaison entre une personne proposant un lit pour une nuitée et une personne sans abri par l'intermédiaire d'un travailleur social.</p>
-            <p><a class="btn btn-primary btn-lg" role="button" href="{{pathFor 'inscription'}}">Proposez un lit...</a></p>
-        </div>
-    </div>
-</template>
-
-<template name="homepage_content">
-    <p>Ce texte pourrait détailler notre idée et le concept général du projet.</p>
-</template>
-
 <template name="accommodationsRoute">
-        {{#if Template.subscriptionsReady}}
-            {{#if isSocialWorker}}
-                <body>
-                    <h2>Liste des logements</h2>
-                    {{> accommodationsList }}
-                </body>
-            {{else}}
-                {{> lost }}
-            {{/if}}
+    {{#if Template.subscriptionsReady}}
+        {{#if isSocialWorker}}
+            <body>
+                <h2>Liste des logements</h2>
+                {{> accommodationsList }}
+            </body>
+        {{else}}
+            {{> lost }}
         {{/if}}
+    {{/if}}
 </template>
-
-<template name="lost">
-            <h2>ERREUR 404 </h2>
-            <p>Faites demi-tour, la page recherchée n'existe pas. :( </p>
-</template>
-
 
 <template name="addAccommodationRoute">
         {{#if isSocialWorker}}
@@ -85,11 +57,11 @@
     {{/if}}    
 </template>
 
-<template name="registerRoute">
-    {{> register}}
-    {{> Template.dynamic template=second}}
-</template>
-
 <template name="calendarRoute">
     {{> calendar_template}}
+</template>
+
+<template name="lost">
+    <h2>ERREUR</h2>
+    <p>Faites demi-tour, la page recherchée n'existe pas ou vous n'avez pas les droits requis pour l'afficher.</p>
 </template>
