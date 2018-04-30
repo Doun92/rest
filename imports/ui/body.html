@@ -1,7 +1,7 @@
 <body>
 </body>
 <template name="mainRoute">
-    {{#if currentUser}}
+    <!-- {{#if currentUser}}
         {{#if isSocialWorker}}
             {{> navbarSocialWorker}} 
         {{else}}
@@ -9,10 +9,8 @@
         {{/if}}
     {{else}}
         {{>loginbar}}
-    {{/if}}
-
-    <!-- Loïc : ne fonctionne pas totalement, cf. template -->
-    <!--{{> superNavbar}}-->
+    {{/if}} -->
+    {{> super_navbar}}
 
     <div class="container">
         <h1>R.E.S.T.</h1>

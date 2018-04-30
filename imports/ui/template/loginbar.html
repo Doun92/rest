@@ -81,8 +81,7 @@
 </template>
 
 <!-- Loïc : Proposition de SuperNavbar -->
-<!-- ne fonctionne pas totalement, car isSocialWorker n'est pas défini, mon helper global ne marchant pas-->
-<template name="superNavbar">
+<template name="super_navbar">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
@@ -92,20 +91,20 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
             {{#if currentUser}}
-                {{#if isSocialWorker=false}}
+                {{#if currentUser.sw}}
                 <li>
-                    <a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
+                    <a href="{{pathFor '/logements'}}">Disponibilité</a>
                 </li>
                 {{else}}
                 <li>
-                    <a href="{{pathFor '/logements'}}">Disponibilité</a>
+                    <a href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
                 </li>
                 {{/if}}
                 <li>
                     <a href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
                 </li>
                 <li>
-                    <button id="delete-button">Supprimer compte </button>
+                    <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
                 </li>
                 <li>{{>loginButtons}}</li>
             {{else}}
