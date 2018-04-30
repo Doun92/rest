@@ -2,7 +2,7 @@
 </body>
 <template name="mainRoute">
     {{#if currentUser}}
-        {{#if isSocialWorker}} <!-- non-fonctionnel -->
+        {{#if isSocialWorker}}
             {{> navbarSocialWorker}} 
         {{else}}
             {{> navbarHost}}
@@ -12,7 +12,7 @@
     {{/if}}
 
     <!-- Loïc : ne fonctionne pas totalement, cf. template -->
-    <!--{{> superNavbar}} -->
+    <!--{{> superNavbar}}-->
 
     <div class="container">
         <h1>R.E.S.T.</h1>
