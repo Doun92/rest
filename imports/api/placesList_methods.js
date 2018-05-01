@@ -22,4 +22,19 @@ if (Meteor.isServer) {
     });
   }
 
-//export const Places = new Mongo.Collection('accommodations');
+  if (Meteor.isServer) {
+    Meteor.publish('allUser', function () {
+        return Meteor.users.find({}, {
+          fields: { 
+            firstname : 1,
+            lastname : 1,
+            phone_number : 1,
+            user_address : 1,
+            sw : 1,
+            institution : 1
+          }
+        });
+    });
+  }
+
+export const AllUser = new Mongo.Collection('allUser');
