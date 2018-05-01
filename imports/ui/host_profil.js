@@ -33,23 +33,23 @@ Template.host_profil_template.helpers({
     'userAddress': function(){
         data = Meteor.user();
 
-        if (data.user_address.address){
-            if (data.user_address.address=='Champ obligatoire'){
+        if (data.userAddress.address){
+            if (data.userAddress.address=='Champ obligatoire'){
                 rue = '';
             }else{
-                rue = data && data.user_address.address;
+                rue = data && data.userAddress.address;
                 rue = rue+', '
             }
-            if(data.user_address.city=='Champ obligatoire'){
+            if(data.userAddress.city=='Champ obligatoire'){
                 ville = '';
             }else{
-                ville = data && data.user_address.city;
+                ville = data && data.userAddress.city;
                 ville = ville+', '
             }
-            if(data.user_address.postcode=='Champ obligatoire'){
+            if(data.userAddress.postcode=='Champ obligatoire'){
                 npa = '';
             }else{
-                npa = data && data.user_address.postcode;
+                npa = data && data.userAddress.postcode;
             }
             if(rue == '' && ville == '' && npa == ''  ){
                 return 'Champ obligatoire'
@@ -62,8 +62,8 @@ Template.host_profil_template.helpers({
     },
     'address': function(){
         data = Meteor.user();
-        if (data.user_address.address){
-            rue = data && data.user_address.address;
+        if (data.userAddress.address){
+            rue = data && data.userAddress.address;
             return rue;    
         }else{
             return "Champ obligatoire"
@@ -73,8 +73,8 @@ Template.host_profil_template.helpers({
     'city': function(){
         data = Meteor.user();
 
-        if (data.user_address.city){
-            ville = data && data.user_address.city;
+        if (data.userAddress.city){
+            ville = data && data.userAddress.city;
             return ville;    
         }else{
             return "Champ obligatoire"
@@ -84,8 +84,8 @@ Template.host_profil_template.helpers({
     'postCode': function(){
         data = Meteor.user();
 
-        if (data.user_address.postcode){
-            npa = data && data.user_address.postcode;
+        if (data.userAddress.postcode){
+            npa = data && data.userAddress.postcode;
             return npa;    
         }else{
             return "Champ obligatoire"
@@ -104,8 +104,8 @@ Template.host_profil_template.helpers({
     
     'phone': function(){
         data = Meteor.user();
-        if(data.phone_number){
-            phone = data && data.phone_number;
+        if(data.phoneNumber){
+            phone = data && data.phoneNumber;
             return phone;    
         }else{
             return "Champ obligatoire"
@@ -134,8 +134,8 @@ Template.host_profil_template.events({
             Meteor.userId(), { $set: { 
                 firstname: name,
                 lastname: lastname,
-                phone_number: phone,
-                user_address:{
+                phoneNumber: phone,
+                userAddress:{
                     address : address,
                     city: city,
                     postcode: postcode

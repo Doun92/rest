@@ -1,13 +1,19 @@
 <template name="placesList">
         <ul>           
         {{#each places }}
+<<<<<<< HEAD
             <div>
                 <li class='adresse {{selectedAdresse}}'>
                     {{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{loc_number}}
                     <br>{{firstname}} {{lastname}} {{mail}} {{phone}}
                 </li>
             </div>
+=======
+            <li class='adresse {{selectedAdresse}}'>{{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{locNumber}}</li>
+>>>>>>> f16a67476d1cdf0e858586fcbbfd551a8721186d
         {{/each}}
         </ul>
 </template>
+
+<!-- Attention franglais avec selectedAdresse... -->
     

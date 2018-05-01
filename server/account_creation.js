@@ -9,15 +9,15 @@ Accounts.onCreateUser((options, user) => {
 
   if(!options.sw){
     user.sw = options.sw;
-      const new_user_address = {
+      const newUserAddress = {
           address : '',
           city : '',
           postcode : ''
       } 
       user.firstname = options.firstname;
       user.lastname = options.lastname;
-      user.phone_number = options.phone_number;
-      user.user_address = new_user_address;
+      user.phoneNumber = options.phoneNumber;
+      user.userAddress = newUserAddress;
     
       if (options.profile) {
         user.profile = options.profile;
@@ -25,7 +25,7 @@ Accounts.onCreateUser((options, user) => {
   
       return user; 
   }else{
-    const new_user_address = {
+    const newUserAddress = {
       address : '',
       city : '',
       postcode : ''
@@ -34,8 +34,8 @@ Accounts.onCreateUser((options, user) => {
     user.firstname = options.firstname;
     user.lastname = options.lastname;
     user.institution = options.institution;
-    user.phone_number = options.phone_number;
-    user.user_address = new_user_address;
+    user.phoneNumber = options.phoneNumber;
+    user.userAddress = newUserAddress;
   }
 
   if (options.profile) {
@@ -53,8 +53,8 @@ Accounts.onCreateUser((options, user) => {
           fields: { 
             firstname : 1,
             lastname : 1,
-            phone_number : 1,
-            user_address : 1,
+            phoneNumber : 1,
+            userAddress : 1,
             sw : 1,
             institution : 1
           }

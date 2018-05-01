@@ -7,7 +7,7 @@ Template.login.events({
         Meteor.loginWithPassword(email, password, function(error) {
             if (error) {
                 return swal({
-                    title: "Mauvaise adresse email ou mots de passe",
+                    title: "Mauvaise adresse email ou mot de passe",
                     text: "Veuillez essayer de nouveau ou créer un compte",
                     showConfirmButton: true,
                     type: "error"
