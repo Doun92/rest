@@ -7,7 +7,21 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-
+Template.placesList.events({
+    'click .adresse':function(event){
+        var place_id=this._id;
+        var place_num=this.availability;
+        console.log(place_num);
+        var hostname = this.host_id;
+        console.log(hostname);
+        // var number = Meteor.users.hostname;        
+        var number = Meteor.users.findOne(
+            {_id:hostname},
+            {firstname :1} 
+        );
+        console.log(number);
+    }
+})
 
 Template.placesList.onCreated(function(){
     this.subscribe('places');
