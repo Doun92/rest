@@ -28,8 +28,8 @@ if (Meteor.isServer) {
           fields: { 
             firstname : 1,
             lastname : 1,
-            phone_number : 1,
-            user_address : 1,
+            phoneNumber : 1,
+            userAddress : 1,
             sw : 1,
             institution : 1
           }
