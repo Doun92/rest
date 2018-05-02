@@ -1,5 +1,5 @@
 Template.register.events({
-    'click #register-button': function(e, t) {
+    'submit .registerForm': function(e, t) {
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),
@@ -27,6 +27,7 @@ Template.register.events({
                 });
             }
         }
+
 
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.

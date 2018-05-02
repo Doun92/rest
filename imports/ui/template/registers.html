@@ -1,50 +1,52 @@
 <template name="register_social_worker">
-    <h1>Inscription TS</h1>
+<form class="registerForm">
+    <h1>Inscription Travailleur Social</h1>
 
     <label>Votre adresse Email</label><br>
     <input type="email" placeholder="Adresse Email" id="email" /><br>
 
     <label>Votre prénom</label><br>
-    <input type="text" placeholder="Prénom" id="firstname" /><br>
+    <input type="text" placeholder="Prénom" id="firstname" required/><br>
 
     <label>Votre nom</label><br>
-    <input type="text" placeholder="Nom" id="lastname" /><br>
+    <input type="text" placeholder="Nom" id="lastname" required/><br>
 
     <label>Votre institution</label><br>
-    <input type="text" placeholder="Votre organisation" id="institute" /><br>
+    <input type="text" placeholder="Votre organisation" id="institute" required/><br>
 
     <label>Votre numéro de téléphone professionnel</label><br>
-    <input type="text" placeholder="Numéro" id="phoneNumber" /><br>
+    <input type="text" placeholder="Numéro" id="phoneNumber" required /><br>
 
     <label>Votre mot de passe</label><br>
-    <input type="password" placeholder="Mot de passe" id="password" /><br>
+    <input type="password" placeholder="Mot de passe" id="password" required /><br>
 
     <label>Confirmer votre mot de passe</label><br>
-    <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" /><br>
+    <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" required /><br>
         
     <button id="register-button" type="submit">S'inscrire</button>
+</form>
 </template>
 
 <template name="register">
-    <h1>Inscription Acc</h1>
-
+<form class="registerForm">
+    <h1>Inscription Accueillant</h1>
     <label>Votre adresse Email</label><br>
-    <input type="email" placeholder="Adresse Email" id="email" /><br>
+    <input type="email" placeholder="Adresse Email" id="email" required/><br>
 
     <label>Votre prénom</label><br>
-    <input type="text" placeholder="Prénom" id="firstname" /><br>
+    <input type="text" placeholder="Prénom" id="firstname" required/><br>
 
     <label>Votre nom</label><br>
-    <input type="text" placeholder="Nom" id="lastname" /><br>
+    <input type="text" placeholder="Nom" id="lastname" required /><br>
 
     <label>Votre mot de passe</label><br>
-    <input type="password" placeholder="Mot de passe" id="password" /><br>
+    <input type="password" placeholder="Mot de passe" id="password" required /><br>
 
     <label>Confirmer votre mot de passe</label><br>
-    <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" /><br>
+    <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" required /><br>
                 
     <button id="register-button" type="submit" >S'inscrire</button>
-
+</form>
 </template>
 
 <template name="super_register_form">
