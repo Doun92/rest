@@ -75,8 +75,8 @@ Template.placesList.helpers({
     
     'phone': function(){
         data = Meteor.user();
-        if(data.phone_number){
-            phone = data && data.phone_number;
+        if(data.phoneNumber){
+            phone = data && data.phoneNumber;
             return phone;    
         }else{
             return "Champ obligatoire"
