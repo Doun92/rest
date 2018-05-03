@@ -69,7 +69,15 @@ Template.host_profil_template.helpers({
             return "Champ obligatoire"
         }
     },
-
+    'number': function(){
+        data = Meteor.user();
+        if (data.userAddress.number){
+            numRue = data && data.userAddress.number;
+            return numRue;    
+        }else{
+            return "Champ obligatoire"
+        }
+    },
     'city': function(){
         data = Meteor.user();
 
@@ -126,6 +134,7 @@ Template.host_profil_template.events({
         const name = target.firstname.value;
         const lastname = target.lastname.value;
         const address = target.address.value;
+        const number = target.number.value;
         const postcode = target.postcode.value;
         const city = target.city.value;
         const phone = target.phone.value;
@@ -137,6 +146,7 @@ Template.host_profil_template.events({
                 phoneNumber: phone,
                 userAddress:{
                     address : address,
+                    number : number,
                     city: city,
                     postcode: postcode
                 }

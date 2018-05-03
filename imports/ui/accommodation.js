@@ -76,10 +76,11 @@ Template.actualAddress.helpers({
     'actualAddressValue':function(){
         data = Meteor.user();
         route = data && data.userAddress && data.userAddress.address;
+        number = data && data.userAddress && data.userAddress.number;
         city = data && data.userAddress && data.userAddress.city;
         postcode = data && data.userAddress && data.userAddress.postcode;
         tmpArray = [];
-        tmpArray.push(route, city, postcode);
+        tmpArray.push(route, number, city, postcode);
         return tmpArray;
     },
     'clearSession':function(){

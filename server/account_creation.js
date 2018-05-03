@@ -11,6 +11,7 @@ Accounts.onCreateUser((options, user) => {
     user.sw = options.sw;
       const newUserAddress = {
           address : '',
+          number : '',
           city : '',
           postcode : ''
       } 
@@ -27,6 +28,7 @@ Accounts.onCreateUser((options, user) => {
   }else{
     const newUserAddress = {
       address : '',
+      number : '',
       city : '',
       postcode : ''
     } 
