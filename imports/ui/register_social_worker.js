@@ -1,5 +1,5 @@
 Template.register_social_worker.events({
-    'click #register-button': function(e, t) {
+    'submit .registerForm': function(e, t) {
         e.preventDefault();
         // Retrieve the input field values
         var email = $('#email').val(),

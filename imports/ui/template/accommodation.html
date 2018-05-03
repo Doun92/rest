@@ -130,12 +130,12 @@
 <template name="updateAccommodation">
         {{#if Template.subscriptionsReady}}
         {{clearSession}}
-        {{lastStorage}}
 
         <!-- Update accommodation template -->
 
         <h2>Proposition de logements</h2>
         <form class="updateAccommodation">
+            {{getSession}}
             {{> addressForm}}        
             {{> calendar_template}}
             <button type="submit">Mettre à jour</button>

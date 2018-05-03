@@ -2,14 +2,12 @@
         <ul>           
         {{#each places }}
             <div>
-                <li class='adresse {{selectedAdresse}}'>
+                <li class='adresse'>
                     {{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{locNumber}}
-                    <br>{{firstname}} {{lastname}} {{mail}} {{phone}}
+                    <br>
+                    {{firstname}} {{lastname}} {{mail}} {{phone}}
                 </li>
             </div>
         {{/each}}
         </ul>
 </template>
-
-<!-- Attention franglais avec selectedAdresse... -->
-    
