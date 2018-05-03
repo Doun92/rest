@@ -1,7 +1,7 @@
 import { Accommodation } from "../api/accommodation-methods.js";
 import './template/accommodation.html';
 import { Template } from 'meteor/templating';
-import { register } from './template/register.html';
+import { register } from './template/registers.html';
 import { Session } from 'meteor/session'
 
 /* clear cache and local storage function
@@ -63,9 +63,9 @@ Template.addAccommodation.helpers({
 
     'actual_location':function(){
         data = Meteor.user();
-        route = data && data.user_address && data.user_address.address;
-        city = data && data.user_address && data.user_address.city;
-        postcode = data && data.user_address && data.user_address.postcode;
+        route = data && data.userAddress && data.userAddress.address;
+        city = data && data.userAddress && data.userAddress.city;
+        postcode = data && data.userAddress && data.userAddress.postcode;
         if(route || city || postcode){
             if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
                 return true
@@ -99,9 +99,9 @@ Template.actualAddress.helpers({
     },
     'actualAddressValue':function(){
         data = Meteor.user();
-        route = data && data.user_address && data.user_address.address;
-        city = data && data.user_address && data.user_address.city;
-        postcode = data && data.user_address && data.user_address.postcode;
+        route = data && data.userAddress && data.userAddress.address;
+        city = data && data.userAddress && data.userAddress.city;
+        postcode = data && data.userAddress && data.userAddress.postcode;
         tmpArray = [];
         tmpArray.push(route, city, postcode);
         return tmpArray;
@@ -133,7 +133,7 @@ Template.addAccommodation.events({
         const target = event.target;
 
         const address = template.find('#address').value;
-        const location_number = template.find('#location_number').value;
+        const locationNumber = template.find('#locationNumber').value;
         const zipCode = template.find('#zipCode').value;
         const location = template.find('#location').value;
         const availablePlaces = template.find('#availablePlaces').value;
@@ -151,7 +151,7 @@ Template.addAccommodation.events({
 
         Accommodation.insert({
             address : address,
-            loc_number : location_number,
+            locNumber : locationNumber,
             zipCode : zipCode,
             location : location,
             availablePlaces : availablePlaces,
@@ -249,7 +249,7 @@ Template.updateAccommodation.events({
         const target = event.target;
 
         const address = template.find('#address').value;
-        const location_number = template.find('#location_number').value;
+        const locationNumber = template.find('#locationNumber').value;
         const zipCode = template.find('#zipCode').value;
         const location = template.find('#location').value;
         const availablePlaces = template.find('#availablePlaces').value;
@@ -268,7 +268,7 @@ Template.updateAccommodation.events({
         Accommodation.update(collection[0]._id, {
             $set: {
                 address : address,
-                loc_number : location_number,
+                locNumber : locationNumber,
                 zipCode : zipCode,
                 location : location,
                 availablePlaces : availablePlaces,
@@ -302,7 +302,7 @@ Template.addressForm.helpers({
     'availableLocation' : function(){
         tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
         //console.log(tmp[0].zipCode)
-        tmpArr = [tmp[0].address, tmp[0].loc_number, tmp[0].location, tmp[0].zipCode, tmp[0].availablePlaces]
+        tmpArr = [tmp[0].address, tmp[0].locNumber, tmp[0].location, tmp[0].zipCode, tmp[0].availablePlaces]
         return tmpArr
     }
 })
