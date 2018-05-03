@@ -4,29 +4,8 @@ import { Template } from 'meteor/templating';
 import { register } from './template/registers.html';
 import { Session } from 'meteor/session'
 
-/* clear cache and local storage function
-window.onbeforeunload = function(){
-    localStorage.clear();
-    return '';
-}
-*/
-
 Meteor.subscribe('accommodations');
 Meteor.subscribe('userData');
-//Meteor.subscribe('accommodationsAll')
-
-//Template.accommodationsList.onCreated(function(){
-  //  this.subscribe('accommodationsAll');
-//})
-/*
-Template.accommodationsList.helpers({
-     accommodation() {
-         tmp = Accommodation.find({}).fetch();
-         //console.log(tmp);
-         return Accommodation.find({});
-     },
- });
-*/
 
 Template.accommodationTemplate.onCreated(function(){
     this.subscribe('userData');
@@ -41,8 +20,6 @@ Template.accommodationTemplate.helpers({
         }else{
             return true
         }
-        //console.log(tmp);
-        //console.log(Accommodation.find({host_id:Meteor.userId()}).fetch())
     }
 });
 
@@ -58,8 +35,7 @@ Template.addAccommodation.helpers({
 
      // utilise la fonction actual location comme condition de 
      // l'apparition d'un formulaire d'ajout d'adresse
-     // si la valeur n'est pas renseignée affiché le formulaire par défaut
-     // ps: crée un template pour le formulaire
+     // si la valeur n'est pas renseignée affiche le formulaire par défaut
 
     'actual_location':function(){
         data = Meteor.user();
@@ -127,7 +103,6 @@ Template.actualAddress.events({
 Template.addAccommodation.events({
     'submit .addAccommodation' (event, template) {
 
-
         event.preventDefault();
 
         const target = event.target;
@@ -143,10 +118,6 @@ Template.addAccommodation.events({
         //const allTime 
         //const last_call_hour
 
-        //delete Session.keys['link_value'];
-        //availability = Session.keys;
-
-
         const creator = Meteor.userId();
 
         Accommodation.insert({
@@ -155,7 +126,6 @@ Template.addAccommodation.events({
             zipCode : zipCode,
             location : location,
             availablePlaces : availablePlaces,
-            //availability : availability,
             host_id : creator,
 
             //à rajouter
@@ -205,7 +175,6 @@ Template.updateAccommodation.helpers({
         tmp = Object.keys(tmpData[0].availability);
 
         //console.log(`tmpData : ${tmpData[0].availability[1]}`)
-        //Session.set(tmpData[0].availability);
         console.log(`Session storage : ${JSON.stringify(Session.keys)}`)
 
         tmp = Object.keys(tmpData[0].availability);
@@ -215,21 +184,6 @@ Template.updateAccommodation.helpers({
         console.log(`Session storage : ${JSON.stringify(Session.keys)}`)
         //console.log(`Session data : ${tmpData[0].availability[1]}`)
         
-
-        /*
-        this.autorun(function () {
-            tmpKey = {}
-    
-            for (i in Session.keys){
-                console.log(i)
-                tmpKey[i] = JSON.parse(Session.keys[i]);
-                tmp = tmpKey[1]
-                console.log(tmp)
-            }
-            self.myVal = tmp;
-          });
-    */
-
     },
     'clearSession':function(){
        Session.keys = {}
@@ -259,9 +213,6 @@ Template.updateAccommodation.events({
         //const allTime 
         //const last_call_hour
 
-        //delete Session.keys['link_value'];
-        //availability = Session.keys;
-
         const creator = Meteor.userId();
 
         
@@ -272,7 +223,6 @@ Template.updateAccommodation.events({
                 zipCode : zipCode,
                 location : location,
                 availablePlaces : availablePlaces,
-                //availability : Session.keys,
                 host_id : creator
             }
             
