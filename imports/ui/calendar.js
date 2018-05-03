@@ -75,14 +75,6 @@ Template.calendar_template.helpers({
             var last_days_index = last_days_index.getDay();
             //console.log(tmp2);
 
-            //testing new date if a date is selected
-
-            var test_date = new Date();
-            test_date.setDate(23);
-            
-            //console.log(`${actual_date}, index : ${day_index}, other : ${first_day}, ${year}, ${month}, ${number_of_days} , last day of the month : ${tmp}`);
-            //console.log(`new date : ${test_date}`);
-
             calandArray = range(number_of_days, null, 1);
             //console.log(calandArray);
 
@@ -104,31 +96,30 @@ Template.calendar_template.helpers({
             //get the first day date og the current month
             var first_day_date = new Date();
             first_day_date.setDate(1);
-            var first_day = first_day_date.toDateString().substring(0, 3);
+            var first_day = first_day_date.getDay();
+            console.log(`premier jour: ${first_day}`)
+
 
             var number_of_days = new Date(year, month+1, 0).getDate();
             var number_of_days_last_week = new Date(year, month, 0).getDate();
+            console.log(`numb days last week : ${number_of_days_last_week}`)
+
             var day_week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-            var day_index = day_week.indexOf(first_day);
-            var last_days_index = day_index;
+            var day_index = first_day-1;
             var tmp = new Date(year, month + 1, 0);
             
-            //testing new date if a date is selected
-
-            var test_date = new Date();
-            test_date.setDate(23);
-            
-            //console.log(`${actual_date}, index : ${day_index}, other : ${first_day}, ${year}, ${month}, ${number_of_days}, last day of the month : ${tmp}`);
-            //console.log(`new date : ${test_date}`);
-
             calandArray = range(number_of_days, null, 1);
+
+            var last_days_index = new Date(year, month+1, 0);
+            var last_days_index = last_days_index.getDay();
+
             //console.log(calandArray);
 
             for(i=0;i<day_index;i++){
                 calandArray.unshift(number_of_days_last_week)
                 number_of_days_last_week-=1
             }
-            for(i=0;i<last_days_index;i++){
+            for(i=0;i<(7-last_days_index);i++){
                 calandArray.push(i+1);
             }
             console.log(calandArray);
