@@ -11,7 +11,7 @@ Template.calendar_template.onCreated(function(){
     this.subscribe('accommodations');
     
     //global var    
-    dateObj = {};
+    dateObj = {1:{},2:{},3:{},4:{},5:{},6:{},7:{},8:{},9:{},10:{},11:{},12:{}};
     monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     slctStatus = false;
     actlDate = new Date();
@@ -177,34 +177,11 @@ Template.calendar_template.helpers({
     'daysAcr' : function(){
         return ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
     },
-    'tmp' : function(){
-        /* test blaze do not delete until the end of the project 
-
-        arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        //tmpData = Accommodation.find({}).fetch();
-        //tmp = Object.keys(tmpData[0].availability);
-        //sess = Session.get();
-        for(i=0;i<arr.length;i++){
-            for(y=0;y<tmp.length;y++){
-                if(arr[i] == tmp[y]){
-                    //console.log(tmp[y]);
-                }
-            }
-        }
-        //console.log(tmp.map((x, y) => x))
-        //arr = tmp.map(x=> x == value);
-        //console.log(Session.get())
-        */ 
-    },
     'setClass' : function(index, value){
         
         /****  change class and the color value of the current day of the month 
         * + check for existing availabilities and return class color */
        
-        //const monthSelected = this.find('[ms]');
-        var monthSelected = $("#monthSelected").val()
-        console.log(`mois selectionné : ${monthSelected}`);
-
        if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             
             if(index-value <= -10){
@@ -215,26 +192,23 @@ Template.calendar_template.helpers({
                 return 'calDay';
             }
        }else{
-            //display stored date of the availability document over the calendar cells
-            //1) compare actual date month with the month of the stored value (prevent display stored on every month)
-            //2) compare value of the calendar cell with the value of the availability item day (dispDateValues)
+            //display stored date of the availability document over the calendar cells (selected class)
+            //1) get every keys of the actual month
+            //2) compare value of the calendar cell with the value of key of the actual month array
 
             //get collection data (places)
             let tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
             //get every keys of the availability object document
-            let tmp = Object.keys(tmpData[0].availability);
-            //get first item of the availability object document
-            let tmpFirstDate = Object.keys(tmpData[0].availability)[0];
-            //get the date with the first item of the availability object
-            //will be used for compare month with the actual date month
-            let tmpDate = new Date(tmpFirstDate);
+            let tmp = Object.keys(tmpData[0].availability[actlMonth+1]);
+            console.log(`new obj value : ${tmp}`)
+            dateObj = tmpData[0].availability
+
+
             tmp.unshift('0');
-            console.log(`value : ${tmpDate.getMonth()}`)
-            
+            //console.log(`value : ${tmpDate.getMonth()}`)
+
             function dispDateValues(ind){
-                if(tmpDate.getMonth()-1 == actlMonth){
                     return ind == value;
-                }
             }
             if(index-value <= -10){
                 return 'grey';
@@ -244,7 +218,7 @@ Template.calendar_template.helpers({
                     let date = new Date();
                     date.setDate(value);
                     let dateSet = date.toDateString();
-                    dateObj[Number(value)] = dateSet;
+                    dateObj[actlMonth+1][Number(value)] = dateSet;
                     return 'selected';
             }else{
                     return 'calDay';
@@ -291,8 +265,9 @@ Template.calendar_template.events({
 
         let date = new Date();
         date.setDate(tmpValue);
+        date.setMonth(actlMonth);
         let dateSet = date.toDateString();
-        dateObj[Number(tmpValue)] = dateSet;
+        dateObj[date.getMonth()+1][Number(tmpValue)] = dateSet;
         console.log(`1) selected result : ${JSON.stringify(dateObj)}`);
         target.className = 'selected'
         slctStatus = true;
@@ -319,10 +294,9 @@ Template.calendar_template.events({
         let tmpValue = target.innerText;
         slctStatus = true;
 
-
-            delete dateObj[Number(tmpValue)];
-            target.className = 'calDay'
-            console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
+        delete dateObj[Number(tmpValue)];
+        target.className = 'calDay'
+        console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
         /*
         else{
 
