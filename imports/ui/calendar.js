@@ -294,7 +294,7 @@ Template.calendar_template.events({
         let tmpValue = target.innerText;
         slctStatus = true;
 
-        delete dateObj[Number(tmpValue)];
+        delete dateObj[actlMonth+1][Number(tmpValue)];
         target.className = 'calDay'
         console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
         /*
