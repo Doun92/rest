@@ -49,7 +49,7 @@
 <!-- Template host/social worker profil page -->
 <template name="profilRoute">
     {{#if Template.subscriptionsReady}}
-        {{#if isSocialWorker}}
+        {{#if currentUser.sw}}
             {{> social_worker_profil}}
         {{else}}
             {{> host_profil_template}}

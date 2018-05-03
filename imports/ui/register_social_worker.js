@@ -38,7 +38,7 @@ Template.register_social_worker.events({
                 email: email,
                 firstname: firstName,
                 lastname: lastName,
-                institution: institute,
+                institute: institute,
                 password: password,
                 phoneNumber: phoneNumber,
                 sw : true
