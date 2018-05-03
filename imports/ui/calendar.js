@@ -6,19 +6,24 @@ import { stringify } from 'querystring';
 import { Accommodation } from '../api/accommodation-methods';
 
 Template.calendar_template.onCreated(function(){
+
     this.subscribe('userData');
     this.subscribe('accommodations');
     
+    //global var    
     dateObj = {};
+    monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     slctStatus = false;
-    console.log(`calendar loaded!`)
+    actlDate = new Date();
+    actlMonth = actlDate.getMonth();
+
+    console.log(`calendar loaded! : ${actlMonth}`)
 })
 
 Template.calendar_template.helpers({
 
     'calendArray' : function(){
 
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         //console.log(`date without change : ${actual_date}`)
 
         function range(x=number, pace=null, start=0){
@@ -39,7 +44,7 @@ Template.calendar_template.helpers({
 
             //console.log('values in local storage');
 
-            monthIndex = monthArr.indexOf(sessionDayValue);
+            var monthIndex = monthArr.indexOf(sessionDayValue);
 
             //console.log(monthIndex);
 
@@ -51,7 +56,7 @@ Template.calendar_template.helpers({
             var month = actual_date.getMonth();
             var year = actual_date.getFullYear();
 
-            //get the first day date og the current month
+            //get the first day date of the current month
 
             var first_day_date = new Date();
             first_day_date.setFullYear(sessionYearValue);
@@ -88,7 +93,7 @@ Template.calendar_template.helpers({
             for(i=0;i<(7-last_days_index);i++){
                 calandArray.push(i+1);
             }
-            //console.log(calandArray);
+            console.log(calandArray);
             return calandArray;
 
         }else{
@@ -126,12 +131,11 @@ Template.calendar_template.helpers({
             for(i=0;i<last_days_index;i++){
                 calandArray.push(i+1);
             }
-            //console.log(calandArray);
+            console.log(calandArray);
             return calandArray;
         }
     },
     'month' : function(){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
         tmp = new Date;
         month = tmp.getMonth();
         return monthArr[month];
@@ -145,10 +149,10 @@ Template.calendar_template.helpers({
     //functions
 
     'isActualMonth' : function(value){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         indexMonth = monthArr.indexOf(value);
         tempDate = new Date();
         actMonth = tempDate.getMonth();
+        //console.log(`actual month :${}`)
         if(actMonth == indexMonth){
             return true;
         }
@@ -163,7 +167,6 @@ Template.calendar_template.helpers({
         }
     },
     'monthOptions' : function(){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         return monthArr;
     },
     'yearOptions' : function(){
@@ -197,6 +200,11 @@ Template.calendar_template.helpers({
         
         /****  change class and the color value of the current day of the month 
         * + check for existing availabilities and return class color */
+       
+        //const monthSelected = this.find('[ms]');
+        var monthSelected = $("#monthSelected").val()
+        console.log(`mois selectionné : ${monthSelected}`);
+
        if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             
             if(index-value <= -10){
@@ -207,22 +215,32 @@ Template.calendar_template.helpers({
                 return 'calDay';
             }
        }else{
+            //display stored date of the availability document over the calendar cells
+            //1) compare actual date month with the month of the stored value (prevent display stored on every month)
+            //2) compare value of the calendar cell with the value of the availability item day (dispDateValues)
 
+            //get collection data (places)
             let tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
+            //get every keys of the availability object document
             let tmp = Object.keys(tmpData[0].availability);
+            //get first item of the availability object document
+            let tmpFirstDate = Object.keys(tmpData[0].availability)[0];
+            //get the date with the first item of the availability object
+            //will be used for compare month with the actual date month
+            let tmpDate = new Date(tmpFirstDate);
             tmp.unshift('0');
-            //console.log(`selected helper : ${tmpData}`)
-
-            //that one was F... HARD!!!
+            console.log(`value : ${tmpDate.getMonth()}`)
             
-            function test (ind){
-                return ind == value;
+            function dispDateValues(ind){
+                if(tmpDate.getMonth()-1 == actlMonth){
+                    return ind == value;
+                }
             }
             if(index-value <= -10){
                 return 'grey';
             }else if(index-value >= 10){
-                return 'grey';             
-            }else if(tmp.find(test)){
+                return 'grey';
+            }else if(tmp.find(dispDateValues)){
                     let date = new Date();
                     date.setDate(value);
                     let dateSet = date.toDateString();
@@ -243,8 +261,11 @@ Template.calendar_template.events({
     'change #monthForm': function(event){
         event.preventDefault();
         tmp = document.getElementById('yearForm');
-        changeMonth = event.target.value
+        changeMonth = event.target.value;
 
+        //reset actual month global var
+        actlMonth = monthArr.indexOf(changeMonth);
+        console.log(`actual month after change month form : ${monthArr.indexOf(changeMonth)}`)
         Session.set({
             'year_selected' : tmp[0].options[tmp[0].selectedIndex].value,
             'day_selected': changeMonth,
