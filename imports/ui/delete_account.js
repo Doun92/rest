@@ -6,7 +6,7 @@ Template.navbarHost.events({
     data = Accommodation.find({host_id:Meteor.userId()}).fetch()
     var username = Meteor.userId();
     //var accId = Accommodation[0]._id
-    console.log(data[0]._id);
+    //console.log(data[0]._id);
     Meteor.users.remove(username)
     Accommodation.remove(data[0]._id)
   }});

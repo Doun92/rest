@@ -5,12 +5,13 @@ import { Session } from 'meteor/session'
 import { stringify } from 'querystring';
 import { Accommodation } from '../api/accommodation-methods';
 
-Meteor.subscribe('accommodations');
-Meteor.subscribe('userData');
-
 Template.calendar_template.onCreated(function(){
     this.subscribe('userData');
-    this.subscribe('accomodations');
+    this.subscribe('accommodations');
+    
+    dateObj = {};
+    slctStatus = false;
+    console.log(`calendar loaded!`)
 })
 
 Template.calendar_template.helpers({
@@ -207,9 +208,10 @@ Template.calendar_template.helpers({
             }
        }else{
 
-            tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
-            tmp = Object.keys(tmpData[0].availability);
+            let tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
+            let tmp = Object.keys(tmpData[0].availability);
             tmp.unshift('0');
+            //console.log(`selected helper : ${tmpData}`)
 
             //that one was F... HARD!!!
             
@@ -221,6 +223,10 @@ Template.calendar_template.helpers({
             }else if(index-value >= 10){
                 return 'grey';             
             }else if(tmp.find(test)){
+                    let date = new Date();
+                    date.setDate(value);
+                    let dateSet = date.toDateString();
+                    dateObj[Number(value)] = dateSet;
                     return 'selected';
             }else{
                     return 'calDay';
@@ -262,37 +268,112 @@ Template.calendar_template.events({
         tmpValue = target.innerText;
         console.log(tmpValue)
 
-        date = new Date();
+        let date = new Date();
         date.setDate(tmpValue);
-        dateSet = date.toDateString();
-        //console.log(typeof(tmpValue));
-        Session.set(Number(tmpValue), dateSet)
-        //console.log(JSON.parse(dateSet));
-        //console.log(Session.get(tmpValue));
+        let dateSet = date.toDateString();
+        dateObj[Number(tmpValue)] = dateSet;
+        console.log(`1) selected result : ${JSON.stringify(dateObj)}`);
         target.className = 'selected'
+        slctStatus = true;
     },
     'click .actualDay': function(event){
         event.preventDefault();
         const target = event.target;
         tmpValue = target.innerText;
 
-        date = new Date();
+        let date = new Date();
         date.setDate(tmpValue);
         date = date.toDateString();
-        //console.log(tmpValue);
-        Session.set(Number(tmpValue), date)
-        //console.log(Session.keys);
-        //console.log(Session.get(tmpValue));
+        dateObj[Number(tmpValue)] = date;
         target.className = 'selected'
+        slctStatus = true;
+
+        console.log(`3) actual day elected result : ${JSON.stringify(dateObj)}`);
+
     },
     'click .selected':function(event){
         event.preventDefault();
         const target = event.target;
-        tmpValue = target.innerText;
-        if(Session.get(Number(tmpValue))){
-            delete Session.keys[Number(tmpValue)];
+        let tmpColl = Accommodation.find({});
+        let tmpValue = target.innerText;
+        slctStatus = true;
+
+
+            delete dateObj[Number(tmpValue)];
             target.className = 'calDay'
-            //console.log(Session.keys);
+            console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
+        /*
+        else{
+
         }
+
+        let tmpDataSlct = Accommodation.find({host_id:Meteor.userId()}).fetch();
+        dateObj = tmpDataSlct[0].availability
+        console.log(`date object : ${JSON.stringify(tmpDataSlct[0].availability)}`)
+        event.preventDefault();
+        const target = event.target;
+        let tmpValue = target.innerText;
+        console.log(dateObj[tmpValue])
+
+        if(dateObj[tmpValue]){
+            delete dateObj[Number(tmpValue)];
+            target.className = 'calDay'
+            console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
+        }
+        */
     }
 })
+
+// validate form
+
+Template.validateCal.events({
+    'click #validateCal' (event) {
+
+        event.preventDefault();
+        const creator = Meteor.userId();
+        const tmpData = Accommodation.find({},{availability:1});
+        const collection = Accommodation.find({host_id:Meteor.userId()}).fetch();
+        const dateObjLength = Object.keys(dateObj).length;
+
+        console.log(`count : ${Object.keys(dateObj).length}`);
+        if(tmpData.count() === 0 && dateObjLength === 0){
+            console.log('empty');
+            /*
+            Accommodation.insert({
+                availability : dateObj,
+                host_id : creator            
+            });
+            */
+        }else if(tmpData.count() > 0 && dateObjLength === 0){
+            console.log('2) coll not empty, date obj = 0');
+            if(slctStatus){
+                Accommodation.update(collection[0]._id, {
+                    $set: {
+                        availability : dateObj
+                    }
+                });
+            }else{
+                dateObj = collection[0].availability;
+                Accommodation.update(collection[0]._id, {
+                    $set: {
+                        availability : dateObj
+                    }
+                });
+            }
+        }else if(tmpData.count() > 0 && dateObjLength > 0){
+            console.log('3) coll not empty, date obj > 0');
+            //dateObj = collection[0].availability
+            Accommodation.update(collection[0]._id, {
+                $set: {
+                    availability : dateObj
+                }
+            });  
+        }else if(tmpData.count() === 0 && dateObjLength > 0){
+            console.log('4) coll empty, date obj = 1');
+            Accommodation.insert({
+                availability : dateObj,
+                host_id : creator            
+            });
+        }
+    },
+});
