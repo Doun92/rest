@@ -37,7 +37,7 @@ Template.addAccommodation.helpers({
      // l'apparition d'un formulaire d'ajout d'adresse
      // si la valeur n'est pas renseignée affiche le formulaire par défaut
 
-    'actual_location':function(){
+    'actualLocation':function(){
         data = Meteor.user();
         route = data && data.userAddress && data.userAddress.address;
         city = data && data.userAddress && data.userAddress.city;
@@ -76,10 +76,11 @@ Template.actualAddress.helpers({
     'actualAddressValue':function(){
         data = Meteor.user();
         route = data && data.userAddress && data.userAddress.address;
+        number = data && data.userAddress && data.userAddress.number;
         city = data && data.userAddress && data.userAddress.city;
         postcode = data && data.userAddress && data.userAddress.postcode;
         tmpArray = [];
-        tmpArray.push(route, city, postcode);
+        tmpArray.push(route, number, city, postcode);
         return tmpArray;
     },
     'clearSession':function(){
@@ -126,6 +127,7 @@ Template.addAccommodation.events({
             zipCode : zipCode,
             location : location,
             availablePlaces : availablePlaces,
+            availability : dateObj,
             host_id : creator,
 
             //à rajouter
@@ -167,7 +169,7 @@ Template.updateAccommodation.onCreated(function() {
     this.subscribe('accommodations');
     Session.keys = {};
 })
-
+/*
 Template.updateAccommodation.helpers({
     'lastStorage' : function(){
 
@@ -190,7 +192,7 @@ Template.updateAccommodation.helpers({
     
     }
 })
-
+*/
 Template.updateAccommodation.events({
     'submit .updateAccommodation' (event, template) {
 
