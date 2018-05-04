@@ -53,35 +53,35 @@
         {{#if isLocation}}
                 <legend>Adresse d'accueil actuelle</legend>
                 <label for="address">Adresse du logement</label>
-                <input type="text" name="address" id="address" value="{{availableLocation.[0]}}"><br>
+                <input type="text" name="address" id="address" value="{{availableLocation.[0]}}" required><br>
 
                 <label for="num">N°</label> 
-                <input type="text" name="locationNumber" id="locationNumber" value="{{availableLocation.[1]}}"><br>
+                <input type="text" name="locationNumber" id="locationNumber" value="{{availableLocation.[1]}}" required><br>
 
                 <label for="zipCode">NPA</label>
-                <input type="text" name="zipCode" id="zipCode" value="{{availableLocation.[3]}}"><br>
+                <input type="text" name="zipCode" id="zipCode" value="{{availableLocation.[3]}}" required><br>
     
                 <label for="location">Localité</label>
-                <input type="text" name="location" id="location" value="{{availableLocation.[2]}}"><br> 
+                <input type="text" name="location" id="location" value="{{availableLocation.[2]}}" required><br> 
                 
                 <label for="availablePlaces">Nombre de personnes</label>
-                <input type="text" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" >
+                <input type="text" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" required >
             {{else}}
                 <legend>Ajouter une adresse</legend> 
                 <label for="address">Rue</label>        
-                <input type="text" name="address" id="address" placeholder="Adresse"><br>
+                <input type="text" name="address" id="address" placeholder="Adresse" required><br>
 
                 <label for="num">N°</label> 
-                <input type="text" name="locationNumber" id="locationNumber" placeholder="Numéro"><br>
+                <input type="text" name="locationNumber" id="locationNumber" placeholder="Numéro" required><br>
 
                 <label for="zipCode">NPA</label>
-                <input type="text" name="zipCode" id="zipCode" placeholder="NPA"><br>
+                <input type="text" name="zipCode" id="zipCode" placeholder="NPA" required><br>
     
                 <label for="location">Localité</label>
-                <input type="text" name="location" id="location" placeholder="Localité"><br> 
+                <input type="text" name="location" id="location" placeholder="Localité" required><br> 
 
                 <label for="availablePlaces">Nombre de personnes</label>
-                <input type="text" name="availablePlaces" id="availablePlaces" placeholder="Nombre de personnes">
+                <input type="number" name="availablePlaces" id="availablePlaces" placeholder="Nombre de personnes" required>
 
         {{/if}}
         {{/if}}

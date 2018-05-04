@@ -18,22 +18,22 @@
             <input type="text" name="firstname" value="{{firstname}}"><br>
 
             <label>Nom:</label><br>
-            <input type="text" name="lastname" value="{{#if Template.subscriptionsReady}}{{lastname}}{{else}}champ obligatoire{{/if}}"><br>
+            <input type="text" name="lastname" value="{{lastname}}"><br>
 
             <label>Adresse:</label><br>
-            <input type="text" name="address" value="{{address}}"><br>
+            <input type="text" name="address" value="{{address}}" required><br>
 
             <label>Numéro postal:</label><br>
-            <input type="text" name="postcode" value="{{postCode}}"><br>
+            <input type="text" name="postcode" value="{{postCode}}" required><br>
 
             <label>Ville:</label><br>
-            <input type="text" name="city" value="{{city}}"><br>
+            <input type="text" name="city" value="{{city}}" required><br>
 
             <label>Numéro de téléphone:</label><br>
-            <input type="text" name="phone" value="{{phone}}"><br>
+            <input type="text" name="phone" value="{{phone}}" required><br>
             
             <br>
-            <button class="submit" value="submit" type="submit">Modifier</button>
+            <button class="submit" value="submit" type="submit" >Modifier</button>
         </form>
 
         <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
