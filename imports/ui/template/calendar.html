@@ -2,7 +2,6 @@
 
 <template name="calendar_template">
     {{#if Template.subscriptionsReady}}
-    {{tmp}}
     <legend> Ajouter/supprimer des nuitées : </legend>
     <div>
         <form id="yearForm">
@@ -18,7 +17,7 @@
             <select size="1">
                 {{#each monthOptions}}
                     {{#if isActualMonth this}}
-                    <option selected>{{this}}</option>
+                    <option selected id="ms">{{this}}</option>
                     {{else}}
                     <option>{{this}}</option>
                     {{/if}}
@@ -49,4 +48,9 @@
         {{/each}}
     </div>
     {{/if}}
+    {{>validateCal}}
+</template>
+
+<template name="validateCal">
+    <button id="validateCal">valider</button>
 </template>

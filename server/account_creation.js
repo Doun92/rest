@@ -11,6 +11,7 @@ Accounts.onCreateUser((options, user) => {
     user.sw = options.sw;
       const newUserAddress = {
           address : '',
+          number : '',
           city : '',
           postcode : ''
       } 
@@ -27,13 +28,14 @@ Accounts.onCreateUser((options, user) => {
   }else{
     const newUserAddress = {
       address : '',
+      number : '',
       city : '',
       postcode : ''
     } 
     user.sw = options.sw;
     user.firstname = options.firstname;
     user.lastname = options.lastname;
-    user.institution = options.institution;
+    user.institute = options.institute;
     user.phoneNumber = options.phoneNumber;
     user.userAddress = newUserAddress;
   }
@@ -56,7 +58,7 @@ Accounts.onCreateUser((options, user) => {
             phoneNumber : 1,
             userAddress : 1,
             sw : 1,
-            institution : 1
+            institute : 1
           }
         });
       } else {

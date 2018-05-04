@@ -31,7 +31,7 @@ if (Meteor.isServer) {
             phoneNumber : 1,
             userAddress : 1,
             sw : 1,
-            institution : 1
+            institute : 1
           }
         });
     });

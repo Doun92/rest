@@ -32,7 +32,7 @@
 
     <!-- look for host profil address -->
 
-        {{#if actual_location}}
+        {{#if actualLocation}}
             {{> actualAddress}}
         {{else}}
             {{> addressForm}}
@@ -41,8 +41,6 @@
 
     <!-- Fire simpleCal template -->
     {{> calendar_template}}
-
-    <button type="submit">Terminer</button>
     </form>
 </template>
 
@@ -86,6 +84,8 @@
         {{/if}}
         {{/if}}
     </fieldset>
+    <button type="submit">Ajouter adresse</button>
+
 </template>
 
 <template name="actualAddress">
@@ -100,22 +100,18 @@
             <input type="text" name="address" id="address" value="{{actualAddressValue.[0]}}"><br>
 
             <label for="num">N°</label> 
-            <input type="text" name="locationNumber" id="locationNumber" value="empty"><br>
+            <input type="text" name="locationNumber" id="locationNumber" value="{{actualAddressValue.[1]}}"><br>
 
             <label for="zipCode">NPA</label>
             <input type="text" name="zipCode" id="zipCode" value="{{actualAddressValue.[2]}}"><br>
 
             <label for="location">Localité</label>
-            <input type="text" name="location" id="location" value="{{actualAddressValue.[1]}}"><br> 
+            <input type="text" name="location" id="location" value="{{actualAddressValue.[3]}}"><br> 
             
             <label for="availablePlaces">Nombre de personnes</label>
-            <input type="text" name="availablePlaces" id="availablePlaces" value="à remplir" >
+            <input type="text" name="availablePlaces" id="availablePlaces" value="à remplir" ><br>
+            <button type="submit">Ajouter adresse</button>
 
-<!--
-            {{#each actualAddressValue}}
-                <span>{{this}}</span><br>
-            {{/each}}
--->            
         {{else}}
             {{> addressForm}}
         {{/if}}
@@ -129,8 +125,6 @@
 
 <template name="updateAccommodation">
         {{#if Template.subscriptionsReady}}
-        {{clearSession}}
-        {{lastStorage}}
 
         <!-- Update accommodation template -->
 
@@ -138,7 +132,6 @@
         <form class="updateAccommodation">
             {{> addressForm}}        
             {{> calendar_template}}
-            <button type="submit">Mettre à jour</button>
         </form>
 
         {{/if}}

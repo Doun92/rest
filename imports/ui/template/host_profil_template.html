@@ -23,6 +23,9 @@
             <label>Adresse:</label><br>
             <input type="text" name="address" value="{{address}}"><br>
 
+            <label>N° de rue:</label><br>
+            <input type="text" name="number" value="{{number}}"><br>
+
             <label>Numéro postal:</label><br>
             <input type="text" name="postcode" value="{{postCode}}"><br>
 
@@ -35,7 +38,9 @@
             <br>
             <button class="submit" value="submit" type="submit">Modifier</button>
         </form>
+
+        <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
     {{/if}}
 
-    <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
+    
 </template>

@@ -5,19 +5,25 @@ import { Session } from 'meteor/session'
 import { stringify } from 'querystring';
 import { Accommodation } from '../api/accommodation-methods';
 
-Meteor.subscribe('accommodations');
-Meteor.subscribe('userData');
-
 Template.calendar_template.onCreated(function(){
+
     this.subscribe('userData');
-    this.subscribe('accomodations');
+    this.subscribe('accommodations');
+    
+    //global var    
+    dateObj = {1:{},2:{},3:{},4:{},5:{},6:{},7:{},8:{},9:{},10:{},11:{},12:{}};
+    monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    slctStatus = false;
+    actlDate = new Date();
+    actlMonth = actlDate.getMonth();
+
+    console.log(`calendar loaded! : ${actlMonth}`)
 })
 
 Template.calendar_template.helpers({
 
     'calendArray' : function(){
 
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         //console.log(`date without change : ${actual_date}`)
 
         function range(x=number, pace=null, start=0){
@@ -38,7 +44,7 @@ Template.calendar_template.helpers({
 
             //console.log('values in local storage');
 
-            monthIndex = monthArr.indexOf(sessionDayValue);
+            var monthIndex = monthArr.indexOf(sessionDayValue);
 
             //console.log(monthIndex);
 
@@ -50,7 +56,7 @@ Template.calendar_template.helpers({
             var month = actual_date.getMonth();
             var year = actual_date.getFullYear();
 
-            //get the first day date og the current month
+            //get the first day date of the current month
 
             var first_day_date = new Date();
             first_day_date.setFullYear(sessionYearValue);
@@ -69,14 +75,6 @@ Template.calendar_template.helpers({
             var last_days_index = last_days_index.getDay();
             //console.log(tmp2);
 
-            //testing new date if a date is selected
-
-            var test_date = new Date();
-            test_date.setDate(23);
-            
-            //console.log(`${actual_date}, index : ${day_index}, other : ${first_day}, ${year}, ${month}, ${number_of_days} , last day of the month : ${tmp}`);
-            //console.log(`new date : ${test_date}`);
-
             calandArray = range(number_of_days, null, 1);
             //console.log(calandArray);
 
@@ -87,7 +85,7 @@ Template.calendar_template.helpers({
             for(i=0;i<(7-last_days_index);i++){
                 calandArray.push(i+1);
             }
-            //console.log(calandArray);
+            console.log(calandArray);
             return calandArray;
 
         }else{
@@ -98,39 +96,37 @@ Template.calendar_template.helpers({
             //get the first day date og the current month
             var first_day_date = new Date();
             first_day_date.setDate(1);
-            var first_day = first_day_date.toDateString().substring(0, 3);
+            var first_day = first_day_date.getDay();
+            console.log(`premier jour: ${first_day}`)
+
 
             var number_of_days = new Date(year, month+1, 0).getDate();
             var number_of_days_last_week = new Date(year, month, 0).getDate();
+            console.log(`numb days last week : ${number_of_days_last_week}`)
+
             var day_week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-            var day_index = day_week.indexOf(first_day);
-            var last_days_index = day_index;
+            var day_index = first_day-1;
             var tmp = new Date(year, month + 1, 0);
             
-            //testing new date if a date is selected
-
-            var test_date = new Date();
-            test_date.setDate(23);
-            
-            //console.log(`${actual_date}, index : ${day_index}, other : ${first_day}, ${year}, ${month}, ${number_of_days}, last day of the month : ${tmp}`);
-            //console.log(`new date : ${test_date}`);
-
             calandArray = range(number_of_days, null, 1);
+
+            var last_days_index = new Date(year, month+1, 0);
+            var last_days_index = last_days_index.getDay();
+
             //console.log(calandArray);
 
             for(i=0;i<day_index;i++){
                 calandArray.unshift(number_of_days_last_week)
                 number_of_days_last_week-=1
             }
-            for(i=0;i<last_days_index;i++){
+            for(i=0;i<(7-last_days_index);i++){
                 calandArray.push(i+1);
             }
-            //console.log(calandArray);
+            console.log(calandArray);
             return calandArray;
         }
     },
     'month' : function(){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
         tmp = new Date;
         month = tmp.getMonth();
         return monthArr[month];
@@ -144,10 +140,10 @@ Template.calendar_template.helpers({
     //functions
 
     'isActualMonth' : function(value){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         indexMonth = monthArr.indexOf(value);
         tempDate = new Date();
         actMonth = tempDate.getMonth();
+        //console.log(`actual month :${}`)
         if(actMonth == indexMonth){
             return true;
         }
@@ -162,7 +158,6 @@ Template.calendar_template.helpers({
         }
     },
     'monthOptions' : function(){
-        monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         return monthArr;
     },
     'yearOptions' : function(){
@@ -173,29 +168,11 @@ Template.calendar_template.helpers({
     'daysAcr' : function(){
         return ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
     },
-    'tmp' : function(){
-        /* test blaze do not delete until the end of the project 
-
-        arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        //tmpData = Accommodation.find({}).fetch();
-        //tmp = Object.keys(tmpData[0].availability);
-        //sess = Session.get();
-        for(i=0;i<arr.length;i++){
-            for(y=0;y<tmp.length;y++){
-                if(arr[i] == tmp[y]){
-                    //console.log(tmp[y]);
-                }
-            }
-        }
-        //console.log(tmp.map((x, y) => x))
-        //arr = tmp.map(x=> x == value);
-        //console.log(Session.get())
-        */ 
-    },
     'setClass' : function(index, value){
         
         /****  change class and the color value of the current day of the month 
         * + check for existing availabilities and return class color */
+       
        if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             
             if(index-value <= -10){
@@ -206,21 +183,33 @@ Template.calendar_template.helpers({
                 return 'calDay';
             }
        }else{
+            //display stored date of the availability document over the calendar cells (selected class)
+            //1) get every keys of the actual month
+            //2) compare value of the calendar cell with the value of key of the actual month array
 
-            tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
-            tmp = Object.keys(tmpData[0].availability);
+            //get collection data (places)
+            let tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
+            //get every keys of the availability object document
+            let tmp = Object.keys(tmpData[0].availability[actlMonth+1]);
+            console.log(`new obj value : ${tmp}`)
+            dateObj = tmpData[0].availability
+
+
             tmp.unshift('0');
+            //console.log(`value : ${tmpDate.getMonth()}`)
 
-            //that one was F... HARD!!!
-            
-            function test (ind){
-                return ind == value;
+            function dispDateValues(ind){
+                    return ind == value;
             }
             if(index-value <= -10){
                 return 'grey';
             }else if(index-value >= 10){
-                return 'grey';             
-            }else if(tmp.find(test)){
+                return 'grey';
+            }else if(tmp.find(dispDateValues)){
+                    let date = new Date();
+                    date.setDate(value);
+                    let dateSet = date.toDateString();
+                    dateObj[actlMonth+1][Number(value)] = dateSet;
                     return 'selected';
             }else{
                     return 'calDay';
@@ -237,8 +226,11 @@ Template.calendar_template.events({
     'change #monthForm': function(event){
         event.preventDefault();
         tmp = document.getElementById('yearForm');
-        changeMonth = event.target.value
+        changeMonth = event.target.value;
 
+        //reset actual month global var
+        actlMonth = monthArr.indexOf(changeMonth);
+        console.log(`actual month after change month form : ${monthArr.indexOf(changeMonth)}`)
         Session.set({
             'year_selected' : tmp[0].options[tmp[0].selectedIndex].value,
             'day_selected': changeMonth,
@@ -262,37 +254,112 @@ Template.calendar_template.events({
         tmpValue = target.innerText;
         console.log(tmpValue)
 
-        date = new Date();
+        let date = new Date();
         date.setDate(tmpValue);
-        dateSet = date.toDateString();
-        //console.log(typeof(tmpValue));
-        Session.set(Number(tmpValue), dateSet)
-        //console.log(JSON.parse(dateSet));
-        //console.log(Session.get(tmpValue));
+        date.setMonth(actlMonth);
+        let dateSet = date.toDateString();
+        dateObj[date.getMonth()+1][Number(tmpValue)] = dateSet;
+        console.log(`1) selected result : ${JSON.stringify(dateObj)}`);
         target.className = 'selected'
+        slctStatus = true;
     },
     'click .actualDay': function(event){
         event.preventDefault();
         const target = event.target;
         tmpValue = target.innerText;
 
-        date = new Date();
+        let date = new Date();
         date.setDate(tmpValue);
         date = date.toDateString();
-        //console.log(tmpValue);
-        Session.set(Number(tmpValue), date)
-        //console.log(Session.keys);
-        //console.log(Session.get(tmpValue));
+        dateObj[Number(tmpValue)] = date;
         target.className = 'selected'
+        slctStatus = true;
+
+        console.log(`3) actual day elected result : ${JSON.stringify(dateObj)}`);
+
     },
     'click .selected':function(event){
         event.preventDefault();
         const target = event.target;
-        tmpValue = target.innerText;
-        if(Session.get(Number(tmpValue))){
-            delete Session.keys[Number(tmpValue)];
-            target.className = 'calDay'
-            //console.log(Session.keys);
+        let tmpColl = Accommodation.find({});
+        let tmpValue = target.innerText;
+        slctStatus = true;
+
+        delete dateObj[actlMonth+1][Number(tmpValue)];
+        target.className = 'calDay'
+        console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
+        /*
+        else{
+
         }
+
+        let tmpDataSlct = Accommodation.find({host_id:Meteor.userId()}).fetch();
+        dateObj = tmpDataSlct[0].availability
+        console.log(`date object : ${JSON.stringify(tmpDataSlct[0].availability)}`)
+        event.preventDefault();
+        const target = event.target;
+        let tmpValue = target.innerText;
+        console.log(dateObj[tmpValue])
+
+        if(dateObj[tmpValue]){
+            delete dateObj[Number(tmpValue)];
+            target.className = 'calDay'
+            console.log(`2) unselected result : ${JSON.stringify(dateObj)}`);
+        }
+        */
     }
 })
+
+// validate form
+
+Template.validateCal.events({
+    'click #validateCal' (event) {
+
+        event.preventDefault();
+        const creator = Meteor.userId();
+        const tmpData = Accommodation.find({},{availability:1});
+        const collection = Accommodation.find({host_id:Meteor.userId()}).fetch();
+        const dateObjLength = Object.keys(dateObj).length;
+
+        console.log(`count : ${Object.keys(dateObj).length}`);
+        if(tmpData.count() === 0 && dateObjLength === 0){
+            console.log('empty');
+            /*
+            Accommodation.insert({
+                availability : dateObj,
+                host_id : creator            
+            });
+            */
+        }else if(tmpData.count() > 0 && dateObjLength === 0){
+            console.log('2) coll not empty, date obj = 0');
+            if(slctStatus){
+                Accommodation.update(collection[0]._id, {
+                    $set: {
+                        availability : dateObj
+                    }
+                });
+            }else{
+                dateObj = collection[0].availability;
+                Accommodation.update(collection[0]._id, {
+                    $set: {
+                        availability : dateObj
+                    }
+                });
+            }
+        }else if(tmpData.count() > 0 && dateObjLength > 0){
+            console.log('3) coll not empty, date obj > 0');
+            //dateObj = collection[0].availability
+            Accommodation.update(collection[0]._id, {
+                $set: {
+                    availability : dateObj
+                }
+            });  
+        }else if(tmpData.count() === 0 && dateObjLength > 0){
+            console.log('4) coll empty, date obj = 1');
+            Accommodation.insert({
+                availability : dateObj,
+                host_id : creator            
+            });
+        }
+    },
+});

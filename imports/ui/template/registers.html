@@ -51,7 +51,7 @@
 
 <template name="super_register_form">
     <h1>Inscription all</h1>
-
+    <form class="registerForm">
     <label>Nom</label><br>
     <input type="text" placeholder="Nom" id="lastname" /><br>
 
@@ -60,14 +60,11 @@
 
     <label>Adresse Email</label><br>
     <input type="email" placeholder="Adresse Email" id="email" /><br>
-    
-    <!-- {{#if inscription_ts}} ? -->
-    <label>Institution</label><br>
-    <input type="text" placeholder="Votre organisation" id="institute" /><br>
-    <!-- {{/if}} -->
 
     <label>Numéro de téléphone</label><br>
     <input type="text" placeholder="Numéro" id="phoneNumber" /><br>
+
+    {{> Template.dynamic template=swSubscribe }}
 
     <label>Mot de passe</label><br>
     <input type="password" placeholder="Mot de passe" id="password" /><br>
@@ -76,4 +73,10 @@
     <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" /><br>
         
     <button id="register-button" type="submit">S'inscrire</button>
+    </form>
+</template>
+
+<template name="sw_subscribe">
+    <label>Institution</label><br>
+    <input type="text" placeholder="Votre organisation" id="institute" /><br>
 </template>
