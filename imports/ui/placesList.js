@@ -7,27 +7,12 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-// Template.placesList.events({
-//     'click .adresse':function(event){
-//         let place_id=this._id;
-//         let place_num=this.availability;
-//         console.log(place_num);
-//         let hostId = this.host_id;
-//         console.log(hostId);
-//         // var number = Meteor.users.hostname;        
-//         let number = Meteor.users.findOne(
-//             {_id:hostId},
-//         );
-//         let hostName = number.firstname
-//         console.log(hostName);
-//     }
-// })
-
 Template.placesList.onCreated(function(){
     this.subscribe('places');
     this.subscribe('allUser')
 })
 
+// Appel chaque logement depuis la base de données
 Template.placesList.helpers({
      'places':function() {
         Meteor.subscribe('places');
@@ -38,18 +23,25 @@ Template.placesList.helpers({
      },
  });
 
-// Template.placesList.helpers({
-//     'allUser':function(){
-//         Meteor.subscribe('allUser')
-//         console.log(AllUser.find({}));
-//         return AllUser.find({})
+//  Template.placesList.helpers({
+//     'jourJ': function(){
+//         Meteor.subscribe('places')
+//         let hostId = this.availability;
+//         console.log(hostId)
+//         let number = Meteor.users.findOne(
+//             {_id:hostId},
+//         );
+//         let hostname = number.firstname;
+//         return hostname;
 //     },
 // });
 
+// Permet d'afficher les noms des users de chaque adresse
 Template.placesList.helpers({
     'firstname': function(){
         Meteor.subscribe('places')
         let hostId = this.host_id;
+        console.log(hostId)
         let number = Meteor.users.findOne(
             {_id:hostId},
         );
