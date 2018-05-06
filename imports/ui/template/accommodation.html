@@ -49,22 +49,25 @@
     <fieldset>
         {{#if Template.subscriptionsReady}}
         {{#if isLocation}}
+        <div class="col-md-7 col-sm-8 col-xs-12">
                 <legend>Adresse d'accueil actuelle</legend>
                 <label for="address">Adresse du logement</label>
                 <input type="text" name="address" id="address" value="{{availableLocation.[0]}}" required><br>
 
-                <label for="num">N°</label> 
+                <label for="num">N°</label>
                 <input type="text" name="locationNumber" id="locationNumber" value="{{availableLocation.[1]}}" required><br>
 
                 <label for="zipCode">NPA</label>
                 <input type="text" name="zipCode" id="zipCode" value="{{availableLocation.[3]}}" required><br>
     
                 <label for="location">Localité</label>
-                <input type="text" name="location" id="location" value="{{availableLocation.[2]}}" required><br> 
+                <input type="text" name="location" id="location" value="{{availableLocation.[2]}}" required><br>
                 
-                <label for="availablePlaces">Nombre de personnes</label>
-                <input type="text" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" required >
+                <label for="availablePlaces">Nombre de perasdasonnes</label>
+                <input type="number" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" required ><br>
+            </div>
             {{else}}
+            <div class="col-md-7 col-sm-6 col-xs-12">
                 <legend>Ajouter une adresse</legend> 
                 <label for="address">Rue</label>        
                 <input type="text" name="address" id="address" placeholder="Adresse" required><br>
@@ -80,7 +83,7 @@
 
                 <label for="availablePlaces">Nombre de personnes</label>
                 <input type="number" name="availablePlaces" id="availablePlaces" placeholder="Nombre de personnes" required>
-
+            </div>
         {{/if}}
         {{/if}}
     </fieldset>
@@ -94,7 +97,7 @@
     <!-- actualAdress template reloads the actual adress of the host from hes profil information -->
     {{#if sessionReady}}
         {{#if linkValue}}
-
+        <div class="col-md-7 col-sm-6 col-xs-12">
             <legend>Adresse d'accueil actuelle</legend>
             <label for="address">Adresse du logement</label>
             <input type="text" name="address" id="address" value="{{actualAddressValue.[0]}}"><br>
@@ -109,9 +112,9 @@
             <input type="text" name="location" id="location" value="{{actualAddressValue.[3]}}"><br> 
             
             <label for="availablePlaces">Nombre de personnes</label>
-            <input type="text" name="availablePlaces" id="availablePlaces" value="à remplir" ><br>
+            <input type="number" name="availablePlaces" id="availablePlaces" value="à remplir" ><br>
             <button type="submit">Ajouter adresse</button>
-
+        </div>
         {{else}}
             {{> addressForm}}
         {{/if}}

@@ -18,7 +18,7 @@ Template.host_profil_template.helpers({
             firstname = data && data.firstname;
             return firstname;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
     'lastname': function(){
@@ -27,37 +27,37 @@ Template.host_profil_template.helpers({
             lastname = data && data.lastname;
             return lastname;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
     'userAddress': function(){
         data = Meteor.user();
 
         if (data.userAddress.address){
-            if (data.userAddress.address=='Champ obligatoire'){
+            if (data.userAddress.address==''){
                 rue = '';
             }else{
                 rue = data && data.userAddress.address;
                 rue = rue+', '
             }
-            if(data.userAddress.city=='Champ obligatoire'){
+            if(data.userAddress.city==''){
                 ville = '';
             }else{
                 ville = data && data.userAddress.city;
                 ville = ville+', '
             }
-            if(data.userAddress.postcode=='Champ obligatoire'){
+            if(data.userAddress.postcode==''){
                 npa = '';
             }else{
                 npa = data && data.userAddress.postcode;
             }
             if(rue == '' && ville == '' && npa == ''  ){
-                return 'Champ obligatoire'
+                return ''
             }else{
                 return `${rue}${ville}${npa}`;         
             }
         }else{
-            return "Champ obligatoire"; 
+            return ""; 
         }
     },
     'address': function(){
@@ -66,7 +66,7 @@ Template.host_profil_template.helpers({
             rue = data && data.userAddress.address;
             return rue;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
     'number': function(){
@@ -75,7 +75,7 @@ Template.host_profil_template.helpers({
             numRue = data && data.userAddress.number;
             return numRue;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
     'city': function(){
@@ -85,7 +85,7 @@ Template.host_profil_template.helpers({
             ville = data && data.userAddress.city;
             return ville;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
 
@@ -96,7 +96,7 @@ Template.host_profil_template.helpers({
             npa = data && data.userAddress.postcode;
             return npa;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
 
@@ -106,7 +106,7 @@ Template.host_profil_template.helpers({
             address = data && data.emails[0].address;
             return address;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     },
     
@@ -116,7 +116,7 @@ Template.host_profil_template.helpers({
             phone = data && data.phoneNumber;
             return phone;    
         }else{
-            return "Champ obligatoire"
+            return ""
         }
     }   
 })

@@ -11,20 +11,23 @@
         <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
 
         <form class="profilForm">
+        <div class="col-md-7 col-sm-6 col-xs-12">
+            <h3> Modifier votre profil</h3>
             <label for="mail">Email:</label><br>
             <input type="text" name="mail" value="{{mail}}"><br>
-
             <label>Prénom:</label><br>
             <input type="text" name="firstname" value="{{firstname}}"><br>
-
             <label>Nom:</label><br>
             <input type="text" name="lastname" value="{{lastname}}"><br>
+        </div>
 
+        <div class="col-md-5 col-sm-6 col-xs-12">
+        <h3>Modifier votre adresse</h3>
             <label>Adresse:</label><br>
             <input type="text" name="address" value="{{address}}" required><br>
 
             <label>N° de rue:</label><br>
-            <input type="text" name="number" value="{{number}}"><br>
+            <input type="text" name="number" value="{{number}}" required><br>
 
             <label>Numéro postal:</label><br>
             <input type="text" name="postcode" value="{{postCode}}" required><br>
@@ -34,12 +37,18 @@
 
             <label>Numéro de téléphone:</label><br>
             <input type="text" name="phone" value="{{phone}}" required><br>
-            
-            <br>
-            <button class="submit" value="submit" type="submit" >Modifier</button>
+
+        </div>
+        <br>
+        <br>
+        <button class="submit btn btn-primary" value="submit" type="submit" >Mettre à jour votre Profil</button>
+
+        <br>
+        <br>
+        <br>
+            <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
         </form>
 
-        <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
     {{/if}}
 
     

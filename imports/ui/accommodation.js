@@ -43,7 +43,7 @@ Template.addAccommodation.helpers({
         city = data && data.userAddress && data.userAddress.city;
         postcode = data && data.userAddress && data.userAddress.postcode;
         if(route || city || postcode){
-            if(route != 'Champ obligatoire' && city != 'Champ obligatoire' && postcode != 'Champ obligatoire'){
+            if(route != '' && city != '' && postcode != ''){
                 return true
             }else{
                 return false
@@ -51,7 +51,7 @@ Template.addAccommodation.helpers({
         }
     },
     'verifyActualLocation':function(value){
-        if(value == 'Champ obligatoire'){
+        if(value == ''){
             return false
         }else{
             return true
