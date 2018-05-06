@@ -25,6 +25,9 @@ Template.placesList.onCreated(function(){
 
 })
 
+// Appel chaque logement depuis la base de données
+// et filtre selon la date du jour
+
 Template.placesList.helpers({
      'places':function() {
         return Accommodation.find(
@@ -33,11 +36,26 @@ Template.placesList.helpers({
      },
  });
 
+//  Template.placesList.helpers({
+//     'jourJ': function(){
+//         Meteor.subscribe('places')
+//         let hostId = this.availability;
+//         console.log(hostId)
+//         let number = Meteor.users.findOne(
+//             {_id:hostId},
+//         );
+//         let hostname = number.firstname;
+//         return hostname;
+//     },
+// });
+
 //Bien joué Daniel... 
 
+// Permet d'afficher les noms des users de chaque adresse
 Template.placesList.helpers({
     'firstname': function(){
         let hostId = this.host_id;
+        console.log(hostId)
         let number = Meteor.users.findOne(
             {_id:hostId},
         );

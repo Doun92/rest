@@ -4,7 +4,10 @@ body {
     margin-left:0px;
 }
 
-
+label {
+    display: inline-block;
+    width: 200px;
+}
 
 /* SimpleCalendar */
 .calendarGrill{
