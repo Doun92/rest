@@ -6,15 +6,20 @@
 
     {{> Template.dynamic template=home }} <!-- Special jumbotron -->
 
-    <div class="container">
+    
         <main>
-            {{> Template.dynamic template=main}} 
+            <div class="container">
+                {{> Template.dynamic template=main}}
+            </div> 
         </main>
-        <footer>
+
+        <footer class="navbar-default sticky">
+        <div class="container">
             <p>R.E.S.T. : Projet pour le cours de Programmation pour Internet II : Meteor.js.</p>
             <p>Les collaborateurs sont Doun (Daniel Escoval), Aubrays (Loïc Aubrays), rerouj (Renato Diaz) et MicTs01 (John Rose).</p>
+        </div>
         </footer>
-    </div>
+    
 </template>
 
 <template name="accommodationsRoute">
