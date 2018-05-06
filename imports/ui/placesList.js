@@ -7,48 +7,36 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-// Template.placesList.events({
-//     'click .adresse':function(event){
-//         let place_id=this._id;
-//         let place_num=this.availability;
-//         console.log(place_num);
-//         let hostId = this.host_id;
-//         console.log(hostId);
-//         // var number = Meteor.users.hostname;        
-//         let number = Meteor.users.findOne(
-//             {_id:hostId},
-//         );
-//         let hostName = number.firstname
-//         console.log(hostName);
-//     }
-// })
-
 Template.placesList.onCreated(function(){
+
+    //places are displayed dependently on the date of the day
+    //here is the filter
+
     this.subscribe('places');
     this.subscribe('allUser')
+    var filterActualDate = new Date();
+    var filterActualMonth = filterActualDate.getMonth()+1;
+    var filterActualDay = filterActualDate.toDateString().substr(9,1);
+
+    //global var
+    filterQuery = {}
+    var tmpKey = `availability.${filterActualMonth}.${filterActualDay}`
+    filterQuery[tmpKey] = filterActualDate.toDateString()
+
 })
 
 Template.placesList.helpers({
      'places':function() {
-        Meteor.subscribe('places');
-         //tmp = Meteor.Accommodation.find({}).fetch();
-         console.log(Accommodation.find({}));
-         return Accommodation.find({});
-         //return 'ok'
+        return Accommodation.find(
+            filterQuery
+        );
      },
  });
 
-// Template.placesList.helpers({
-//     'allUser':function(){
-//         Meteor.subscribe('allUser')
-//         console.log(AllUser.find({}));
-//         return AllUser.find({})
-//     },
-// });
+//Bien joué Daniel... 
 
 Template.placesList.helpers({
     'firstname': function(){
-        Meteor.subscribe('places')
         let hostId = this.host_id;
         let number = Meteor.users.findOne(
             {_id:hostId},
@@ -57,7 +45,6 @@ Template.placesList.helpers({
         return hostname;
     },
     'lastname': function(){
-        Meteor.subscribe('places')
         let hostId = this.host_id;
         let number = Meteor.users.findOne(
             {_id:hostId},
@@ -76,13 +63,12 @@ Template.placesList.helpers({
     //     return mail;
     // },
     
-    // 'phone': function(){
-    //     Meteor.subscribe('places')
-    //     let hostId = this.host_id;
-    //     let number = Meteor.users.findOne(
-    //         {_id:hostId},
-    //     );
-    //     let phone = number.phoneNumber;
-    //     return phone; 
-    // } 
+    'phone': function(){
+         let hostId = this.host_id;
+         let number = Meteor.users.findOne(
+             {_id:hostId},
+         );
+         let phone = number.phoneNumber;
+         return phone; 
+     } 
 })

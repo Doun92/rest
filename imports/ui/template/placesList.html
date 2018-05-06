@@ -1,11 +1,13 @@
 <template name="placesList">
+    <h1>Liste de logements disponibles</h1>
         <ul>           
-        {{#each places }}
+        {{#each places}}
             <div>
                 <li class='adresse'>
-                    {{ address }} {{additionalAddress}}, {{zipCode}} {{location}} {{locNumber}}
+                    {{ address }} {{locNumber}}, {{location}} {{zipCode}}
                     <br>
-                    {{firstname}} {{lastname}} {{mail}} {{phone}}
+                    {{firstname}} {{lastname}} {{mail}} 
+                    <a href=”tel:{{phone}}″>{{phone}}</a>
                 </li>
             </div>
         {{/each}}

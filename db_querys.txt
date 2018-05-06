@@ -1,0 +1,5 @@
+mongoimport --db testDate --collection location --type json --file '/Users/Renato/Desktop/test.json' -h 127.0.0.1:3001
+
+mongoimport --db meteor --collection users --type json --file '/Users/Renato/Admin/master/meteor/rest/tests_coll.json' -h 127.0.0.1:3001 --jsonArray
+
+mongodump --db meteor --excludeCollection MeteorToys.Mongol --excludeCollection meteor_accounts_loginServiceConfiguration --excludeCollection colltest --excludeCollection roles --excludeCollection meteor_accounts --port=3001 -o ../dump

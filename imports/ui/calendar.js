@@ -93,7 +93,7 @@ Template.calendar_template.helpers({
             var actual_date = new Date();
             var month = actual_date.getMonth();
             var year = actual_date.getFullYear();
-            //get the first day date og the current month
+            //get the first day date of the current month
             var first_day_date = new Date();
             first_day_date.setDate(1);
             var first_day = first_day_date.getDay();
