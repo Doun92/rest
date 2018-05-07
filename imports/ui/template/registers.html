@@ -50,7 +50,7 @@
 </template> -->
 
 <template name="super_register_form">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <h1>Inscription {{#if isActiveRoute 'register_social_worker'}}Travailleur social{{ else }}Accueillant{{/if}}</h1>
     <form class="registerForm">
 
@@ -72,6 +72,7 @@
     <div class="form-group">
         <label>Numéro de téléphone</label>
         <input type="text" class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" required/>
+        {{#if isActiveRoute 'register'}}<p class="help-block">Pour un contact personnalisé</p>{{/if}}
     </div>
 
     {{#if isActiveRoute 'register_social_worker'}}
