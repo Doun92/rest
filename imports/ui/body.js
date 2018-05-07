@@ -27,6 +27,9 @@ import './calendar.js';
 
 import './template/placesList.html';
 import './placesList.js';
+
+import './template/history.html';
+import './history.js';
 import './delete_account.js';
 
 import './template/emailTemplate.html';
