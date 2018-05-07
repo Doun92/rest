@@ -2,7 +2,6 @@ import { Accommodation } from "../api/accommodation-methods.js";
 import { AllUser } from '../api/placesList_methods.js';
 
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session'
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
@@ -11,7 +10,6 @@ Template.placesList.onCreated(function(){
 
     //places are displayed dependently on the date of the day
     //here is the filter
-
     this.subscribe('places');
     this.subscribe('allUser')
     var filterActualDate = new Date();
@@ -55,7 +53,6 @@ Template.placesList.helpers({
 Template.placesList.helpers({
     'firstname': function(){
         let hostId = this.host_id;
-        console.log(hostId)
         let number = Meteor.users.findOne(
             {_id:hostId},
         );

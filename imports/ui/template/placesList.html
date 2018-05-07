@@ -1,6 +1,7 @@
 <template name="placesList">
     <h1>Liste de logements disponibles</h1>
-        <ul>           
+        <ul>
+        {{#if Template.subscriptionsReady}}   
         {{#each places}}
             <div>
                 <li class='adresse'>
@@ -11,5 +12,6 @@
                 </li>
             </div>
         {{/each}}
+        {{/if}}
         </ul>
 </template>

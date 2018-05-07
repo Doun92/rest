@@ -270,8 +270,9 @@ Template.calendar_template.events({
 
         let date = new Date();
         date.setDate(tmpValue);
-        date = date.toDateString();
-        dateObj[Number(tmpValue)] = date;
+        date.setMonth(actlMonth);
+        let dateSet = date.toDateString();
+        dateObj[date.getMonth()+1][Number(tmpValue)] = dateSet;
         target.className = 'selected'
         slctStatus = true;
 
