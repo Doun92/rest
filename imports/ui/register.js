@@ -113,8 +113,8 @@ Template.super_register_form.events({
                     type: "error"
                 });
                 } else {
+                    //if institute contains something, change sw field to true 
                     if(institute){
-                        console.log("coucou");
                         Meteor.users.update(Meteor.userId(), {$set: {sw: true}});
                     }
                     FlowRouter.go('/profil_utilisateur');

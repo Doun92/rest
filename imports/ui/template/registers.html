@@ -65,8 +65,8 @@
     </div>
 
     <div class="form-group">
-        <label>Adresse Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Adresse Email" required/>
+        <label>Adresse e-mail{{#if isActiveRoute 'register_social_worker'}} professionnel{{/if}}</label>
+        <input type="email" class="form-control" id="email" placeholder="Adresse e-mail" required/>
     </div>
 
     <div class="form-group">
@@ -79,16 +79,18 @@
     <div class="form-group">
         <label>Institution</label>
         <input type="text" class="form-control" id="institute" placeholder="Institution" required/>
+        <p class="help-block">Nom de l'association, de l'organisation, etc.</p>
     </div>
     {{/if}}
 
     <div class="form-group">
         <label>Mot de passe</label>
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
+        <p class="help-block">Doit contenir au moins 6 caractères</p>
     </div>
 
     <div class="form-group">
-        <label>Répéter votre mot de passe</label>
+        <label>Répéter le mot de passe</label>
         <input type="password" class="form-control" id="passwordAgain" placeholder="Répéter votre mot de passe" required/>
     </div>
         
