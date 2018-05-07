@@ -2,12 +2,15 @@ import { Accommodation } from "../api/accommodation-methods.js";
 import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/history-methods.js"
 
+Meteor.subscribe('history');
+
 Template.history.events({
     'click #reservate': function(event,template){
-        const reservationDate = Date.now();
+
+        const reservationDate = new Date();
         const socialWorker = Meteor.userId();
         const host = this.host_id;
-        const place = this.place_id;
+        const place = this._id;
 
         console.log("click on reservate");
 

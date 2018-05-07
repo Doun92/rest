@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import { Accommodation } from './accommodation-methods';
 
 if (Meteor.isServer) {
-    Meteor.publish('places', function () {
+    Meteor.publish('history', function () {
   
         return HistoryLocation.find({}, {
           fields: { 
