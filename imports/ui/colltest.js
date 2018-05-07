@@ -4,12 +4,12 @@ import { Colltest } from '../api/colltest.js';
  
 import './body.html';
  
-Meteor.subscribe('colltest');
+//Meteor.subscribe('colltest');
 
 Template.body.helpers({
-  colltest() {
-    return Colltest.find({});
-  },
+  //colltest() {
+    //return Colltest.find({});
+  //},
 });
 
 Template.coltemp.events({

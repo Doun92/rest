@@ -22,19 +22,19 @@ if (Meteor.isServer) {
     });
   }
 
-  if (Meteor.isServer) {
-    Meteor.publish('allUser', function () {
-        return Meteor.users.find({}, {
-          fields: { 
-            firstname : 1,
-            lastname : 1,
-            phoneNumber : 1,
-            userAddress : 1,
-            sw : 1,
-            institute : 1
-          }
-        });
-    });
-  }
+if (Meteor.isServer) {
+  Meteor.publish('allUser', function () {
+      return Meteor.users.find({}, {
+        fields: { 
+          firstname : 1,
+          lastname : 1,
+          phoneNumber : 1,
+          userAddress : 1,
+          sw : 1,
+          institute : 1
+        }
+      });
+  });
+}
 
 export const AllUser = new Mongo.Collection('allUser');
