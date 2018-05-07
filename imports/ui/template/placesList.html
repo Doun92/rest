@@ -1,4 +1,4 @@
-<template name="placesList">
+<!-- <template name="placesList">
     <h1>Liste de logements disponibles</h1>
         <ul>
         {{#if Template.subscriptionsReady}}   
@@ -15,4 +15,31 @@
         {{/each}}
         {{/if}}
         </ul>
+</template> -->
+
+<template name="placesList">
+    <h1>Liste de logements disponibles</h1>
+        {{#if Template.subscriptionsReady}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="address">Adresse</th>
+                    <th class="host">Accueillant</th>
+                    <th class="phone">Téléphone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody> 
+        {{#each places}}
+                <tr>
+                    <td class="address">{{zipCode}} {{ location }}, {{ address }} {{locNumber}}</td>
+                    <td class="host">{{ lastname }} {{ firstname }}</td>
+                    <td class="phone"><a href=”tel:{{phone}}″>{{phone}}</a></td>
+                    <td class="historyBtn">{{> history}}</td>
+                </tr>
+        {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+   
 </template>
