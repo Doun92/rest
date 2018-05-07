@@ -6,8 +6,8 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav justify-content">
             {{#if currentUser}}
+            <ul class="navbar-nav mr-auto">
                 {{#if currentUser.sw}}
                     <li class="nav-item">
                     <a class="nav-link" href="{{pathFor '/logements'}}">Disponibilité</a>
@@ -20,10 +20,12 @@
                 <li class="nav-item">
                         <a class="nav-link" href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
                 </li>
-                <li class="nav-item">
-                        {{> loginButtons}}
-                </li>
+            </ul>
+            <div>
+                {{> loginButtons}}
+            </div>
             {{else}}
+            <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Inscription
@@ -33,16 +35,16 @@
                 <a class="dropdown-item" href="{{pathFor 'inscription_ts'}}">Travailleur social</a>
               </div>
             </li>
-            <li class="nav-item dropdown">
+            </ul>
+            <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Se connecter
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {{> login}}
                 </div>
-            </li>
+            </div>
         {{/if}}
-          </ul>
         </div>
     </nav>
 </template>
