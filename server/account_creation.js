@@ -1,4 +1,53 @@
 
+// Accounts.onCreateUser((options, user) => {
+
+//   // user.profile = options.profile || {};
+//   // Assigns the first and last names to the newly created user object
+//   // user.profile.sw = options.sw;
+  
+//   //status = options.sw;
+
+//   if(!options.sw){
+//     user.sw = options.sw;
+//       const newUserAddress = {
+//           address : '',
+//           number : '',
+//           city : '',
+//           postcode : ''
+//       } 
+//       user.firstname = options.firstname;
+//       user.lastname = options.lastname;
+//       user.phoneNumber = options.phoneNumber;
+//       user.userAddress = newUserAddress;
+    
+//       if (options.profile) {
+//         user.profile = options.profile;
+//       }
+  
+//       return user; 
+//   }else{
+//     const newUserAddress = {
+//       address : '',
+//       number : '',
+//       city : '',
+//       postcode : ''
+//     } 
+//     user.sw = options.sw;
+//     user.firstname = options.firstname;
+//     user.lastname = options.lastname;
+//     user.institute = options.institute;
+//     user.phoneNumber = options.phoneNumber;
+//     user.userAddress = newUserAddress;
+//   }
+
+//   if (options.profile) {
+//     user.profile = options.profile;
+//   }
+
+//   return user; 
+
+// });
+
 Accounts.onCreateUser((options, user) => {
 
   // user.profile = options.profile || {};
@@ -7,25 +56,6 @@ Accounts.onCreateUser((options, user) => {
   
   status = options.sw;
 
-  if(!options.sw){
-    user.sw = options.sw;
-      const newUserAddress = {
-          address : '',
-          number : '',
-          city : '',
-          postcode : ''
-      } 
-      user.firstname = options.firstname;
-      user.lastname = options.lastname;
-      user.phoneNumber = options.phoneNumber;
-      user.userAddress = newUserAddress;
-    
-      if (options.profile) {
-        user.profile = options.profile;
-      }
-  
-      return user; 
-  }else{
     const newUserAddress = {
       address : '',
       number : '',
@@ -38,7 +68,7 @@ Accounts.onCreateUser((options, user) => {
     user.institute = options.institute;
     user.phoneNumber = options.phoneNumber;
     user.userAddress = newUserAddress;
-  }
+  
 
   if (options.profile) {
     user.profile = options.profile;

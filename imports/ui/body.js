@@ -13,7 +13,6 @@ import './template/main-layout.html';
 import './login.js';
 
 import './register.js';
-import './register_social_worker.js';
 import './template/host_profil_template.html';
 import './host_profil.js';
 

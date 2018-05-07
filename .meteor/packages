@@ -31,3 +31,4 @@ arillo:flow-router-helpers
 kevohagan:sweetalert
 standard-minifier-css@1.4.0
 session@1.1.7
+zimme:active-route

@@ -1,24 +1,29 @@
 <template name="host_profil_template">
     {{#if currentUser}}
-    <h1>Vos informations : résumé </h1>
-        <p>
-            Adresse mail de l'accueillant : {{mail}}<br>
-            Prénom de l'accueillant : {{firstname}}<br>
-            Nom de l'accueillant : {{lastname}}<br>
-            Adresse de l'accueillant : {{userAddress}}<br>
-            Téléphone de l'accueillant : {{phone}}
-        </p>
+    <h1>Vos informations personnelles</h1>
+        <dl>
+            <dt>Prénom Nom</dt>
+            <dd>{{firstname}} {{lastname}}</dd>
+            <dt>Adresse e-mail</dt>
+            <dd>{{mail}}</dd>
+            <dt>Adresse</dt>
+            <dd>{{#if userAdress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
+            <dt>Téléphone de l'accueillant</dt>
+            <dd>{{phone}}</dd>
+            <dt>Vous proposez : </dt>
+            <dd>x places</dd>
+        </dl>
         <a href="ajouter-logement" class="btn btn-default">Ajouter un logement</a>
 
         <form class="profilForm">
         <div class="col-md-7 col-sm-6 col-xs-12">
             <h3> Modifier votre profil</h3>
             <label for="mail">Email:</label><br>
-            <input type="text" name="mail" value="{{mail}}"><br>
+            <input type="text" name="mail" value="{{mail}}" required><br>
             <label>Prénom:</label><br>
-            <input type="text" name="firstname" value="{{firstname}}"><br>
+            <input type="text" name="firstname" value="{{firstname}}" required><br>
             <label>Nom:</label><br>
-            <input type="text" name="lastname" value="{{lastname}}"><br>
+            <input type="text" name="lastname" value="{{lastname}}" required><br>
         </div>
 
         <div class="col-md-5 col-sm-6 col-xs-12">

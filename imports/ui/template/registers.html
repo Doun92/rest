@@ -1,4 +1,4 @@
-<template name="register_social_worker">
+<!-- <template name="register_social_worker">
 <form class="registerForm">
     <h1>Inscription Travailleur Social</h1>
 
@@ -47,36 +47,54 @@
                 
     <button id="register-button" type="submit" >S'inscrire</button>
 </form>
-</template>
+</template> -->
 
 <template name="super_register_form">
-    <h1>Inscription all</h1>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <h1>Inscription {{#if isActiveRoute 'register_social_worker'}}Travailleur social{{ else }}Accueillant{{/if}}</h1>
     <form class="registerForm">
-    <label>Nom</label><br>
-    <input type="text" placeholder="Nom" id="lastname" /><br>
 
-    <label>Prénom</label><br>
-    <input type="text" placeholder="Prénom" id="firstname" /><br>
+    <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Prénom" required />
+    </div>
 
-    <label>Adresse Email</label><br>
-    <input type="email" placeholder="Adresse Email" id="email" /><br>
+    <div class="form-group">
+        <label>Nom</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Nom" required/>
+    </div>
 
-    <label>Numéro de téléphone</label><br>
-    <input type="text" placeholder="Numéro" id="phoneNumber" /><br>
+    <div class="form-group">
+        <label>Adresse e-mail{{#if isActiveRoute 'register_social_worker'}} professionnel{{/if}}</label>
+        <input type="email" class="form-control" id="email" placeholder="Adresse e-mail" required/>
+    </div>
 
-    {{> Template.dynamic template=swSubscribe }}
+    <div class="form-group">
+        <label>Numéro de téléphone</label>
+        <input type="text" class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" required/>
+        {{#if isActiveRoute 'register'}}<p class="help-block">Pour un contact personnalisé</p>{{/if}}
+    </div>
 
-    <label>Mot de passe</label><br>
-    <input type="password" placeholder="Mot de passe" id="password" /><br>
+    {{#if isActiveRoute 'register_social_worker'}}
+    <div class="form-group">
+        <label>Institution</label>
+        <input type="text" class="form-control" id="institute" placeholder="Institution" required/>
+        <p class="help-block">Nom de l'association, de l'organisation, etc.</p>
+    </div>
+    {{/if}}
 
-    <label>Confirmer votre mot de passe</label><br>
-    <input type="password" placeholder="Confirmer votre mot de passe" id="passwordAgain" /><br>
+    <div class="form-group">
+        <label>Mot de passe</label>
+        <input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
+        <p class="help-block">Doit contenir au moins 6 caractères</p>
+    </div>
+
+    <div class="form-group">
+        <label>Répéter le mot de passe</label>
+        <input type="password" class="form-control" id="passwordAgain" placeholder="Répéter votre mot de passe" required/>
+    </div>
         
-    <button id="register-button" type="submit">S'inscrire</button>
+    <button type="submit" class="btn btn-default" id="register-button" >S'inscrire</button>
     </form>
-</template>
-
-<template name="sw_subscribe">
-    <label>Institution</label><br>
-    <input type="text" placeholder="Votre organisation" id="institute" /><br>
+</div>
 </template>
