@@ -18,7 +18,7 @@ Template.history.events({
             user_id : socialWorker,
             host_id : host,
             place_id : place,
-            date_resa : reservationDate
+            date_resa : reservationDate.toDateString()
         });
         
     }

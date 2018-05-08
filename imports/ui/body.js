@@ -35,3 +35,5 @@ import './delete_account.js';
 import './template/emailTemplate.html';
 import './email.js';
 
+import './template/resaNotifBoxTemplate.html'
+import './resaNotifBox.js'
