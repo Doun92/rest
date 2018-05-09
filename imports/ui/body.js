@@ -27,8 +27,8 @@ import './calendar.js';
 import './template/placesList.html';
 import './placesList.js';
 
-import './template/history.html';
-import './history.js';
+import './template/resa.html';
+import './resa.js';
 import './delete_account.js';
 
 import './template/emailTemplate.html';

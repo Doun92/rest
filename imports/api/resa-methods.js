@@ -4,8 +4,7 @@ import { check } from 'meteor/check';
 
 if (Meteor.isServer) {
     Meteor.publish('history', function () {
-  
-        return HistoryLocation.find({}, {
+        return HistoryLocation.find({host_id:Meteor.userId()}, {
           fields: { 
             _id : 1,
             user_id : 1,

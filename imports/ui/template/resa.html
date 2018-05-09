@@ -1,0 +1,20 @@
+<template name="resa">
+    {{#if isReserved }}
+    <button type="button" class="btn btn-secondary" disabled>Occupé</button>
+    {{else}}
+    <button class="reservate">Réserver</button>
+    {{/if}}
+</template>
+
+<template name="resaNotifBox">
+    {{#if notif}}
+    <div style="border: 1px solid black">
+            <h1>vos demandes:</h1>
+            <p>Vous avez une demande d'accueil. Accepter ?</p>
+            <button id="acceptButton">accepter</button>
+            <button id="declineButton">refuser</button>
+    </div>
+    {{else}}
+        <p>Vous n'avez aucune demande d'accueil actuellement</p>
+    {{/if}}
+</template>

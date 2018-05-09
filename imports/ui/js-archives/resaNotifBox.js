@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { HistoryLocation } from "../api/history-methods.js";
+import { HistoryLocation } from "../api/resa-methods.js";
 
 Template.resaNotifBox.onCreated(function(){
     this.subscribe('historyLocation');
