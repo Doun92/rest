@@ -14,7 +14,8 @@ Template.placesList.onCreated(function(){
     this.subscribe('allUser')
     var filterActualDate = new Date();
     var filterActualMonth = filterActualDate.getMonth()+1;
-    var filterActualDay = filterActualDate.toDateString().substr(9,1);
+    var filterActualDay = filterActualDate.toDateString().substr(8,2);
+    console.log(`actual date : ${filterActualDay}`)
 
     //global var
     filterQuery = {}
@@ -33,19 +34,6 @@ Template.placesList.helpers({
         );
      },
  });
-
-//  Template.placesList.helpers({
-//     'jourJ': function(){
-//         Meteor.subscribe('places')
-//         let hostId = this.availability;
-//         console.log(hostId)
-//         let number = Meteor.users.findOne(
-//             {_id:hostId},
-//         );
-//         let hostname = number.firstname;
-//         return hostname;
-//     },
-// });
 
 //Bien joué Daniel... 
 

@@ -1,0 +1,24 @@
+{
+	"service":{
+		"password":{
+			"bcrypt": "$2a$10$FoOLwCr2qojK4w/sGuSHvecIeKB4H.AMj921jUD2gIT4q2nEbCvxK"
+		},
+		"resume":{
+			"loginTokens" : []
+		}
+	},
+	"firstname": "John",
+	"lastname": "Rose",
+	"sw": false,
+	"emails": [{
+		"address": "john@rose3.com",
+		"verified": false
+	}],
+	"phoneNumber": "0213124334",
+	"user_address": {
+		"address": "chemin des Roses",
+		"number": "2",
+		"city": "Renens",
+		"postcode": 1020
+	}
+}

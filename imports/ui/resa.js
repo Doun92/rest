@@ -10,8 +10,6 @@ Template.resa.events({
         const host = this.host_id;
         const place = this._id;
 
-        console.log("click on reservate");
-
         new Confirmation({
             message: "Confirmez-vous ?",
             title: "Confirmation",
@@ -22,6 +20,15 @@ Template.resa.events({
             }, function (ok) {
             // ok is true if the user clicked on "ok", false otherwise
             if(ok){
+
+                Meteor.call(
+                    'sendEmail',
+                    'renatojour@gmail.com',
+                    'noreply@rest.com',
+                    'Vous avez reçu une demande d accueil sur votre compte !',
+                    'clickez sur le liens pour voir la réservation'
+                  );
+
                 HistoryLocation.insert({
                     user_id : socialWorker,
                     host_id : host,
