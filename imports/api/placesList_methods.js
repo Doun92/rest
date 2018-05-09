@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import { Accommodation } from './accommodation-methods';
 
+// implémenter l'adresse mail
 if (Meteor.isServer) {
     Meteor.publish('places', function () {
   
