@@ -3,7 +3,7 @@ import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/resa-methods.js"
 
 Template.resa.events({
-    'click .reservate': function(event){
+    'click #reservate': function(event){
 
         const reservationDate = new Date();
         const socialWorker = Meteor.userId();
@@ -12,15 +12,25 @@ Template.resa.events({
 
         console.log("click on reservate");
 
-        HistoryLocation.insert({
-            user_id : socialWorker,
-            host_id : host,
-            place_id : place,
-            date_resa : reservationDate.toDateString(),
-            resa_status : 'pending'
-        });
-        
-        
+        new Confirmation({
+            message: "Confirmez-vous ?",
+            title: "Confirmation",
+            cancelText: "Annuler",
+            okText: "Confirmer",
+            success: true, // whether the button should be green or red
+            focus: "cancel" // which button to autofocus, "cancel" (default) or "ok", or "none"
+            }, function (ok) {
+            // ok is true if the user clicked on "ok", false otherwise
+            if(ok){
+                HistoryLocation.insert({
+                    user_id : socialWorker,
+                    host_id : host,
+                    place_id : place,
+                    date_resa : reservationDate.toDateString(),
+                    resa_status : 'pending'
+                });
+            }        
+        });        
     }
 });
 
