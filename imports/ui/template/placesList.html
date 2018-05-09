@@ -26,15 +26,16 @@
                     <th class="address">Adresse</th>
                     <th class="host">Accueillant</th>
                     <th class="phone">Téléphone</th>
-                    <th></th>
+                    <!-- <th class='date'>Date</th> -->
                 </tr>
             </thead>
             <tbody> 
         {{#each places}}
                 <tr>
                     <td class="address">{{zipCode}} {{ location }}, {{ address }} {{locNumber}}</td>
-                    <td class="host">{{ lastname }} {{ firstname }}</td>
+                    <td class="hostEvent"><a>{{ lastname }} {{ firstname }}</a></td>
                     <td class="phone"><a href=”tel:{{phone}}″>{{phone}}</a></td>
+                    <!-- <td class='date'>{{availability}}</td> -->
                     <td class="historyBtn">{{> history}}</td>
                 </tr>
         {{/each}}

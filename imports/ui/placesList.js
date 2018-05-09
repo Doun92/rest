@@ -87,3 +87,7 @@ Template.placesList.helpers({
          return phone; 
      } 
 })
+// Ajouter un event qui montrerait une carte après un clic
+Template.placesList.events({
+    'click .hostEvent'
+});
