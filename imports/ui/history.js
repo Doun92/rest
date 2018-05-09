@@ -21,5 +21,12 @@ Template.history.events({
             date_resa : reservationDate.toDateString()
         });
         
+        
     }
-})
+});
+
+Template.history.helpers({
+    isReserved(){
+        
+    }
+});

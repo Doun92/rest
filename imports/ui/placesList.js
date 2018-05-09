@@ -89,7 +89,7 @@ Template.placesList.helpers({
 })
 // Ajouter un event qui montrerait une carte après un clic
 Template.placesList.events({
-    'click .hostEvent' : function(){
+    'click .hostEvent' : function(event){
 
         event.preventDefault();
 
