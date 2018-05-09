@@ -11,7 +11,8 @@ if (Meteor.isServer) {
             user_id : 1,
             host_id : 1,
             place_id : 1,
-            date_resa : 1 
+            date_resa : 1,
+            resa_status : 1 
           }
         });
     });

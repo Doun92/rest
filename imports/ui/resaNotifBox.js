@@ -14,9 +14,15 @@ Template.resaNotifBox.helpers({
         console.log(`actual date : ${tmpDate.toDateString()}`)
 
         if(HistoryLocation.find({$and:[{host_id:user_id},{date_resa:tmpDate.toDateString()}]}).count() === 0){
-            return "Vous n avez acune nouvelle demande"
+            return false
         } else{
-            return "Vous avez une demande d'accueil"
+            return true
         }
     }
 });
+
+Template.resaNotifBox.events({
+    'click #acceptButton' (event){
+        
+    }
+})
