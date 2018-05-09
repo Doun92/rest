@@ -2,7 +2,6 @@ import { Template } from 'meteor/templating';
 import './body.html';
 
 import './template/homepage.html'
-import './template/loginbar.html';
 
 import './accommodation.js';
 import './template/registers.html';

@@ -22,5 +22,12 @@ Template.history.events({
             resa_status : 'pending'
         });
         
+        
     }
-})
+});
+
+Template.history.helpers({
+    isReserved(){
+        
+    }
+});

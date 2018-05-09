@@ -1,3 +1,57 @@
+<!-- Displaying differents items if the user is connected and he's an host or a social worker-->
+
+<template name="super_navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{pathFor '/'}}">R.E.S.T.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {{#if currentUser}}
+                <ul class="navbar-nav mr-auto">
+                    {{#if currentUser.sw}}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{pathFor '/logements'}}">Disponibilité</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
+                        </li>
+                    {{/if}}
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
+                    </li>
+                </ul>
+                <div>
+                    {{> loginButtons}}
+                </div>
+                {{else}}
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inscription
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{pathFor 'inscription'}}">Accueillant</a>
+                    <a class="dropdown-item" href="{{pathFor 'inscription_ts'}}">Travailleur social</a>
+                  </div>
+                </li>
+                </ul>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Se connecter
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{> login}}
+                    </div>
+                </div>
+            {{/if}}
+            </div>
+        </nav>
+    </template>
+
+
 <template name="login">
 <form class="px-4 py-3">
     <div class="form-group">
@@ -8,14 +62,6 @@
     </div>
     <button type="submit" class="btn btn-primary" id="login-button">Se connecter</button>
 </form>
-        <!-- <h2>Se connecter</h2>
-        <div>
-                <input type="email" placeholder="Adresse Email" id="login-email" /><br>
-
-                <input type="password" placeholder="Mot de passe" id="login-password" /><br>
-
-                <button id="login-button" type="submit">Se connecter</button>
-        </div> -->
 </template>
             
 
