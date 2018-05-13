@@ -87,29 +87,67 @@ Template.placesList.helpers({
          return phone; 
      } 
 })
-// Ajouter un event qui montrerait une carte après un clic
-Template.placesList.events({
-    'click .hostEvent' : function(){
+// // Ajouter un event qui montrerait une carte après un clic
+// Template.placesList.events({
+//     'click .hostEvent' : function(){
 
-        event.preventDefault();
+//         event.preventDefault();
 
-        const target = event.target;
-        console.log(target)
+//         const target = event.target;
+//         console.log(target)
 
-        let test2 = document.getElementById('card')
-        let contenu = document.createElement('div')
-        contenu.setAttribute('class', 'card')
-        //La carte ajoute toute la base de données -> osef de la redite
-        contenu.textContent = this._id
-        console.log(contenu)
-    //     <div class="card" style="width: 18rem;">
-    //     <img class="card-img-top" src="..." alt="Card image cap">
-    //     <div class="card-body">
-    //       <h5 class="card-title">Card title</h5>
-    //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    //       <a href="#" class="btn btn-primary">Go somewhere</a>
-    //     </div>
-    //   </div>
-        test2.appendChild(contenu)
-    }
-});
+//         let test2 = document.getElementById('card')
+//         let contenu = document.createElement('div')
+//         contenu.setAttribute('class', 'card')
+
+//         //La carte ajoute toute la base de données -> osef de la redite
+//         // contenu.textContent = this._id
+//         contenu.innerHTML = Template.placesList.helpers({
+//             'firstname': function(){
+//                 let hostId = this.host_id;
+//                 let number = Meteor.users.findOne(
+//                     {_id:hostId},
+//                 );
+//                 let hostname = number.firstname;
+//                 return hostname;
+//             },
+//             'lastname': function(){
+//                 let hostId = this.host_id;
+//                 let number = Meteor.users.findOne(
+//                     {_id:hostId},
+//                 );
+//                 let lastname = number.lastname;
+//                 return lastname;
+//                 },
+//             // C'est normale que ça ne s'affiche pas car les mails et les phoneNumbers sont pas dans la base de données des accueillants
+//             // 'mail': function(){
+//             //     Meteor.subscribe('places')
+//             //     let hostId = this.host_id;
+//             //     let number = Meteor.users.findOne(
+//             //         {_id:hostId},
+//             //     );
+//             //     let mail = number.;
+//             //     return mail;
+//             // },
+            
+//             'phone': function(){
+//                  let hostId = this.host_id;
+//                  let number = Meteor.users.findOne(
+//                      {_id:hostId},
+//                  );
+//                  let phone = number.phoneNumber;
+//                  return phone; 
+//              } 
+//             });
+//         console.log(contenu)
+//     //     <div class="card" style="width: 18rem;">
+//     //     <img class="card-img-top" src="..." alt="Card image cap">
+//     //     <div class="card-body">
+//     //       <h5 class="card-title">Card title</h5>
+//     //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//     //       <a href="#" class="btn btn-primary">Go somewhere</a>
+//     //     </div>
+//     //   </div>
+//         test2.appendChild(contenu)
+//     }
+// });
