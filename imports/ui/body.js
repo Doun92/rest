@@ -32,3 +32,5 @@ import './delete_account.js';
 
 import './template/emailTemplate.html';
 import './email.js';
+
+import './history.js';

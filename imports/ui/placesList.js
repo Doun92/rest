@@ -48,17 +48,25 @@ Template.places_list.helpers({
                 filterQuery,
             ]}).fetch();
 
-        // Filter places with reservations data and render only accommodations without a reservation
-        let placesAvailableToday = placesForToday.filter(item => {
+        // Filter places with reservations data and associate accommodation with reservation
+        let placesReservedToday = placesForToday.filter(item => {
             return reservedAccommodationsForToday.some( element => {
-              return element.place_id !== item._id;
+              return element.place_id === item._id;
             })
           });
-        // if no reservation exists
-        if(HistoryLocation.find({}).count()==0 || HistoryLocation.find({resa_status:"reserved"}).count()==0){
+
+        // Remove reserved accommodations
+        let placesAvailableToday = placesForToday.filter(item => {
+            return placesReservedToday.every(element => {
+                return element._id !== item._id;
+            })
+        });
+
+        //if no reservation exists
+        if(placesAvailableToday==0){
             return placesForToday;
         }
-        else{        
+        else{      
             return placesAvailableToday;
         }
     },
