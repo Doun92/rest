@@ -5,13 +5,16 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { HistoryLocation } from "../api/resa-methods";
 
-Template.placesList.onCreated(function(){
+Template.places_list.onCreated(function(){
 
     //places are displayed dependently on the date of the day
     //here is the filter
     this.subscribe('places');
-    this.subscribe('allUser')
+    this.subscribe('allUser');
+    this.subscribe('history');
+
     var filterActualDate = new Date();
     var filterActualMonth = filterActualDate.getMonth()+1;
     var filterActualDay = filterActualDate.toDateString().substr(8,2);
@@ -24,21 +27,45 @@ Template.placesList.onCreated(function(){
 
 })
 
-// Appel chaque logement depuis la base de données
-// et filtre selon la date du jour
+Template.places_list.helpers({
+    'places':function() {
 
-Template.placesList.helpers({
-     'places':function() {
-        return Accommodation.find(
-            filterQuery
-        );
-     },
+        let today = new Date().toDateString();
+ 
+        let reservedAccommodationsForToday = HistoryLocation.find(
+            {$and : [
+                {resa_status:"reserved"},
+                {date_resa:today}
+            ]},
+            {fields : {
+                place_id:1
+            }}
+        ).fetch();
+        
+        // Every accommodation filtered by the date of today
+        let placesForToday = Accommodation.find(
+            {$and :[
+                filterQuery,
+            ]}).fetch();
+
+        // Filter places with reservations data and render only accommodations without a reservation
+        let placesAvailableToday = placesForToday.filter(item => {
+            return reservedAccommodationsForToday.some( element => {
+              return element.place_id !== item._id;
+            })
+          });
+        // if no reservation exists
+        if(HistoryLocation.find({}).count()==0 || HistoryLocation.find({resa_status:"reserved"}).count()==0){
+            return placesForToday;
+        }
+        else{        
+            return placesAvailableToday;
+        }
+    },
  });
 
-//Bien joué Daniel... 
-
 // Permet d'afficher les noms des users de chaque adresse
-Template.placesList.helpers({
+Template.places_list_item.helpers({
     'firstname': function(){
         let hostId = this.host_id;
         let number = Meteor.users.findOne(
@@ -76,7 +103,7 @@ Template.placesList.helpers({
      } 
 })
 // Ajouter un event qui montrerait une carte après un clic
-Template.placesList.events({
+Template.places_list.events({
     'click .hostEvent' : function(event){
 
         event.preventDefault();

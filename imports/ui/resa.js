@@ -1,6 +1,7 @@
 import { Accommodation } from "../api/accommodation-methods.js";
 import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/resa-methods.js"
+import { Meteor } from "meteor/meteor";
 
 Template.resa.events({
     'click #reservate': function(event){
@@ -23,7 +24,7 @@ Template.resa.events({
 
                 Meteor.call(
                     'sendEmail',
-                    'renatojour@gmail.com',
+                    'localhost',
                     'noreply@rest.com',
                     'Vous avez reçu une demande d accueil sur votre compte !',
                     'clickez sur le liens pour voir la réservation'
@@ -38,14 +39,65 @@ Template.resa.events({
                 });
             }        
         });        
+    },
+    'click #confirmResa': function(event){
+        let tmpDate = new Date();
+        const history = HistoryLocation.find({
+            $and : [
+            {resa_status:"pending"},
+            {place_id:this._id}
+        ]},{
+            fields:
+            {_id:1}
+        }).fetch();
+
+        HistoryLocation.update(history[0]._id, {
+            $set : {resa_status: 'reserved'}
+          });
+    },
+    'click #cancelResa': function(event){
+        let tmpDate = new Date();
+        const history = HistoryLocation.find({
+            $and : [
+            {resa_status:"pending"},
+            {place_id:this._id}
+        ]},{
+            fields:
+            {_id:1}
+        }).fetch();
+
+        HistoryLocation.remove(history[0]._id);
     }
 });
 
 Template.resa.helpers({
-    isReserved(){
-        
+    isPending : function(){
+        let tmpDate = new Date().toDateString();
+        let place = this._id;
+
+        if(HistoryLocation.find({
+            $and : [
+            {resa_status:"pending"},
+            {date_resa:tmpDate},
+            {place_id : place}
+        ]}
+        ).count()) {
+            return true;
+        }else{
+            return false;
+        }
+    },
+    isTheReserver(){
+        let place = this._id;
+        if(HistoryLocation.find({
+            $and : [
+                {user_id: Meteor.userId()},
+                {place_id : place}
+            ]}
+        ).count()==true){
+            return true;
+        }
     }
-    
 });
 
 Template.resaNotifBox.helpers({

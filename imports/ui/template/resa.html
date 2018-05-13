@@ -1,6 +1,11 @@
 <template name="resa">
-    {{#if isReserved }}
-    <button type="button" class="btn btn-secondary" disabled>Occupé</button>
+    {{#if isPending}}
+        {{#if isTheReserver}}
+        <button class="btn btn-success btn-sm" id="confirmResa">Confirmer</button>
+        <button class="btn btn-danger btn-sm" id="cancelResa">Annuler</button>
+        {{else}}
+        <button class="btn btn-outline-secondary btn-sm" disabled>En réservation...</button>
+        {{/if}}
     {{else}}
     <button id="reservate" class="btn btn-primary">Réserver</button>
     {{/if}}
