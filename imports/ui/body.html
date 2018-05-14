@@ -9,6 +9,13 @@
     
         <main>
             <div class="container">
+                {{#if currentUser}}
+                    {{#if currentUser.sw}}
+                        {{> resa_notif_socialWorker_box}}
+                    {{else}}
+                        {{> resa_notif_host_box}}
+                    {{/if}}
+                {{/if}}
                 {{> Template.dynamic template=main}}
             </div> 
         </main>

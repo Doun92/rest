@@ -10,15 +10,26 @@
     {{/if}}
 </template>
 
-<template name="resaNotifBox">
+<template name="resa_notif_host_box">
     {{#if notif}}
-    <div style="border: 1px solid black">
-            <h1>vos demandes:</h1>
-            <p>Vous avez une demande d'accueil. Accepter ?</p>
-            <button id="acceptButton">accepter</button>
-            <button id="declineButton">refuser</button>
+    <div class="alert alert-primary row align-items-center">
+        Vous avez une demande d'accueil.
+        <div class="btn-group pl-5" role="group" aria-label="Décider">
+            <button type="button" id="acceptButton" class="btn btn-success">Accepter</button>
+            <button type="button" id="declineButton" class="btn btn-secondary">Refuser</button>
+        </div>
+            
     </div>
-    {{else}}
-        <p>Vous n'avez aucune demande d'accueil actuellement</p>
     {{/if}}
 </template>
+
+<template name="resa_notif_socialWorker_box fade show">
+        {{#if notif}}
+        <div class="alert alert-primary">
+            {{firstname}} {{lastname}} a validé votre réservation.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>       
+        </div>
+        {{/if}}
+    </template>

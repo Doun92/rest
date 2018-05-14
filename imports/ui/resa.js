@@ -100,7 +100,7 @@ Template.resa.helpers({
     }
 });
 
-Template.resaNotifBox.helpers({
+Template.resa_notif_host_box.helpers({
     'notif' : function(){
         Meteor.subscribe('history');
 
@@ -122,7 +122,7 @@ Template.resaNotifBox.helpers({
     }
 });
 
-Template.resaNotifBox.events({
+Template.resa_notif_host_box.events({
     'click #acceptButton'(event){
         const history = HistoryLocation.find({
             $and : [
@@ -133,28 +133,22 @@ Template.resaNotifBox.events({
             {_id:1}
         }).fetch();
 
-        console.log(history);
-
         HistoryLocation.update(history[0]._id, {
             $set : {resa_status: 'reserved'}
         });
-        // const actDate = new Date();
-        // let collection = HistoryLocation.find({}).fetch();
-        // console.log(collection[0].resa_status);
-        // HistoryLocation.update(collection[0]._id, {
-        //     $set: {
-        //         resa_status : 'reserved'
-        //     }
-        // });
     },
     'click #declineButton'(event){
-        const actDate = new Date();
-        let collection = HistoryLocation.find({}).fetch();
-        console.log(collection[0].resa_status);
-        HistoryLocation.update(collection[0]._id, {
-            $set: {
-                resa_status : 'declined'
-            }
+        const history = HistoryLocation.find({
+            $and : [
+            {resa_status:"pending"},
+            {host_id:Meteor.userId()}
+        ]},{
+            fields:
+            {_id:1}
+        }).fetch();
+
+        HistoryLocation.update(history[0]._id, {
+            $set : {resa_status: 'declined'}
         });
     }
 })
