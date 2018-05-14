@@ -10,7 +10,7 @@ Template.calendar_template.onCreated(function(){
     this.subscribe('userData');
     this.subscribe('accommodations');
     
-    //global var    
+    //global variables    
     dateObj = {1:{},2:{},3:{},4:{},5:{},6:{},7:{},8:{},9:{},10:{},11:{},12:{}};
     monthArr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     slctStatus = false;

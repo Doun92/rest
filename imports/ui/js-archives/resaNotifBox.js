@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { HistoryLocation } from "../api/history-methods.js";
+import { HistoryLocation } from "../api/resa-methods.js";
 
 Template.resaNotifBox.onCreated(function(){
     this.subscribe('historyLocation');
@@ -14,9 +14,15 @@ Template.resaNotifBox.helpers({
         console.log(`actual date : ${tmpDate.toDateString()}`)
 
         if(HistoryLocation.find({$and:[{host_id:user_id},{date_resa:tmpDate.toDateString()}]}).count() === 0){
-            return "Vous n avez acune nouvelle demande"
+            return false
         } else{
-            return "Vous avez une demande d'accueil"
+            return true
         }
     }
 });
+
+Template.resaNotifBox.events({
+    'click #acceptButton' (event){
+        
+    }
+})
