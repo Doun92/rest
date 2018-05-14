@@ -110,29 +110,3 @@ Template.places_list_item.helpers({
          return phone; 
      } 
 })
-// Ajouter un event qui montrerait une carte après un clic
-Template.places_list.events({
-    'click .hostEvent' : function(event){
-
-        event.preventDefault();
-
-        const target = event.target;
-        console.log(target)
-
-        let test2 = document.getElementById('card')
-        let contenu = document.createElement('div')
-        contenu.setAttribute('class', 'card')
-        //La carte ajoute toute la base de données -> osef de la redite
-        contenu.textContent = this._id
-        console.log(contenu)
-    //     <div class="card" style="width: 18rem;">
-    //     <img class="card-img-top" src="..." alt="Card image cap">
-    //     <div class="card-body">
-    //       <h5 class="card-title">Card title</h5>
-    //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    //       <a href="#" class="btn btn-primary">Go somewhere</a>
-    //     </div>
-    //   </div>
-        test2.appendChild(contenu)
-    }
-});
