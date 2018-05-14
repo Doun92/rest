@@ -9,7 +9,7 @@ Meteor.subscribe('userData');
 
 Template.accommodationTemplate.onCreated(function(){
     this.subscribe('userData');
-    this.subscribe('accomodations');
+    // this.subscribe('accomodations');
 })
 
 Template.accommodationTemplate.helpers({
@@ -27,7 +27,7 @@ Template.accommodationTemplate.helpers({
 
 Template.addAccommodation.onCreated(function() {
         this.subscribe('userData');
-        this.subscribe('accomodations');
+        // this.subscribe('accomodations');
         Session.keys = {};
 })
 

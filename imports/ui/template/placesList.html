@@ -1,48 +1,30 @@
-<!-- <template name="placesList">
+<template name="places_list">
+    {{#if currentUser}}
     <h1>Liste de logements disponibles</h1>
-        <ul>
-        {{#if Template.subscriptionsReady}}   
-        {{#each places}}
-            <div>
-                <li class='adresse'>
-                    {{ address }} {{locNumber}}, {{location}} {{zipCode}}
-                    <br>
-                    {{firstname}} {{lastname}} {{mail}} 
-                    <a href=”tel:{{phone}}″>{{phone}}</a>
-                    {{> resa}}
-                </li>
-            </div>
-        {{/each}}
-        {{/if}}
-        </ul>
-</template> -->
-
-<template name="placesList">
-    <h1>Liste de logements disponibles</h1>
+    
         {{#if Template.subscriptionsReady}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="address">Adresse</th>
-                    <th class="host">Accueillant</th>
-                    <th class="phone">Téléphone</th>
-                    <th class="empty"><!--laisser vide pour le moment --></th>
-                    <!-- <th class='date'>Date</th> -->
-                </tr>
-            </thead>
-            <tbody> 
+        <div class="placesList">
         {{#each places}}
-                <tr>
-                    <td class="address">{{zipCode}} {{ location }}, {{ address }} {{locNumber}}</td>
-                    <td class="hostEvent"><a>{{ lastname }} {{ firstname }}</a></td>
-                    <td class="phone"><a href=”tel:{{phone}}″>{{phone}}</a></td>
-                    <!-- <td class='date'>{{availability}}</td> -->
-                    <td class="resaBtn">{{> resa}}</td>
-                </tr>
+            {{> places_list_item}}
         {{/each}}
-            </tbody>
-        </table>
+        </div>
         <div id='card'></div>
         {{/if}}
+    {{else}}
+        {{> lost}}
+    {{/if}}
+    
    
+</template>
+
+<template name="places_list_item">
+    <div class="row border align-items-center">
+        <div class="col-md-6">
+            <p class="address"><i class="fa fa-home"></i> {{zipCode}} {{ location }}, {{ address }} {{locNumber}}</p>
+            <p><i class="fa fa-user"></i> <a>{{ lastname }} {{ firstname }}</a></p>
+        </div>
+        <div class="col-md-3 col-sm-8"><i class="fa fa-phone fs-large"></i> <a href="tel:{{phone}}">{{phone}}</a></div>
+        <div class="col-md-3 col-sm-4">{{> resa}}</div>
+
+    </div>
 </template>

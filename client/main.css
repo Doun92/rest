@@ -80,3 +80,8 @@ span.actualDay{
     width: 50px;
     border: solid 1px rgb(189, 189, 189);
 }
+
+
+.fs-large {
+    font-size: 1.5rem;
+}
