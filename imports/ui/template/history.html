@@ -1,0 +1,14 @@
+<template name="history_page">
+    <h1>Historique de vos réservations</h1>
+    {{> history_list}}
+</template>
+
+<template name="history_list">
+    {{#each reservation in reservations}}
+        {{> history_list_item}}
+    {{/each}}
+</template>
+
+<template name="history_list_item">
+    {{reservation.date_resa}}
+</template>
