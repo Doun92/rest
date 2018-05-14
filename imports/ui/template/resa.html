@@ -1,8 +1,7 @@
 <template name="resa">
     {{#if isPending}}
         {{#if isTheReserver}}
-        <button class="btn btn-success btn-sm" id="confirmResa">Confirmer</button>
-        <button class="btn btn-danger btn-sm" id="cancelResa">Annuler</button>
+        <button class="btn btn-outline-secondary btn-sm" disabled>En attente...</button>
         {{else}}
         <button class="btn btn-outline-secondary btn-sm" disabled>En réservation...</button>
         {{/if}}

@@ -40,34 +40,34 @@ Template.resa.events({
             }        
         });        
     },
-    'click #confirmResa': function(event){
-        let tmpDate = new Date();
-        const history = HistoryLocation.find({
-            $and : [
-            {resa_status:"pending"},
-            {place_id:this._id}
-        ]},{
-            fields:
-            {_id:1}
-        }).fetch();
 
-        HistoryLocation.update(history[0]._id, {
-            $set : {resa_status: 'reserved'}
-          });
-    },
-    'click #cancelResa': function(event){
-        let tmpDate = new Date();
-        const history = HistoryLocation.find({
-            $and : [
-            {resa_status:"pending"},
-            {place_id:this._id}
-        ]},{
-            fields:
-            {_id:1}
-        }).fetch();
+    // Retired features
+    // 'click #confirmResa': function(event){
+    //     const history = HistoryLocation.find({
+    //         $and : [
+    //         {resa_status:"pending"},
+    //         {place_id:this._id}
+    //     ]},{
+    //         fields:
+    //         {_id:1}
+    //     }).fetch();
 
-        HistoryLocation.remove(history[0]._id);
-    }
+    //     HistoryLocation.update(history[0]._id, {
+    //         $set : {resa_status: 'reserved'}
+    //       });
+    // },
+    // 'click #cancelResa': function(event){
+    //     const history = HistoryLocation.find({
+    //         $and : [
+    //         {resa_status:"pending"},
+    //         {place_id:this._id}
+    //     ]},{
+    //         fields:
+    //         {_id:1}
+    //     }).fetch();
+
+    //     HistoryLocation.remove(history[0]._id);
+    // }
 });
 
 Template.resa.helpers({
@@ -108,7 +108,13 @@ Template.resaNotifBox.helpers({
         let tmpDate = new Date()
         console.log(`actual date : ${tmpDate.toDateString()}`)
 
-        if(HistoryLocation.find({$and:[{host_id:user_id},{date_resa:tmpDate.toDateString()}]}).count() === 0){
+        if(HistoryLocation.find({
+            $and : [
+                {host_id:user_id},
+                {date_resa:tmpDate.toDateString()},
+                {resa_status:"pending"}
+            ]}
+        ).count() === 0){
             return false
         } else{
             return true
@@ -118,14 +124,28 @@ Template.resaNotifBox.helpers({
 
 Template.resaNotifBox.events({
     'click #acceptButton'(event){
-        const actDate = new Date();
-        let collection = HistoryLocation.find({}).fetch();
-        console.log(collection[0].resa_status);
-        HistoryLocation.update(collection[0]._id, {
-            $set: {
-                resa_status : 'confirmed'
-            }
+        const history = HistoryLocation.find({
+            $and : [
+            {resa_status:"pending"},
+            {host_id:Meteor.userId()}
+        ]},{
+            fields:
+            {_id:1}
+        }).fetch();
+
+        console.log(history);
+
+        HistoryLocation.update(history[0]._id, {
+            $set : {resa_status: 'reserved'}
         });
+        // const actDate = new Date();
+        // let collection = HistoryLocation.find({}).fetch();
+        // console.log(collection[0].resa_status);
+        // HistoryLocation.update(collection[0]._id, {
+        //     $set: {
+        //         resa_status : 'reserved'
+        //     }
+        // });
     },
     'click #declineButton'(event){
         const actDate = new Date();
