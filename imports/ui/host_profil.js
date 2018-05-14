@@ -182,3 +182,28 @@ Template.accommodationsRoute.helpers({
         return sw;
     }
 });
+
+Template.host_profil_template.events({
+    'submit #modify-password-form': function(event,template){
+        event.preventDefault();
+        const oldPassword = template.$('#oldPassword').val();
+        const newPassword = template.$('#newPassword').val();
+        const newPasswordRepeat = template.$('#newPasswordRepeat').val();
+        console.log(newPasswordRepeat);
+        if(newPassword===newPasswordRepeat){
+            Accounts.changePassword(oldPassword, newPassword, function(err){
+                if (err) {
+                return swal("Mot de passe actuel incorrect!")
+                }
+                else{
+                    return swal("Votre mot de passe a été changé.")
+                }
+            })   
+        }
+        else{
+            return swal("Les mots de passe ne correspondent")
+        }
+        return false; //stops page from refreshing
+        }
+    }
+)
