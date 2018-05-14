@@ -65,7 +65,24 @@ Template.resaNotifBox.helpers({
 });
 
 Template.resaNotifBox.events({
-    'click #acceptButton' (event){
-        
+    'click #acceptButton'(event){
+        const actDate = new Date();
+        let collection = HistoryLocation.find({}).fetch();
+        console.log(collection[0].resa_status);
+        HistoryLocation.update(collection[0]._id, {
+            $set: {
+                resa_status : 'confirmed'
+            }
+        });
+    },
+    'click #declineButton'(event){
+        const actDate = new Date();
+        let collection = HistoryLocation.find({}).fetch();
+        console.log(collection[0].resa_status);
+        HistoryLocation.update(collection[0]._id, {
+            $set: {
+                resa_status : 'declined'
+            }
+        });
     }
 })
