@@ -3,21 +3,21 @@ import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/resa-methods.js"
 import { Meteor } from "meteor/meteor";
 
+const today = new Date().toDateString();
+
 Template.resa.events({
     'click #reservate': function(event){
 
-        const reservationDate = new Date();
-        const socialWorker = Meteor.userId();
         const host = this.host_id;
         const place = this._id;
 
         new Confirmation({
-            message: "Confirmez-vous ?",
-            title: "Confirmation",
+            message: "L'accueillant sera informé de votre demande.",
+            title: "Confirmez-vous la réservation?",
             cancelText: "Annuler",
-            okText: "Confirmer",
+            okText: "Oui",
             success: true, // whether the button should be green or red
-            focus: "cancel" // which button to autofocus, "cancel" (default) or "ok", or "none"
+            focus: "Non" // which button to autofocus, "cancel" (default) or "ok", or "none"
             }, function (ok) {
             // ok is true if the user clicked on "ok", false otherwise
             if(ok){
@@ -26,59 +26,30 @@ Template.resa.events({
                     'sendEmail',
                     'localhost',
                     'noreply@rest.com',
-                    'Vous avez reçu une demande d accueil sur votre compte !',
-                    'clickez sur le liens pour voir la réservation'
+                    'Vous avez reçu une demande d\'accueil sur votre compte !',
+                    'Pensez à accepter la demande après l\'appel.'
                   );
 
                 HistoryLocation.insert({
-                    user_id : socialWorker,
+                    socialWorker_id : Meteor.userId(),
                     host_id : host,
                     place_id : place,
-                    date_resa : reservationDate.toDateString(),
+                    date_resa : today,
                     resa_status : 'pending'
                 });
             }        
         });        
-    },
-
-    // Retired features
-    // 'click #confirmResa': function(event){
-    //     const history = HistoryLocation.find({
-    //         $and : [
-    //         {resa_status:"pending"},
-    //         {place_id:this._id}
-    //     ]},{
-    //         fields:
-    //         {_id:1}
-    //     }).fetch();
-
-    //     HistoryLocation.update(history[0]._id, {
-    //         $set : {resa_status: 'reserved'}
-    //       });
-    // },
-    // 'click #cancelResa': function(event){
-    //     const history = HistoryLocation.find({
-    //         $and : [
-    //         {resa_status:"pending"},
-    //         {place_id:this._id}
-    //     ]},{
-    //         fields:
-    //         {_id:1}
-    //     }).fetch();
-
-    //     HistoryLocation.remove(history[0]._id);
-    // }
+    }
 });
 
 Template.resa.helpers({
     isPending : function(){
-        let tmpDate = new Date().toDateString();
         let place = this._id;
 
         if(HistoryLocation.find({
             $and : [
-            {resa_status:"pending"},
-            {date_resa:tmpDate},
+            {resa_status : "pending"},
+            {date_resa : today},
             {place_id : place}
         ]}
         ).count()) {
@@ -91,7 +62,7 @@ Template.resa.helpers({
         let place = this._id;
         if(HistoryLocation.find({
             $and : [
-                {user_id: Meteor.userId()},
+                {socialWorker_id : Meteor.userId()},
                 {place_id : place}
             ]}
         ).count()==true){
@@ -100,19 +71,18 @@ Template.resa.helpers({
     }
 });
 
+Template.resa_notif_host_box.onCreated(function(){
+    Meteor.subscribe('history');
+});
+
 Template.resa_notif_host_box.helpers({
     'notif' : function(){
-        Meteor.subscribe('history');
-
-        let user_id = Meteor.userId()
-        let tmpDate = new Date()
-        console.log(`actual date : ${tmpDate.toDateString()}`)
 
         if(HistoryLocation.find({
             $and : [
-                {host_id:user_id},
-                {date_resa:tmpDate.toDateString()},
-                {resa_status:"pending"}
+                {host_id : Meteor.userId()},
+                {date_resa : today},
+                {resa_status : "pending"}
             ]}
         ).count() === 0){
             return false
@@ -122,33 +92,92 @@ Template.resa_notif_host_box.helpers({
     }
 });
 
+Template.resa_notif_socialWorker_box.onCreated(function(){
+    Meteor.subscribe('history');
+});
+
+Template.resa_notif_socialWorker_box.helpers({
+    'notif' : function(){
+        return HistoryLocation.find({
+            $and : [
+                {socialWorker_id : Meteor.userId()},
+                {date_resa : today},
+                {alert_sw_status : "pending"}
+            ]}
+        ).fetch();
+        
+    },
+    'declined_alert_sw': function(){
+        const history = HistoryLocation.find({
+            $and : [
+                {socialWorker_id : Meteor.userId()},
+                {alert_sw_status : "pending"},
+                {resa_status : "declined"},
+            ]}
+        );
+
+        if(history.count() === 0){
+            return false;
+        } else{
+            return true;
+            
+        }
+    }
+});
+
 Template.resa_notif_host_box.events({
     'click #acceptButton'(event){
         const history = HistoryLocation.find({
             $and : [
-            {resa_status:"pending"},
-            {host_id:Meteor.userId()}
+            {resa_status : "pending"},
+            {host_id : Meteor.userId()}
         ]},{
             fields:
             {_id:1}
         }).fetch();
 
         HistoryLocation.update(history[0]._id, {
-            $set : {resa_status: 'reserved'}
+            $set : {
+                resa_status : "reserved",
+                alert_sw_status : "pending"
+            }
         });
     },
     'click #declineButton'(event){
         const history = HistoryLocation.find({
             $and : [
-            {resa_status:"pending"},
-            {host_id:Meteor.userId()}
+            {resa_status : "pending"},
+            {host_id : Meteor.userId()}
         ]},{
             fields:
             {_id:1}
         }).fetch();
 
         HistoryLocation.update(history[0]._id, {
-            $set : {resa_status: 'declined'}
+            $set : {
+                resa_status : "declined",
+                alert_sw_status : "pending"
+            } 
         });
     }
 })
+
+Template.resa_notif_socialWorker_box.events({
+    'click #notifSwClose'(event){
+        const history = HistoryLocation.find({
+            $and : [
+            {alert_sw_status : "pending"},
+            {socialWorker_id : Meteor.userId()}
+        ]},{
+            fields:
+            {_id:1}
+        }).fetch();
+
+        HistoryLocation.update(history[0]._id, {
+            $set : {alert_sw_status: "checked"}
+        });
+    }
+})
+
+// Bug if a social worker reservate some accommodations and don't validate the first message before the next.
+// Todo : use a more specific query.

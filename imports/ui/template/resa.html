@@ -1,10 +1,12 @@
 <template name="resa">
     {{#if isPending}}
-        {{#if isTheReserver}}
-        <button class="btn btn-outline-secondary btn-sm" disabled>En attente...</button>
-        {{else}}
-        <button class="btn btn-outline-secondary btn-sm" disabled>En réservation...</button>
-        {{/if}}
+        <button class="btn btn-outline-secondary btn-sm" disabled>
+            {{#if isTheReserver}}
+                En attente...
+            {{else}}
+                En réservation...
+            {{/if}}
+        </button>
     {{else}}
     <button id="reservate" class="btn btn-primary">Réserver</button>
     {{/if}}
@@ -12,7 +14,7 @@
 
 <template name="resa_notif_host_box">
     {{#if notif}}
-    <div class="alert alert-primary row align-items-center">
+    <div class="alert alert-primary row align-items-center fade show">
         Vous avez une demande d'accueil.
         <div class="btn-group pl-5" role="group" aria-label="Décider">
             <button type="button" id="acceptButton" class="btn btn-success">Accepter</button>
@@ -23,13 +25,17 @@
     {{/if}}
 </template>
 
-<template name="resa_notif_socialWorker_box fade show">
-        {{#if notif}}
-        <div class="alert alert-primary">
-            {{firstname}} {{lastname}} a validé votre réservation.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<template name="resa_notif_socialWorker_box">
+        {{#each notif}}
+        <div class="alert {{# if declined_alert_sw}}alert-danger{{else}}alert-success{{/if}} fade show">
+            {{#if declined_alert_sw}}        
+                Votre réservation a été refusée.
+            {{else}}
+                Votre réservation a été validée.
+            {{/if}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="notifSwClose">
                 <span aria-hidden="true">&times;</span>
             </button>       
         </div>
-        {{/if}}
+        {{/each}}
     </template>
