@@ -31,6 +31,6 @@ Version beta 0.6
 
 Les collaborateurs sont Aubrays (Loïc Aubrays), Doun (Daniel Escoval), MicTs01 (John Rose) et rerouj (Renato Diaz).
 
-## License
+## Licence
 
 Sous licence UNIL.
