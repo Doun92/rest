@@ -60,8 +60,9 @@ Accounts.onCreateUser((options, user) => {
       address : '',
       number : '',
       city : '',
-      postcode : ''
+      postcode : '',
     } 
+    user.photo='';
     user.sw = options.sw;
     user.firstname = options.firstname;
     user.lastname = options.lastname;
@@ -88,7 +89,8 @@ Accounts.onCreateUser((options, user) => {
             phoneNumber : 1,
             userAddress : 1,
             sw : 1,
-            institute : 1
+            institute : 1,
+            photo : 1
           }
         });
       } else {

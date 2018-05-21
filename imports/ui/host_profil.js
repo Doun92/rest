@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 import './template/host_profil_template.html';
+// const CLOUDINARY_URL= "https://api.cloudinary.com/v1_1/destox"
+// const CLOUDINARY_UPLOAD_PRESET ="i4qnlfix";
 
 // récupère la publication du fichier server main.js
 // permet notamment de récupérer les champs ajouté dans la collection
@@ -207,3 +209,27 @@ Template.host_profil_template.events({
         }
     }
 )
+
+Template.host_profil_template.events({
+    'submit .profilPic':function(event,tempalte){
+        var file = document.getElementById('profilePic-input').files[0];
+        var reader  = new FileReader();
+        // it's onload event and you forgot (parameters)
+        reader.onload = function(e)  {
+            let image = document.getElementById("profilePic")
+            // the result image data
+            image.src = e.target.result;
+         }
+         console.log(file.name);
+
+         //For now the input is just a simple string which is the file name. In the end, the goal would be to setup a image hosting service (Cloudinary)
+         Meteor.users.update(
+             Meteor.userId(),{$set:{
+                 photo: file.name
+             }}
+         )
+         // you have to declare the file loading
+         reader.readAsDataURL(file);
+        return false;
+    }
+})

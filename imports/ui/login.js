@@ -28,14 +28,14 @@ Template.super_navbar.events({
           return swal("Oops! Une erreur s'est produite.")
         }
         else{
-            return swal("Succés !")
+            return swal("Succès !")
         }
       });
     }
   });
 
   Template.super_navbar.events({
-    "click #forgot-password-button": function(event, template) {
+    "click #forgot-password-link": function(event, template) {
       event.preventDefault();
       var email = $('#login-email').val(); //gets the email input
       var options = {};
