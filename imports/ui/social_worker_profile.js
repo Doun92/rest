@@ -75,3 +75,27 @@ Template.social_worker_profil.events({
           );
     }
 });
+
+Template.social_worker_profil.events({
+    'submit .profilPic':function(event,tempalte){
+        var file = document.getElementById('profilePic-input').files[0];
+        var reader  = new FileReader();
+        // it's onload event and you forgot (parameters)
+        reader.onload = function(e)  {
+            let image = document.getElementById("profilePic")
+            // the result image data
+            image.src = e.target.result;
+         }
+         console.log(file.name);
+
+         //For now the input is just a simple string which is the file name. In the end, the goal would be to setup a image hosting service (Cloudinary)
+         Meteor.users.update(
+             Meteor.userId(),{$set:{
+                 photo: file.name
+             }}
+         )
+         // you have to declare the file loading
+         reader.readAsDataURL(file);
+        return false;
+    }
+})
