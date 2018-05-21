@@ -1,23 +1,23 @@
 <template name="homepage">
     <div class="jumbotron">
-        <div class="container">
-            <img src="/homeless.jpg" alt="Homeless" class='image' id='test'>
-            <div class='mainText'>
-            <h1>R.E.S.T.</h1>
-            <h3 >Réseau d'Entraide Sociale pour Tous</h3>
-            <p>La nuit est une période difficile pour de nombreuses personnes sans domicile fixe, en proposant un lit pour une nuit, vous réchaufferez le coeur d'une personne dans le besoin.<br>
-            Pas d'inquiétude, vous ne serez pas seul, un.e travailleur.euse social.e fera le lien entre vous et la personne que vous aiderez. <br>
-            Un suivi professionnel pour chaque nuitée vous sera proposé.</p>
-            <p>N'attendez pas pour réchauffer le coeur de ceux qui en besoin,
-            {{#if currentUser}} 
-                <a class="btn btn-primary btn-lg" role="button"
-                href="{{pathFor 'profil_utilisateur'}}">Proposez un lit</a>
-            {{else}}
-                <a class="btn btn-primary btn-lg" role="button"
-                    href="{{pathFor 'inscription'}}">Proposez un lit</a>
-            {{/if}}
-            </p>
-            </div>
+        <div class="container"> 
+                <h3>Réseau d'Entraide Sociale pour Tous</h3>
+                <p>Envie d'aider une personne sans abri ?</p>
+                
+                {{#if currentUser}} 
+                    <a class="btn btn-primary btn-lg" role="button"
+                    href="{{pathFor 'profil_utilisateur'}}">Proposez un lit</a>
+                {{else}}
+                    <a class="btn btn-primary btn-lg" role="button"
+                        href="{{pathFor 'inscription'}}">Proposez un lit</a>
+                {{/if}}
         </div>
     </div>
+</template>
+
+<template name="homepage_content">
+        <p>La nuit est une période difficile pour de nombreuses personnes sans domicile fixe, en proposant un lit pour une nuit, vous réchaufferez le coeur d'une personne dans le besoin.<br>
+            Pas d'inquiétude, vous ne serez pas seul, un.e travailleur.euse social.e fera le lien entre vous et la personne que vous aiderez. <br>
+            Un suivi professionnel pour chaque nuitée vous sera proposé.</p>
+            <p>N'attendez pas pour réchauffer le coeur de ceux qui en besoin !</p>
 </template>

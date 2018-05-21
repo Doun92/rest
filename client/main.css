@@ -70,7 +70,13 @@ span.actualDay{
     font-size: 1.5rem;
 }
 
-.image {
+.jumbotron {
+    background: url("cover.jpg") center center;
+    background-size: cover;
+    min-height: 500px;
+}
+
+/* .image {
     filter : blur(5px);
     width : 100%;
     height: auto;   
@@ -99,4 +105,4 @@ span.actualDay{
     padding-left: 10%;
     padding-top: 75%;
     height: auto;
-}
+} */
