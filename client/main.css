@@ -91,7 +91,7 @@ span.actualDay{
     height: auto;
     background-image : url(/REST.jpg);
 }
-
+/*
 .container {
     position : relative;
     top : 30%;
@@ -103,7 +103,7 @@ span.actualDay{
     padding-top: 75%;
     height: auto;
 }
-
+*/
 .profile-pic{
     border-style:solid;
     border-width:2px;
