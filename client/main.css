@@ -116,3 +116,6 @@ span.actualDay{
 
 .centered-and-cropped{object-fit:cover}
 
+ul.socialElements {
+    list-style-type: none;
+}
