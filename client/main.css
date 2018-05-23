@@ -119,3 +119,7 @@ span.actualDay{
 ul.socialElements {
     list-style-type: none;
 }
+/* Change active path in the nav bar */
+.navbar-active{
+    font-weight:bold;
+  }

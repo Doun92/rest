@@ -52,3 +52,14 @@ Template.super_navbar.events({
         return false //Prevent page from refreshing
     }
   });
+
+  Template.super_navbar.events({
+    'mouseenter a':function(){
+        $(document).ready(function(){
+            $('a').click(function(){
+                $('a').removeClass("navbar-active");
+                $(this).addClass("navbar-active");
+            });
+          });
+    }
+  })
