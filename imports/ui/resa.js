@@ -94,6 +94,7 @@ Template.resa_notif_host_box.helpers({
 
 Template.resa_notif_socialWorker_box.onCreated(function(){
     Meteor.subscribe('history');
+    Meteor.subscribe('usersPublication');
 });
 
 Template.resa_notif_socialWorker_box.helpers({
@@ -107,12 +108,14 @@ Template.resa_notif_socialWorker_box.helpers({
         ).fetch();
         
     },
-    'declined_alert_sw': function(){
+    'declinedAlertSw': function(){
+        const test = this;
         const history = HistoryLocation.find({
             $and : [
                 {socialWorker_id : Meteor.userId()},
                 {alert_sw_status : "pending"},
                 {resa_status : "declined"},
+                {_id : this._id}
             ]}
         );
 
@@ -120,8 +123,11 @@ Template.resa_notif_socialWorker_box.helpers({
             return false;
         } else{
             return true;
-            
         }
+    },
+    'accName': function(){
+        const host = Meteor.users.findOne({_id : this.host_id});
+        return `${host.firstname} ${host.lastname}`;
     }
 });
 
@@ -178,6 +184,3 @@ Template.resa_notif_socialWorker_box.events({
         });
     }
 })
-
-// Bug if a social worker reservate some accommodations and don't validate the first message before the next.
-// Todo : use a more specific query.
