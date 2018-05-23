@@ -14,14 +14,14 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{pathFor '/logements'}}">Disponibilité</a>
                         </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{pathFor '/historique'}}">Historique</a>
-                                </li>
                     {{else}}
                         <li class="nav-item">
                         <a class="nav-link" href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
                         </li>
                     {{/if}}
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{pathFor '/historique'}}">Historique</a>
+                    </li>
                     <li class="nav-item">
                             <a class="nav-link" href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
                     </li>

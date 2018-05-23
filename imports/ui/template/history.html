@@ -1,14 +1,48 @@
 <template name="history_page">
+{{#if currentUser}}
     <h1>Historique de vos réservations</h1>
     {{> history_list}}
+{{else}}
+    {{> lost}}
+{{/if}}
 </template>
 
 <template name="history_list">
-    {{#each reservation in reservations}}
-        {{> history_list_item}}
-    {{/each}}
+    {{#if reservations}}
+        <div class="row border align-items-center">
+            <div class="col-md-3">
+                    Date de la réservation
+            </div>
+            <div class="col-md-6">
+                Personne de contact
+            </div>
+            <div class="col-md-3 text-md-right">Statut</div>
+        </div>
+        {{#each reservation in reservations}}
+
+            {{> history_list_item reservation=reservation}}
+        
+        {{/each}}
+    {{else}}
+        <p>Votre historique est vide.</p>
+    {{/if}}
 </template>
 
 <template name="history_list_item">
-    {{reservation.date_resa}}
+    <div class="row border align-items-center">
+        <div class="col-md-3">
+                {{dateReservation}}
+        </div>
+        <div class="col-md-6">
+            {{#if currentUser.sw}}
+                {{hostName}}
+            {{else}}
+                {{swName}}
+            {{/if}}
+        </div>
+        <div class="col-md-3 text-md-right">
+            {{reservationStatus}}</div>
+
+        </div>
+    
 </template>

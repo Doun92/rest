@@ -5,16 +5,18 @@
 <template name="mainRoute">
     {{> super_navbar}}
 
-    {{> Template.dynamic template=home }} <!-- Special jumbotron -->
+    {{> Template.dynamic template=home }} {{!-- Special jumbotron --}}
 
     
         <main>
             <div class="container">
-                {{#if currentUser}}
-                    {{#if currentUser.sw}}
-                        {{> resa_notif_socialWorker_box}}
-                    {{else}}
-                        {{> resa_notif_host_box}}
+                {{#if isNotActiveRoute 'mainPage'}}
+                    {{#if currentUser}}
+                        {{#if currentUser.sw}}
+                            {{> resa_notif_socialWorker_box}}
+                        {{else}}
+                            {{> resa_notif_host_box}}
+                        {{/if}}
                     {{/if}}
                 {{/if}}
                 {{> Template.dynamic template=main}}
@@ -34,7 +36,7 @@
             </div>
             <ul class="col-md-4 socialElements">
                 <li><i class="fa fa-github"></i> <a href="https://github.com/Doun92/rest">GitHub du projet</a></li>
-                <li><i class="fa fa-at"></i> info@rest-project.tld</li> <!-- example of items-->
+                <li><i class="fa fa-at"></i> info@rest-project.tld</li> {{!-- example of items--}}
             </ul>
             </div>
         </footer>

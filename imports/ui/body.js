@@ -9,7 +9,6 @@ import './accommodation.js';
 import './template/registers.html';
 
 import './template/login.html';
-import './template/main-layout.html';
 import './login.js';
 
 import './register.js';

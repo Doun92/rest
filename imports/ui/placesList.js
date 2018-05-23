@@ -29,7 +29,7 @@ Template.places_list.onCreated(function(){
 Template.places_list.helpers({
     'places':function() {
 
-        let today = new Date().toDateString();
+        let today = new Date();
  
         let reservedAccommodationsForToday = HistoryLocation.find(
             {$and : [

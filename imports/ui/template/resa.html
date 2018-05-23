@@ -29,9 +29,9 @@
         {{#each notif}}
         <div class="alert {{# if declinedAlertSw}}alert-danger{{else}}alert-success{{/if}} fade show">
             {{#if declinedAlertSw}}        
-                {{accName}} a refusé la réservation.
+                {{hostName}} a refusé la réservation.
             {{else}}
-                {{accName}} a validé la réservation.
+                {{hostName}} a validé la réservation.
             {{/if}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="notifSwClose">
                 <span aria-hidden="true">&times;</span>
