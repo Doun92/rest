@@ -2,28 +2,55 @@ import { Template } from 'meteor/templating';
 import './template/history.html';
 import { HistoryLocation } from '../api/resa-methods';
 
-Template.history_page.onCreated(function(){
+Template.history_list.onCreated(function(){
 
     //places are displayed dependently on the date of the day
     //here is the filter
     this.subscribe('places');
     this.subscribe('history');
+    this.subscribe('usersPublication');
 });
 
 Template.history_list.helpers({
-    reservations: function(reservation){
-        return HistoryLocation.find({
-            $and : [
-            {resa_status:"reserved"},
-            {user_id: Meteor.userId()}
+    reservations(){
+        const reservations =  HistoryLocation.find({
+            $or : [
+                    {socialWorker_id: Meteor.userId()},
+                    {host_id: Meteor.userId()}
             ]
-        });
+        }, {sort:{date_resa:-1}});
+        return reservations;
     }
 });
 
-// Template.history_list_item.helpers({
-//     date_resa: function(){
+Template.history_list_item.helpers({
+    dateReservation(){
+        let options = {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", hour12: false};
+        return new Intl.DateTimeFormat("fr-CH", options).format(this.reservation.date_resa);
+    },
+    hostName(){
+        const host = Meteor.users.findOne({_id : this.reservation.host_id});
+        return `${host.firstname} ${host.lastname}`;
+    },
+    swName(){
+        const sw = Meteor.users.findOne({_id : this.reservation.socialWorker_id});
+        return `${sw.firstname} ${sw.lastname}`;
+    },
+    reservationStatus(){
+        const reservationStatus = this.reservation.resa_status;
+       switch (reservationStatus) {
+            case "reserved":
+                return "réservé";
+                break;
+            case "pending":
+                return "en attente";
+                break;
+            case "declined":
+                return "décliné";
+                break;
+            default:
+                return "inconnu";
+       }
 
-//         return date_resa;
-//     }
-// });
+    }
+});

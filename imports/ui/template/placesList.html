@@ -3,11 +3,16 @@
     <h1>Liste de logements disponibles</h1>
     
         {{#if Template.subscriptionsReady}}
-        <div class="placesList">
-        {{#each places}}
-            {{> places_list_item}}
-        {{/each}}
-        </div>
+        {{#if places}}
+            <div class="placesList">
+            {{#each places}}
+                {{> places_list_item}}
+            {{/each}}
+            </div>
+        {{else}}
+            <p>Aucun logement disponible pour le moment.</p>
+        {{/if}}
+        
         <div id='card'></div>
         {{/if}}
     {{else}}

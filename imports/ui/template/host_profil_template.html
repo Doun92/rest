@@ -2,28 +2,45 @@
     {{#if currentUser}}
     <!-- Host profil template - summary and modification form of the currents user information given on sign-up and additionnal information such as the address needed to 
     host. -->
-    <h1>Vos informations personnelles</h1>
-        <dl>
-            <dt>Prénom Nom</dt>
-            <dd>{{firstname}} {{lastname}}</dd>
-            <dt>Adresse e-mail</dt>
-            <dd>{{mail}}</dd>
-            <dt>Adresse</dt>
-            <dd>{{#if userAddress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
-            <dt>Téléphone de l'accueillant</dt>
-            <dd>{{phone}}</dd>
-            <dt>Vous proposez : </dt>
-            <dd>x places</dd>
-        </dl>
-        <a href="ajouter-logement" class="btn btn-success">Ajouter un logement</a>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-6 col-md-5'>
+                <form class="profilPic">
+                        <label type="text"><h4>Photo de profil</h4></label>
+                        <br>
+                        <img id="profilePic" src="cover.jpg" alt="" class="profile-pic centered-and-cropped" width="200" height="200">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
+                            <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
+                            <button class="btn" id="submit-profile-pic" type="submit">Confirmer</button>
+                        </div>
+                        <!-- <input class="btn" type="file" id="profilePic-input" accept="image/*">
+                         -->
+                 </form>
+            </div>
+            <div class='col-sm-3'>
+                <h1>Vos informations personnelles</h1>
+                <dl>
+                    <dt>Prénom Nom</dt>
+                    <dd>{{firstname}} {{lastname}}</dd>
+                    <dt>Adresse e-mail</dt>
+                    <dd>{{mail}}</dd>
+                    <dt>Adresse</dt>
+                    <dd>{{#if userAddress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
+                    <dt>Téléphone de l'accueillant</dt>
+                    <dd>{{phone}}</dd>
+                    <dt>Vous proposez : </dt>
+                    <dd>x places</dd>
+                </dl>
+                <a href="ajouter-logement" class="btn btn-success">Ajouter un logement</a>
+                <br>
+
+            </div>
+        </div>
+    </div>
+
         <br>
-        <form class="profilPic">
-        <label type="text"><h4>Photo de profil</h4></label>
         <br>
-        <img id="profilePic" src="oldHands.jpg" alt="" class="profile-pic centered-and-cropped" width="200" height="200">
-        <input class="btn" type="file" id="profilePic-input" accept="image/*">
-        <button class="btn" id="submit-profile-pic" type="submit">Oui!</button>
-        </form>
         <form class="profilForm">
         <div class="row">
         <div class="col-md-7 col-sm-6 col-xs-12">

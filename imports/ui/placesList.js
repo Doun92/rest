@@ -1,5 +1,4 @@
 import { Accommodation } from "../api/accommodation-methods.js";
-import { AllUser } from '../api/placesList_methods.js';
 
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
@@ -12,8 +11,8 @@ Template.places_list.onCreated(function(){
     //places are displayed dependently on the date of the day
     //here is the filter
     this.subscribe('places');
-    this.subscribe('allUser');
     this.subscribe('history');
+    this.subscribe('usersPublication');
 
     var filterActualDate = new Date();
     var filterActualMonth = filterActualDate.getMonth()+1;
@@ -30,7 +29,7 @@ Template.places_list.onCreated(function(){
 Template.places_list.helpers({
     'places':function() {
 
-        let today = new Date().toDateString();
+        let today = new Date();
  
         let reservedAccommodationsForToday = HistoryLocation.find(
             {$and : [
@@ -69,7 +68,7 @@ Template.places_list.helpers({
         else{      
             return placesAvailableToday;
         }
-    },
+    }
  });
 
 // Permet d'afficher les noms des users de chaque adresse

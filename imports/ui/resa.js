@@ -3,7 +3,18 @@ import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/resa-methods.js"
 import { Meteor } from "meteor/meteor";
 
-const today = new Date().toDateString();
+// let now = new Date();
+// let actualMonth = now.getMonth()+1;
+// let actualDay = now.getDate();
+// let actualYear = now.getFullYear();
+// const today = `${actualYear}-${actualMonth}-${actualDay}`;
+// console.log(today);
+let startToday = new Date();
+startToday.setHours(0,0,0,0);
+
+let endToday = new Date();
+endToday.setHours(23,59,59,999);
+
 
 Template.resa.events({
     'click #reservate': function(event){
@@ -34,7 +45,7 @@ Template.resa.events({
                     socialWorker_id : Meteor.userId(),
                     host_id : host,
                     place_id : place,
-                    date_resa : today,
+                    date_resa : new Date(),
                     resa_status : 'pending'
                 });
             }        
@@ -49,7 +60,7 @@ Template.resa.helpers({
         if(HistoryLocation.find({
             $and : [
             {resa_status : "pending"},
-            {date_resa : today},
+            {date_resa : {$gte: startToday, $lt: endToday}},
             {place_id : place}
         ]}
         ).count()) {
@@ -81,7 +92,7 @@ Template.resa_notif_host_box.helpers({
         if(HistoryLocation.find({
             $and : [
                 {host_id : Meteor.userId()},
-                {date_resa : today},
+                {date_resa : {$gte: startToday, $lt: endToday}},
                 {resa_status : "pending"}
             ]}
         ).count() === 0){
@@ -94,6 +105,7 @@ Template.resa_notif_host_box.helpers({
 
 Template.resa_notif_socialWorker_box.onCreated(function(){
     Meteor.subscribe('history');
+    Meteor.subscribe('usersPublication');
 });
 
 Template.resa_notif_socialWorker_box.helpers({
@@ -101,18 +113,20 @@ Template.resa_notif_socialWorker_box.helpers({
         return HistoryLocation.find({
             $and : [
                 {socialWorker_id : Meteor.userId()},
-                {date_resa : today},
+                {date_resa : {$gte: startToday, $lt: endToday}},
                 {alert_sw_status : "pending"}
             ]}
         ).fetch();
         
     },
-    'declined_alert_sw': function(){
+    'declinedAlertSw': function(){
+        const test = this;
         const history = HistoryLocation.find({
             $and : [
                 {socialWorker_id : Meteor.userId()},
                 {alert_sw_status : "pending"},
                 {resa_status : "declined"},
+                {_id : this._id}
             ]}
         );
 
@@ -120,8 +134,11 @@ Template.resa_notif_socialWorker_box.helpers({
             return false;
         } else{
             return true;
-            
         }
+    },
+    'hostName': function(){
+        const host = Meteor.users.findOne({_id : this.host_id});
+        return `${host.firstname} ${host.lastname}`;
     }
 });
 
@@ -178,6 +195,3 @@ Template.resa_notif_socialWorker_box.events({
         });
     }
 })
-
-// Bug if a social worker reservate some accommodations and don't validate the first message before the next.
-// Todo : use a more specific query.

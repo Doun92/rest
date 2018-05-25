@@ -27,11 +27,11 @@
 
 <template name="resa_notif_socialWorker_box">
         {{#each notif}}
-        <div class="alert {{# if declined_alert_sw}}alert-danger{{else}}alert-success{{/if}} fade show">
-            {{#if declined_alert_sw}}        
-                Votre réservation a été refusée.
+        <div class="alert {{# if declinedAlertSw}}alert-danger{{else}}alert-success{{/if}} fade show">
+            {{#if declinedAlertSw}}        
+                {{hostName}} a refusé la réservation.
             {{else}}
-                Votre réservation a été validée.
+                {{hostName}} a validé la réservation.
             {{/if}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="notifSwClose">
                 <span aria-hidden="true">&times;</span>

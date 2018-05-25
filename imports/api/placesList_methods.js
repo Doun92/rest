@@ -23,7 +23,7 @@ if (Meteor.isServer) {
   }
 
 if (Meteor.isServer) {
-  Meteor.publish('allUser', function () {
+  Meteor.publish('usersPublication', function () {
       return Meteor.users.find({}, {
         fields: { 
           firstname : 1,
@@ -37,4 +37,4 @@ if (Meteor.isServer) {
   });
 }
 
-export const AllUser = new Mongo.Collection('allUser');
+// export const AllUser = new Mongo.Collection('allUser');
