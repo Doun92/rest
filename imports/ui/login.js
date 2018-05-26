@@ -28,7 +28,7 @@ Template.super_navbar.events({
           return swal("Oops! Une erreur s'est produite.")
         }
         else{
-            return swal("Succès !")
+            return swal("Déconnexion réussie!")
         }
       });
     }
@@ -59,7 +59,17 @@ Template.super_navbar.events({
             $('a').click(function(){
                 $('a').removeClass("navbar-active");
                 $(this).addClass("navbar-active");
+                var routeName = FlowRouter.getRouteName();
+                console.log("Current route name is: ", routeName);
             });
           });
     }
   })
+Template.super_navbar.helpers({
+    triggersExit(){
+        const selector = '.nav a[href="' + FlowRouter.current().path + '"]';
+        console.log(selector);
+        $('.navbar-active').removeClass('navbar-active');
+        $(selector).addClass('navbar-active');
+      }
+})
