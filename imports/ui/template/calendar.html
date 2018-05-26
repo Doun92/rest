@@ -2,19 +2,19 @@
 
 <template name="calendar_template">
     {{#if Template.subscriptionsReady}}
-    <legend> Ajouter/supprimer des nuitées : </legend>
-    <div>
-        <form id="yearForm">
-            <select size="1">
+    <h3 class="mt-5">Ajouter/supprimer des nuitées</h3>
+    <div class="form-row my-2">
+        <form id="yearForm" class="col-sm-6 col-md-4">
+            <select size="1" class="form-control">
                 {{#each yearOptions}}
                     <option>{{this}}</option>
                 {{/each}}
             </select>
         </form>
     </div>
-    <div>
-        <form id="monthForm" >
-            <select size="1">
+    <div class="form-row mb-5">   
+        <form id="monthForm" class="col-sm-6 col-md-4">
+            <select size="1" class="form-control">
                 {{#each monthOptions}}
                     {{#if isActualMonth this}}
                     <option selected id="ms">{{this}}</option>
@@ -52,6 +52,6 @@
 </template>
 
 <template name="validateCal">
-    <button id="validateCal" class="btn btn-dark">Enregistrer les dates</button>
-    <span class="help-block">Pour désélectionner une date, cliquer à nouveau sur la case colorée.</span>
+    <button id="validateCal" class="btn btn-dark mt-3">Enregistrer les dates</button>
+    <p class="text-muted">Pour désélectionner une date, cliquer à nouveau sur la case colorée.</p>
 </template>

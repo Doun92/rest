@@ -181,16 +181,7 @@ Template.resa_notif_host_box.events({
 
 Template.resa_notif_socialWorker_box.events({
     'click #notifSwClose'(event){
-        const history = HistoryLocation.find({
-            $and : [
-            {alert_sw_status : "pending"},
-            {socialWorker_id : Meteor.userId()}
-        ]},{
-            fields:
-            {_id:1}
-        }).fetch();
-
-        HistoryLocation.update(history[0]._id, {
+        HistoryLocation.update(this._id, {
             $set : {alert_sw_status: "checked"}
         });
     }

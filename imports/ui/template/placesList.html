@@ -23,13 +23,13 @@
 </template>
 
 <template name="places_list_item">
-    <div class="row border align-items-center">
+    <div class="row align-items-center my-2 bg-white rounded py-3">
         <div class="col-md-6">
-            <p class="address"><i class="fa fa-home"></i> {{zipCode}} {{ location }}, {{ address }} {{locNumber}}</p>
-            <p><i class="fa fa-user"></i> <a>{{ lastname }} {{ firstname }}</a></p>
+            <p class="address m-0"><i class="fa fa-home"></i> {{zipCode}} {{ location }}, {{ address }} {{locNumber}}</p>
+            <p class="m-0"><i class="fa fa-user"></i> <a>{{ lastname }} {{ firstname }}</a></p>
         </div>
-        <div class="col-md-3"><i class="fa fa-phone fs-large"></i> <a href="tel:{{phone}}">{{phone}}</a></div>
-        <div class="col-md-3 text-md-right">{{> resa}}</div>
+        <div class="col-md-3 col-sm-6"><i class="fa fa-phone fs-large"></i> <a href="tel:{{phone}}">{{phone}}</a></div>
+        <div class="col-md-3 col-sm-6 text-sm-right">{{> resa}}</div>
 
     </div>
 </template>

@@ -2,98 +2,106 @@
     {{#if currentUser}}
     <!-- Host profil template - summary and modification form of the currents user information given on sign-up and additionnal information such as the address needed to 
     host. -->
-    <div class='container'>
-        <div class='row'>
-            <div class='col-sm-6 col-md-5'>
-                <form class="profilPic">
-                        <label type="text"><h4>Photo de profil</h4></label>
-                        <br>
-                        <img id="profilePic" src="cover.jpg" alt="" class="profile-pic centered-and-cropped" width="200" height="200">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
-                            <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
-                            <button class="btn" id="submit-profile-pic" type="submit">Confirmer</button>
-                        </div>
-                        <!-- <input class="btn" type="file" id="profilePic-input" accept="image/*">
-                         -->
-                 </form>
-            </div>
-            <div class='col-sm-3'>
-                <h1>Vos informations personnelles</h1>
-                <dl>
-                    <dt>Prénom Nom</dt>
-                    <dd>{{firstname}} {{lastname}}</dd>
-                    <dt>Adresse e-mail</dt>
-                    <dd>{{mail}}</dd>
-                    <dt>Adresse</dt>
-                    <dd>{{#if userAddress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
-                    <dt>Téléphone de l'accueillant</dt>
-                    <dd>{{phone}}</dd>
-                    <dt>Vous proposez : </dt>
-                    <dd>x places</dd>
-                </dl>
-                <a href="ajouter-logement" class="btn btn-primary">Ajouter un logement</a>
-                <br>
 
-            </div>
+    <div class='row my-3'>
+        <div class='col-sm-6 col-md-4'>
+            <form class="profilPic">
+                <img id="profilePic" src="cover.jpg" alt="" class="profile-pic centered-and-cropped mx-auto d-block" width="200" height="200">
+                <div class="custom-file mt-3">
+                    <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
+                    <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
+                    <button class="btn btn-dark mt-3" id="submit-profile-pic" type="submit">Confirmer</button>
+                </div>
+                <!-- <input class="btn" type="file" id="profilePic-input" accept="image/*">
+                        -->
+            </form>
+        </div>
+        <div class='col-sm-6'>
+                <h2>Vos informations personnelles</h2>
+            <dl>
+                <dt>Prénom Nom</dt>
+                <dd>{{firstname}} {{lastname}}</dd>
+                <dt>Adresse e-mail</dt>
+                <dd>{{mail}}</dd>
+                <dt>Adresse</dt>
+                <dd>{{#if userAddress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
+                <dt>Téléphone de l'accueillant</dt>
+                <dd>{{phone}}</dd>
+                <dt>Vous proposez : </dt>
+                <dd>x places</dd>
+            </dl>
+            <a href="ajouter-logement" class="btn btn-primary">Ajouter un logement</a>
+            <br>
+
         </div>
     </div>
-
-        <br>
-        <br>
+    <div class="my-5">
+        <h2>Modifier vos informations</h2>
         <form class="profilForm">
-        <div class="row">
-        <div class="col-md-7 col-sm-6 col-xs-12">
-            <h3> Modifier votre profil</h3>
-            <label for="mail">Email:</label><br>
-            <input type="text" name="mail" value="{{mail}}" required><br>
-            <label>Prénom:</label><br>
-            <input type="text" name="firstname" value="{{firstname}}" required><br>
-            <label>Nom:</label><br>
-            <input type="text" name="lastname" value="{{lastname}}" required><br>
-        </div>
-        <div class="col-md-5 col-sm-6 col-xs-12">
-        <h3>Modifier votre adresse</h3>
-            <label>Adresse:</label><br>
-            <input type="text" name="address" value="{{address}}" required><br>
-            <label>N° de rue:</label><br>
-            <input type="text" name="number" value="{{number}}" required><br>
-            <label>Numéro postal:</label><br>
-            <input type="text" name="postcode" value="{{postCode}}" required><br>
-            <label>Ville:</label><br>
-            <input type="text" name="city" value="{{city}}" required><br>
-            <label>Numéro de téléphone:</label><br>
-            <input type="text" name="phone" value="{{phone}}" required><br>
-        </div>
-    </div>
-        <br>
-        <button class="submit btn btn-dark" value="submit" type="submit" >Mettre à jour votre Profil</button>
-        <br>
-        <br>
-        <br>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Prénom</label>
+                    <input type="text" class="form-control" name="firstname" value="{{firstname}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Nom</label>
+                    <input type="text" class="form-control" name="lastname" value="{{lastname}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mail">E-mail</label>
+                    <input type="text" class="form-control" name="mail" value="{{mail}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Téléphone</label>
+                    <input type="text" class="form-control" name="phone" value="{{phone}}" required>
+                </div>
+                <div class="form-group col-md-9">
+                    <label>Adresse</label>
+                    <input type="text" class="form-control" name="address" value="{{address}}" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>N°</label><br>
+                    <input type="text" class="form-control" name="number" value="{{number}}" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Numéro postal</label>
+                    <input type="text" class="form-control" name="postcode" value="{{postCode}}" required>
+                </div>
+                <div class="form-group col-md-9">
+                    <label>Ville</label>
+                    <input type="text" class="form-control" name="city" value="{{city}}" required>
+                </div>
+            </div>
+
+            <button class="submit btn btn-dark" value="submit" type="submit" >Mettre à jour votre profil</button>
         </form>
+    </div>
+    <div class="my-5">
+        <h2>Modifier votre mot de passe</h2>
    
-    <form id="modify-password-form">
-        <div class="form-group">
-                <label>Ancien mot de pass</label><br>
-                <input type="password" class="form-control" id="oldPassword" placeholder="votre ancien mot de passe">
-        </div>
-        <div class="form-group">
-                <label>Nouveau mot de passe</label><br>
-                <input type="password" class="form-control" id="newPassword" placeholder="votre nouveau mot de passe">
-        </div>
-        <div class="form-group">
-                <label>Répeter le mot de passe</label><br>
-                <input type="password" class="form-control" id="newPasswordRepeat" placeholder="votre nouveau mot de passe">
-        </div>
-        <button type="submit" class="btn btn-dark">Modifier votre mot de passe</button>
-    </form> 
-    <br>
-    <br>
-    <br>
-    <form id="delete-account-form">
-            <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
-    </form>
+        <form id="modify-password-form">
+            <div class="form-group row">
+                    <label class="col-sm-3">Ancien mot de passe</label><br>
+                    <input type="password" class="form-control col-sm-9 col-md-5" id="oldPassword" placeholder="votre ancien mot de passe">
+            </div>
+            <div class="form-group row">
+                    <label class="col-sm-3">Nouveau mot de passe</label><br>
+                    <input type="password" class="form-control col-sm-9 col-md-5" id="newPassword" placeholder="votre nouveau mot de passe">
+                    <p class="form-text pl-2 mb-0 text-muted">Doit contenir min. 6 caractères</p>
+            </div>
+            <div class="form-group row">
+                    <label class="col-sm-3">Répéter le mot de passe</label><br>
+                    <input type="password" class="form-control col-sm-9 col-md-5" id="newPasswordRepeat" placeholder="votre nouveau mot de passe">
+            </div>
+            <button type="submit" class="btn btn-dark">Modifier votre mot de passe</button>
+        </form> 
+        <br>
+        <br>
+        <br>
+        <form id="delete-account-form">
+                <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
+        </form>
+    </div>
     {{/if}}
 
 </template>
