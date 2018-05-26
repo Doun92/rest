@@ -1,0 +1,133 @@
+@import 'myVariables';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+
+/* SimpleCalendar */
+.calendarGrill{
+    font-size: 0px;
+}
+.dayGrill{
+    font-size: 0px;
+}
+
+.calendarGrill span:hover{
+    background-color: rgb(223, 223, 223);
+}
+span.grey{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
+.grey{
+    color: grey;
+    font-size: 25px;
+}
+.selected{
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+}
+span.selected{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+    background-color: rgb(138, 195, 228);
+}
+span.grey:hover{
+    background-color: rgb(255, 255, 255);
+}
+.calDay{
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+}
+span.calDay{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
+.actualDay{
+    font-size: 25px;
+    color: rgb(228, 211, 64);
+    font-weight: bolder;
+}
+span.actualDay{
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: solid 1px rgb(189, 189, 189);
+}
+
+
+.fs-large {
+    font-size: 1.5rem;
+}
+
+.jumbotron {
+    background: url("REST.jpg") center center;
+    background-size: cover;
+    min-height: 300px;
+}
+
+/* .image {
+    filter : blur(5px);
+    width : 100%;
+    height: auto;   
+    position : absolute;
+    text-align : center;
+} */
+
+.mainText {
+    position : relative;
+    top : 30%;
+    width: 75%;
+    height: 75%;
+    text-align: justify;
+    padding-right: 10%;
+    padding-left: 10%;
+    height: auto;
+    background-image : url(/REST.jpg);
+}
+/*
+.container {
+    position : relative;
+    top : 30%;
+    width: 75%;
+    height: 75%;
+    text-align: justify;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 75%;
+    height: auto;
+}
+*/
+.profile-pic{
+    border-style:solid;
+    border-width:2px;
+    border-radius:50%;
+}
+
+.centered-and-cropped{object-fit:cover}
+
+ul.socialElements {
+    list-style-type: none;
+}
+/* Change active path in the nav bar */
+.navbar-active{
+    font-weight:bold;
+  }
+
+#login-form {
+    white-space: nowrap;
+}

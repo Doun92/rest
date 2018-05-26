@@ -1,14 +1,14 @@
 <template name="homepage">
-    <div class="jumbotron">
+    <div class="jumbotron mt-5">
         <div class="container"> 
-                <h3>Réseau d'Entraide Sociale pour Tous</h3>
+                <h1>Réseau d'Entraide Sociale pour Tous</h1>
                 <p>Envie d'aider une personne sans abri ?</p>
                 
                 {{#if currentUser}} 
-                    <a class="btn btn-primary btn-lg" role="button"
+                    <a class="btn btn-dark btn-lg" role="button"
                     href="{{pathFor 'profil_utilisateur'}}">Proposez un lit</a>
                 {{else}}
-                    <a class="btn btn-primary btn-lg" role="button"
+                    <a class="btn btn-dark btn-lg" role="button"
                         href="{{pathFor 'inscription'}}">Proposez un lit</a>
                 {{/if}}
         </div>

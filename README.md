@@ -10,11 +10,28 @@ Les instructions ci-dessous vous guideront quant à l'installation et au déploi
 
 ### Pré-requis
 
+#### Meteor.js
+
 Notre projet est développé sous l'environnement Meteor.js, un package particulier de javascript. Pour le télécharger, veuillez suivre les instructions présentes sur leur site Internet : (https://www.meteor.com/).
+
+#### Bootstrap 4
+
+Nous utilisons le framework Bootstrap pour les styles de l'application. Aussi il vous faudra donc installer les dépendances suivantes :
+
+```
+meteor npm install bootstrap
+meteor npm install popper
+meteor npm install jquery
+```
+
+Pour modifier le style, il vous faudra utiliser Sass (http://sass-lang.com/).
+
 
 ### Installation
 
-Lorsque vous aurez finalisé l'installation de Meteor et de notre projet, ouvrez le terminal, accédez au dossier du projet puis lancez Meteor.
+Lorsque vous aurez finalisé l'installation de Meteor, téléchargez les sources de notre projet.
+
+Ensuite ouvrez le terminal, accédez au dossier du projet puis lancez Meteor.
 
 ```
 C:\Users\UserName\Documents\GitHub\rest>meteor
