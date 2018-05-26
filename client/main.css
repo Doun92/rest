@@ -76,14 +76,6 @@ span.actualDay{
     min-height: 500px;
 }
 
-/* .image {
-    filter : blur(5px);
-    width : 100%;
-    height: auto;   
-    position : absolute;
-    text-align : center;
-} */
-
 .mainText {
     position : relative;
     top : 30%;
@@ -95,19 +87,7 @@ span.actualDay{
     height: auto;
     background-image : url(/REST.jpg);
 }
-/*
-.container {
-    position : relative;
-    top : 30%;
-    width: 75%;
-    height: 75%;
-    text-align: justify;
-    padding-right: 10%;
-    padding-left: 10%;
-    padding-top: 75%;
-    height: auto;
-}
-*/
+
 .profile-pic{
     border-style:solid;
     border-width:2px;
@@ -123,3 +103,30 @@ ul.socialElements {
 .navbar-active{
     font-weight:bold;
   }
+
+p.home {
+    font-family: "Times New Roman", Times, serif;
+    font-size : 18px;
+}
+
+.btn-primary {
+    background-color: #ff9800;
+    border:  2px solid #558b2f;
+    border-radius: 12px;
+}
+
+.btn-primary:hover{
+    background-color: #558b2f;
+    border:  2px solid #558b2f;
+}
+
+.btn-secondary{
+    background-color: #ff9800;
+    border:  2px solid #558b2f;
+    border-radius: 12px;
+}
+
+.btn-secondary:hover{
+    background-color: #558b2f;
+    border:  2px solid #558b2f;
+}

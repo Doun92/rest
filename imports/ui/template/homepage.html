@@ -1,23 +1,20 @@
 <template name="homepage">
     <div class="jumbotron">
         <div class="container"> 
-                <h3>Réseau d'Entraide Sociale pour Tous</h3>
-                <p>Envie d'aider une personne sans abri ?</p>
-                
+                <h1 class='display-4'>Réseau d'Entraide Sociale pour Tous</h1>
+                <p class='lead'>Envie d'aider une personne sans abri ?</p>
+                <hr class='my-4'>
+                    <p class='home'>La nuit est une période difficile pour de nombreuses personnes sans domicile fixe, en proposant un lit pour une nuit, vous réchaufferez le coeur d'une personne dans le besoin.<br>
+                        Pas d'inquiétude, vous ne serez pas seul, un.e travailleur.euse social.e fera le lien entre vous et la personne que vous aiderez. <br>
+                        Un suivi professionnel pour chaque nuitée vous sera proposé.</p>
+                        <p>N'attendez pas pour réchauffer le coeur de ceux qui en besoin !</p>
                 {{#if currentUser}} 
                     <a class="btn btn-primary btn-lg" role="button"
-                    href="{{pathFor 'profil_utilisateur'}}">Proposez un lit</a>
+                    href="{{pathFor 'profil_utilisateur'}}">Proposez un lit !</a>
                 {{else}}
                     <a class="btn btn-primary btn-lg" role="button"
-                        href="{{pathFor 'inscription'}}">Proposez un lit</a>
+                        href="{{pathFor 'inscription'}}">Proposez un lit !</a>
                 {{/if}}
         </div>
     </div>
-</template>
-
-<template name="homepage_content">
-        <p>La nuit est une période difficile pour de nombreuses personnes sans domicile fixe, en proposant un lit pour une nuit, vous réchaufferez le coeur d'une personne dans le besoin.<br>
-            Pas d'inquiétude, vous ne serez pas seul, un.e travailleur.euse social.e fera le lien entre vous et la personne que vous aiderez. <br>
-            Un suivi professionnel pour chaque nuitée vous sera proposé.</p>
-            <p>N'attendez pas pour réchauffer le coeur de ceux qui en besoin !</p>
 </template>
