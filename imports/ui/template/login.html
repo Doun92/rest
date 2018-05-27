@@ -13,18 +13,18 @@
                 <ul class="navbar-nav mr-auto">
                     {{#if currentUser.sw}}
                         <li class="nav-item">
-                        <a class="nav-link {{isActivePath class='navbar-active' path='/logements'}}" href="{{pathFor '/logements'}}">Disponibilité</a>
+                        <a class="nav-link {{isActivePath class='active' path='/logements'}}" href="{{pathFor '/logements'}}">Disponibilité</a>
                         </li>
                     {{else}}
                         <li class="nav-item">
-                        <a class="nav-link {{isActivePath class='navbar-active' path='/ajouter-logement'}}" href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
+                        <a class="nav-link {{isActivePath class='active' path='/ajouter-logement'}}" href="{{pathFor '/ajouter-logement'}}">Proposer un lit</a>
                         </li>
                     {{/if}}
                     <li class="nav-item">
-                            <a class="nav-link {{isActivePath class='navbar-active' path='/historique'}}" href="{{pathFor '/historique'}}">Historique</a>
+                            <a class="nav-link {{isActivePath class='active' path='/historique'}}" href="{{pathFor '/historique'}}">Historique</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link {{isActivePath class='navbar-active' path='/profil_utilisateur'}}" href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
+                            <a class="nav-link {{isActivePath class='active' path='/profil_utilisateur'}}" href="{{pathFor '/profil_utilisateur'}}">Mon profil</a>
                     </li>
                 </ul>
                 <div>
@@ -33,7 +33,7 @@
                 {{else}}
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle {{isActivePath class='navbar-active' path='/inscription'}}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle {{isActivePath class='active' path='/inscription'}}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Inscription
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
