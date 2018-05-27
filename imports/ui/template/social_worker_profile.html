@@ -1,27 +1,59 @@
 <template name="social_worker_profil">
     {{#if currentUser}}
+
+    <div class='row my-3'>
+            <div class='col-sm-6 col-md-4'>
+                <form class="profilPic">
+                    <img id="profilePic" src="HoldingHands.jpg" alt="" class="profile-pic centered-and-cropped mx-auto d-block" width="200" height="200">
+                    <div class="custom-file mt-3">
+                        <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
+                        <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
+                        <button class="btn btn-dark mt-3" id="submit-profile-pic" type="submit">Confirmer</button>
+                    </div>
+                    <!-- <input class="btn" type="file" id="profilePic-input" accept="image/*">-->
+                </form>
+            </div>
+
+            <div class='col-sm-6'>
             <h2>Bonjour {{test}} {{lastname}}</h2>
             <h3>Institution : <b>{{institute}}</b> </h3>
             <p>Téléphone : <u>{{phoneNumber}}</u> </p>
             <p>Adresse e-mail : <u>{{mail}}</u></p>
+        </div>
+    </div>
         <br>
         <br>
         <br>
-        <h2>Modification des données</h2>
-    <form class="profilPic">
-            <label type="text"><h4>Photo de profil</h4></label>
-            <br>
-            <img id="profilePic" src="oldHands.jpg" alt="" class="profile-pic centered-and-cropped" width="200" height="200">
-            <input class="btn" type="file" id="profilePic-input" accept="image/*">
-            <button class="btn" id="submit-profile-pic" type="submit">Oui!</button>
-    </form>
+        <h2>Modifier vos informations</h2>
     <form class="profilForm">
-            <h3>Email:</h3>
-                <input type='text' name='email' value='{{mail}}'>
-            <h3>Numéro de téléphone professionnel</h3>
-                <input type='text' name='newPhoneNumber' value='{{phoneNumber}}'>
-            <br>
-        <button class='submit' value='submit' type='submit'>Modifier</button>
-    </form>   
+        <div class="form-group row">
+        <label class="col-sm-4">Email</label>
+        <input type='text' class="form-control col-sm-8 col-md-3" name='email' value='{{mail}}'>
+        </div>
+        <div class="form-group row">
+        <label class="col-sm-4">Numéro de téléphone professionnel</label>
+        <input type='text' class="form-control col-sm-8 col-md-3" name='newPhoneNumber' value='{{phoneNumber}}'>
+        </div>
+        <button class='submit btn btn-dark' value='submit' type='submit'>Modifier</button>
+    </form>
+    <div class="my-5">
+            <h2>Modifier votre mot de passe</h2>
+            <form id="modify-password-form">
+                <div class="form-group row">
+                        <label class="col-sm-3">Ancien mot de passe</label><br>
+                        <input type="password" class="form-control col-sm-9 col-md-5" id="oldPassword" placeholder="votre ancien mot de passe">
+                </div>
+                <div class="form-group row">
+                        <label class="col-sm-3">Nouveau mot de passe</label><br>
+                        <input type="password" class="form-control col-sm-9 col-md-5" id="newPassword" placeholder="votre nouveau mot de passe">
+                        <p class="form-text pl-2 mb-0 text-muted">Doit contenir min. 6 caractères</p>
+                </div>
+                <div class="form-group row">
+                        <label class="col-sm-3">Répéter le mot de passe</label><br>
+                        <input type="password" class="form-control col-sm-9 col-md-5" id="newPasswordRepeat" placeholder="votre nouveau mot de passe">
+                </div>
+                <button type="submit" class="btn btn-dark">Modifier votre mot de passe</button>
+            </form>
+        </div>   
     {{/if}}
 </template>

@@ -203,7 +203,7 @@ Template.host_profil_template.events({
             })   
         }
         else{
-            return swal("Les mots de passe ne correspondent")
+            return swal("Les mots de passe ne correspondent pas.")
         }
         return false; //stops page from refreshing
         }
