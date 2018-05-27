@@ -9,14 +9,15 @@
 
 <template name="history_list">
     {{#if reservations}}
-        <div class="row border align-items-center">
-            <div class="col-md-3">
+        <div class="row border align-items-center font-weight-bold py-3 bg-primary">
+            <div class="col-md-3 col-sm-6 ">
                     Date de la réservation
             </div>
-            <div class="col-md-6">
+            <div class="col-md-2 order-sm-last">Statut</div>
+            <div class="col-md-7 col-sm-6 order-md-last">
                 Personne de contact
             </div>
-            <div class="col-md-3 text-md-right">Statut</div>
+            
         </div>
         {{#each reservation in reservations}}
 
@@ -29,20 +30,22 @@
 </template>
 
 <template name="history_list_item">
-    <div class="row border align-items-center">
-        <div class="col-md-3">
-                {{dateReservation}}
+    <div class="row border align-items-center bg-white py-1">
+        <div class="col-md-3 col-sm-6">
+            {{dateReservation}}
         </div>
-        <div class="col-md-6">
+
+        <div class="col-md-2 order-sm-last">
+            {{reservationStatus}}
+        </div>
+
+        <div class="col-md-7 col-sm-6 order-md-last">
             {{#if currentUser.sw}}
                 {{hostName}}
             {{else}}
                 {{swName}}
             {{/if}}
         </div>
-        <div class="col-md-3 text-md-right">
-            {{reservationStatus}}</div>
-
-        </div>
+    </div>
     
 </template>
