@@ -34,15 +34,15 @@
         {{#each calendArray}}
         {{#if toSix @index}}
             {{#if getActualDate this}}
-            <span class="actualDay" name="actday">{{this}}</span><br>
+                <span class="actualDay" name="actday">{{this}}</span><br>
             {{else}}
-            <span class="{{setClass @index this}}" name="actday">{{this}}</span><br>
+                <span class="{{setClass @index this}}" name="actday">{{this}}</span><br>
             {{/if}}
         {{else}}
             {{#if getActualDate this}}
-                    <span class="actualDay" name="actday">{{this}}</span>
-                {{else}}
-                    <span class="{{setClass @index this}}" name="actday">{{this}}</span>
+                <span class="{{setClass @index this}}" name="actday">{{this}}</span>
+            {{else}}
+                <span class="{{setClass @index this}}" name="actday">{{this}}</span>
             {{/if}}
         {{/if}}    
         {{/each}}
