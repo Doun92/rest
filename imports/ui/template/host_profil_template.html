@@ -4,16 +4,19 @@
     host. -->
 
     <div class='row my-3'>
-        <div class='col-sm-6 col-md-4'>
+        <div class='col-sm-6 col-md-6'>
             <form class="profilPic">
                 <img id="profilePic" src="cover.jpg" alt="" class="profile-pic centered-and-cropped mx-auto d-block" width="200" height="200">
-                <div class="custom-file mt-3">
-                    <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
-                    <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
-                    <button class="btn btn-dark mt-3" id="submit-profile-pic" type="submit">Confirmer</button>
+
+                <div class="input-group px-md-5 mt-3 mx-auto">
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
+                        <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" id="submit-profile-pic" type="submit">Changer de photo</button>
+                    </div>
                 </div>
-                <!-- <input class="btn" type="file" id="profilePic-input" accept="image/*">
-                        -->
             </form>
         </div>
         <div class='col-sm-6'>
@@ -23,85 +26,102 @@
                 <dd>{{firstname}} {{lastname}}</dd>
                 <dt>Adresse e-mail</dt>
                 <dd>{{mail}}</dd>
-                <dt>Adresse</dt>
-                <dd>{{#if userAddress}}{{userAddress}}{{else}}Aucune adresse enregistrée{{/if}}</dd>
-                <dt>Téléphone de l'accueillant</dt>
+                <dt>Adresse du logement</dt>
+                <dd>{{#if accommodationAddress}}
+                        {{accommodationAddress}}
+                    {{else}}                    
+                        {{#if userAddress}}
+                            {{userAddress}}
+                        {{else}}
+                            <a href="#addressForm">Ajouter votre adresse pour proposer votre logement</a>
+                        {{/if}}
+                    {{/if}}
+                </dd>
+                <dt>Téléphone</dt>
                 <dd>{{phone}}</dd>
-                <dt>Vous proposez : </dt>
-                <dd>x places</dd>
             </dl>
-            <a href="ajouter-logement" class="btn btn-primary">Ajouter un logement</a>
-            <br>
-
+            <a href="ajouter-logement" class="btn {{#if userAddress}}btn-primary{{else}}btn-dark{{/if}}">Proposer un logement</a>
         </div>
     </div>
-    <div class="my-5">
-        <h2>Modifier vos informations</h2>
-        <form class="profilForm">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Prénom</label>
-                    <input type="text" class="form-control" name="firstname" value="{{firstname}}" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" name="lastname" value="{{lastname}}" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="mail">E-mail</label>
-                    <input type="text" class="form-control" name="mail" value="{{mail}}" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Téléphone</label>
-                    <input type="text" class="form-control" name="phone" value="{{phone}}" required>
-                </div>
-                <div class="form-group col-md-9">
-                    <label>Adresse</label>
-                    <input type="text" class="form-control" name="address" value="{{address}}" required>
-                </div>
-                <div class="form-group col-md-3">
-                    <label>N°</label><br>
-                    <input type="text" class="form-control" name="number" value="{{number}}" required>
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Numéro postal</label>
-                    <input type="text" class="form-control" name="postcode" value="{{postCode}}" required>
-                </div>
-                <div class="form-group col-md-9">
-                    <label>Ville</label>
-                    <input type="text" class="form-control" name="city" value="{{city}}" required>
-                </div>
-            </div>
 
-            <button class="submit btn btn-dark" value="submit" type="submit" >Mettre à jour votre profil</button>
-        </form>
+    
+    <div class="mt-5 row">
+        <div class="col-md-6">
+            <h2 id="addressForm">{{#if userAddress}}Modifier votre adresse{{else}}Ajouter votre adresse{{/if}}</h2>
+            <form class="addressForm" >
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label>Adresse</label>
+                        <input type="text" class="form-control" name="address" value="{{address}}" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>N°</label><br>
+                        <input type="text" class="form-control" name="number" value="{{number}}" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Numéro postal</label>
+                        <input type="text" class="form-control" name="postcode" value="{{postCode}}" required>
+                    </div>
+                    <div class="form-group col-md-9">
+                        <label>Localité</label>
+                        <input type="text" class="form-control" name="city" value="{{city}}" required>
+                    </div>
+                </div>
+
+                <button class="submit btn {{#if userAddress}}btn-dark{{else}}btn-primary{{/if}}" value="submit" type="submit" >Mettre à jour votre adresse</button>
+            </form>
+        </div>
+        <div class="mt-sm-5 mt-md-0 col-md-6">
+            <h2>Modifier vos informations</h2>
+            <form class="profilForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Prénom</label>
+                        <input type="text" class="form-control" name="firstname" value="{{firstname}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" name="lastname" value="{{lastname}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mail">E-mail</label>
+                        <input type="text" class="form-control" name="mail" value="{{mail}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Téléphone</label>
+                        <input type="text" class="form-control" name="phone" value="{{phone}}" required>
+                    </div>
+                </div>
+
+                <button class="submit btn btn-dark" value="submit" type="submit" >Mettre à jour votre profil</button>
+            </form>
+        </div>
+    
+
+        <div class="mt-5 col-md-6">
+            <h2>Modifier votre mot de passe</h2>
+    
+            <form id="modify-password-form">
+                <div class="form-group">
+                        <label>Ancien mot de passe</label><br>
+                        <input type="password" class="form-control" id="oldPassword">
+                </div>
+                <div class="form-group">
+                        <label>Nouveau mot de passe</label><br>
+                        <input type="password" class="form-control" id="newPassword">
+                        <p class="form-text pl-2 mb-0 text-muted">Doit contenir min. 6 caractères</p>
+                </div>
+                <div class="form-group">
+                        <label>Répéter le mot de passe</label><br>
+                        <input type="password" class="form-control" id="newPasswordRepeat">
+                </div>
+                <button type="submit" class="btn btn-dark">Modifier votre mot de passe</button>
+            </form>
+        </div>
     </div>
-    <div class="my-5">
-        <h2>Modifier votre mot de passe</h2>
-   
-        <form id="modify-password-form">
-            <div class="form-group row">
-                    <label class="col-sm-3">Ancien mot de passe</label><br>
-                    <input type="password" class="form-control col-sm-9 col-md-5" id="oldPassword" placeholder="votre ancien mot de passe">
-            </div>
-            <div class="form-group row">
-                    <label class="col-sm-3">Nouveau mot de passe</label><br>
-                    <input type="password" class="form-control col-sm-9 col-md-5" id="newPassword" placeholder="votre nouveau mot de passe">
-                    <p class="form-text pl-2 mb-0 text-muted">Doit contenir min. 6 caractères</p>
-            </div>
-            <div class="form-group row">
-                    <label class="col-sm-3">Répéter le mot de passe</label><br>
-                    <input type="password" class="form-control col-sm-9 col-md-5" id="newPasswordRepeat" placeholder="votre nouveau mot de passe">
-            </div>
-            <button type="submit" class="btn btn-dark">Modifier votre mot de passe</button>
-        </form> 
-        <br>
-        <br>
-        <br>
-        <form id="delete-account-form">
-                <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
-        </form>
-    </div>
+    <form id="delete-account-form" class="mt-5">
+        <button id="delete-button" type="button" class="btn btn-danger">Supprimer compte</button>
+    </form>
     {{/if}}
 
 </template>

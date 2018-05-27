@@ -298,7 +298,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 1rem;
-  font-family: inherit;
+  font-family: "Lato";
   font-weight: 900;
   line-height: 1.2;
   color: inherit; }
@@ -6870,10 +6870,8 @@ ul.socialElements {
 .bg-opacity {
   background-color: rgba(255, 255, 255, 0.3); }
 
-.Logo-REST{
-  width:48px;
-  height:50px;
-}
-  
+.Logo-REST {
+  width: 48px;
+  height: 50px; }
 
 /*# sourceMappingURL=main.css.map */

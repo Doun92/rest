@@ -13,13 +13,17 @@ Template.history_list.onCreated(function(){
 
 Template.history_list.helpers({
     reservations(){
-        const reservations =  HistoryLocation.find({
+        const reservations = HistoryLocation.find({
             $or : [
                     {socialWorker_id: Meteor.userId()},
                     {host_id: Meteor.userId()}
             ]
-        }, {sort:{date_resa:-1}});
+            }, {sort:{date_resa:-1}
+        });
+        
+        if(reservations.fetch().length>1){
         return reservations;
+        }
     }
 });
 
