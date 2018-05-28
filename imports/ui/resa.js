@@ -15,6 +15,8 @@ startToday.setHours(0,0,0,0);
 let endToday = new Date();
 endToday.setHours(23,59,59,999);
 
+// change the value to send email
+const emailAddress = "localhost"
 
 Template.resa.events({
     'click #reservate': function(event){
@@ -147,7 +149,7 @@ Template.resa_notif_host_box.events({
         
         Meteor.call(
             'sendEmail',
-            'loic.aubrays@unil.ch',
+            'emailAddress',
             'noreply@rest.com',
             "Réservation REST acceptée",
             "Nous vous remercions d'avoir accepté de mettre un toit à disposition ce soir !",
@@ -172,7 +174,7 @@ Template.resa_notif_host_box.events({
 
         Meteor.call(
             'sendEmail',
-            'loic.aubrays@unil.ch',
+            'emailAddress',
             'noreply@rest.com',
             "Réservation REST refusée",
             "Vous avez décliné une demande de réservation. Si votre logement n'est pas disponible, nous vous recommandons de mettre à jour votre calendrier."
@@ -195,7 +197,7 @@ Template.resa_notif_socialWorker_box.events({
         
         Meteor.call(
             'sendEmail',
-            'loic.aubrays@unil.ch',
+            'emailAddress',
             'noreply@rest.com',
             "Réservation REST acceptée par l'accueillant",
             "Vous avez effectué une demande de réservation et elle a été acceptée !"

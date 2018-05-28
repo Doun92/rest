@@ -1,8 +1,9 @@
 ﻿# R.E.S.T.
 
-Le projet R.E.S.T. est produit dans le cadre du cours Programmation pour Internet II tenu par le professeur Isaac Pante et son assistant Loris Rimaz.
 R.E.S.T. est l'acronyme de Réseau d'Entraide Sociale pour Tous. Notre projet a pour but de faciliter le lien entre une personne proposant un lit pour une nuitée et une personne sans abri, par l'intermédiaire d'un travailleur social sur le terrain.
 Nous proposons une interface épurée et simple d'accès tant pour l'accueillant que pour le travailleur social.
+
+
 
 ## Démarrage
 
@@ -45,6 +46,8 @@ Une fois le tout installé et le serveur local en place, vous pouvez démarrer s
 Version beta 0.6
 
 ## Contributeurs
+
+Le projet R.E.S.T. est produit dans le cadre du cours Programmation pour Internet II tenu par le professeur Isaac Pante et son assistant Loris Rimaz.
 
 Les collaborateurs sont Aubrays (Loïc Aubrays), Doun (Daniel Escoval), MicTs01 (John Rose) et rerouj (Renato Diaz).
 
