@@ -9,6 +9,8 @@ startToday.setHours(0,0,0,0);
 let endToday = new Date();
 endToday.setHours(23,59,59,999);
 
+// change the value to send email
+const emailAddress = "localhost"
 
 Template.resa.events({
     'click #reservate': function(event){
@@ -26,14 +28,6 @@ Template.resa.events({
             }, function (ok) {
             // ok is true if the user clicked on "ok", false otherwise
             if(ok){
-
-                Meteor.call(
-                    'sendEmail',
-                    'localhost',
-                    'noreply@rest.com',
-                    'Vous avez reçu une demande d\'accueil sur votre compte !',
-                    'Pensez à accepter la demande après l\'appel.'
-                  );
 
                 HistoryLocation.insert({
                     socialWorker_id : Meteor.userId(),
@@ -146,6 +140,14 @@ Template.resa_notif_host_box.events({
             fields:
             {_id:1}
         }).fetch();
+        
+        Meteor.call(
+            'sendEmail',
+            'emailAddress',
+            'noreply@rest.com',
+            "Réservation REST acceptée",
+            "Nous vous remercions d'avoir accepté de mettre un toit à disposition ce soir !",
+        );
 
         HistoryLocation.update(history[0]._id, {
             $set : {
@@ -164,6 +166,14 @@ Template.resa_notif_host_box.events({
             {_id:1}
         }).fetch();
 
+        Meteor.call(
+            'sendEmail',
+            'emailAddress',
+            'noreply@rest.com',
+            "Réservation REST refusée",
+            "Vous avez décliné une demande de réservation. Si votre logement n'est pas disponible, nous vous recommandons de mettre à jour votre calendrier."
+        );
+
         HistoryLocation.update(history[0]._id, {
             $set : {
                 resa_status : "declined",
@@ -178,5 +188,13 @@ Template.resa_notif_socialWorker_box.events({
         HistoryLocation.update(this._id, {
             $set : {alert_sw_status: "checked"}
         });
+        
+        Meteor.call(
+            'sendEmail',
+            'emailAddress',
+            'noreply@rest.com',
+            "Réservation REST acceptée par l'accueillant",
+            "Vous avez effectué une demande de réservation et elle a été acceptée !"
+        );
     }
 })

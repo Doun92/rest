@@ -29,17 +29,23 @@ Template.places_list.onCreated(function(){
 Template.places_list.helpers({
     'places':function() {
 
-        let today = new Date();
+        let startToday = new Date();
+        startToday.setHours(0,0,0,0);
+
+        let endToday = new Date();
+        endToday.setHours(23,59,59,999);
  
         let reservedAccommodationsForToday = HistoryLocation.find(
             {$and : [
                 {resa_status:"reserved"},
-                {date_resa:today}
+                {date_resa : {$gte: startToday, $lt: endToday}}
             ]},
             {fields : {
                 place_id:1
             }}
         ).fetch();
+
+        console.log(reservedAccommodationsForToday)
         
         // Every accommodation filtered by the date of today
         let placesForToday = Accommodation.find(
@@ -63,10 +69,13 @@ Template.places_list.helpers({
 
         //if no reservation exists
         if(placesAvailableToday==0){
+            console.log("all Places")
             return placesForToday;
         }
-        else{      
+        else{
+            console.log("only available");      
             return placesAvailableToday;
+            
         }
     }
  });

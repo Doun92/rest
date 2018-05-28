@@ -1,3 +1,4 @@
+// Login with email and password
 Template.login.events({
     'click #login-button': function(e, t) {
         e.preventDefault();
@@ -20,6 +21,7 @@ Template.login.events({
     }
 });
 
+// Custom logout button with modal message
 Template.super_navbar.events({
     "click #logout-button": function(event, template) {
       event.preventDefault();
@@ -34,6 +36,7 @@ Template.super_navbar.events({
     }
   });
 
+// Implement a forgot password featur
   Template.super_navbar.events({
     "click #forgot-password-link": function(event, template) {
       event.preventDefault();
@@ -42,7 +45,6 @@ Template.super_navbar.events({
       options.email = email; //insert email in the option argument needed for Accounts.forgotPassword function
       Accounts.forgotPassword({email}, function(error){ 
             if (error){
-                // console.log(error.reason);
                 return swal("Veuillez indiquer une addresse e-mail valide.");
             } 
             else{
