@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 import './template/host_profil_template.html';
+import { Accommodation } from '../api/accommodation-methods';
+
 // const CLOUDINARY_URL= "https://api.cloudinary.com/v1_1/destox"
 // const CLOUDINARY_UPLOAD_PRESET ="i4qnlfix";
 
@@ -8,6 +10,10 @@ import './template/host_profil_template.html';
 // ATTENTION : nécessite la suppression de la librarie "autopublish"
 
 Meteor.subscribe('userData');
+
+Template.host_profil_template.onCreated(function(){
+    Meteor.subscribe('accommodations');
+});
 
 // Ces helpers récupèrent des données dans la collection Meteor.users
 // attention ne pas confondre la collection Meteor.users et 
@@ -46,7 +52,6 @@ Template.host_profil_template.helpers({
                 ville = '';
             }else{
                 ville = data && data.userAddress.city;
-                ville = ville+', '
             }
             if(data.userAddress.postcode==''){
                 npa = '';
@@ -56,7 +61,7 @@ Template.host_profil_template.helpers({
             if(rue == '' && ville == '' && npa == ''  ){
                 return ''
             }else{
-                return `${rue}${ville}${npa}`;         
+                return `${rue} ${npa} ${ville}`;         
             }
         }else{
             return ""; 
@@ -120,7 +125,13 @@ Template.host_profil_template.helpers({
         }else{
             return ""
         }
-    }   
+    },
+    'accommodationAddress': function(){
+        const host = Meteor.userId();
+        const accommodation = Accommodation.findOne({host_id: host});
+
+        return `${accommodation.address} ${accommodation.locNumber}, ${accommodation.zipCode} ${accommodation.location}`
+    }
 })
 
 // events attache un évènement et une fonction à un template 
@@ -135,17 +146,29 @@ Template.host_profil_template.events({
         const target = event.target;
         const name = target.firstname.value;
         const lastname = target.lastname.value;
-        const address = target.address.value;
-        const number = target.number.value;
-        const postcode = target.postcode.value;
-        const city = target.city.value;
         const phone = target.phone.value;
+        
 
         Meteor.users.update(
             Meteor.userId(), { $set: { 
                 firstname: name,
                 lastname: lastname,
-                phoneNumber: phone,
+                phoneNumber: phone
+            } }
+          );
+    },
+    'submit .addressForm' : function(event) {
+
+        event.preventDefault();
+
+        const target = event.target;
+        const address = target.address.value;
+        const number = target.number.value;
+        const postcode = target.postcode.value;
+        const city = target.city.value;
+
+        Meteor.users.update(
+            Meteor.userId(), { $set: { 
                 userAddress:{
                     address : address,
                     number : number,

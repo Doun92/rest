@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-6">
                     <label for="availablePlaces">Nombre de personnes</label>
                     <input type="number" name="availablePlaces" id="availablePlaces" value="{{availableLocation.[4]}}" required >
                 </div>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-6">
                     <label for="availablePlaces">Nombre de personnes</label>
                     <input type="number" name="availablePlaces" id="availablePlaces" placeholder="Nombre de personnes" required >
                 </div>
@@ -125,39 +125,39 @@
             <div class="form-row">
                 <div class="form-group col-sm-8">
                     <label for="address">Adresse</label>
-                    <input type="text" class="form-control" name="address" id="address" value="{{actualLocation.[0]}}" required>
+                    <input type="text" class="form-control" name="address" id="address" value="{{actualAddressValue.[0]}}" required>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="num">N°</label>
-                    <input type="text" class="form-control" name="locationNumber" id="locationNumber" value="{{actualLocation.[1]}}" required>
+                    <input type="text" class="form-control" name="locationNumber" id="locationNumber" value="{{actualAddressValue.[1]}}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-sm-4">
                     <label for="zipCode">NPA</label>
-                    <input type="text" class="form-control" name="zipCode" id="zipCode" value="{{actualLocation.[3]}}" required>
+                    <input type="text" class="form-control" name="zipCode" id="zipCode" value="{{actualAddressValue.[3]}}" required>
                 </div>
                 <div class="form-group col-sm-8">
                     <label for="location">Localité</label>
-                    <input type="text" class="form-control" name="location" id="location" value="{{actualLocation.[2]}}" required>
+                    <input type="text" class="form-control" name="location" id="location" value="{{actualAddressValue.[2]}}" required>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-6">
                     <label for="availablePlaces">Nombre de personnes</label>
                     <input type="number" name="availablePlaces" id="availablePlaces" placeholder="à remplir" required >
                 </div>
             </div>
         </div>
-            <button type="submit" class="btn-dark">Ajouter adresse</button>
+            <button type="submit" class="btn btn-dark">Ajouter adresse</button>
         {{else}}
             {{> addressForm}}
         {{/if}}
 
     {{else}}
-        <p>Vous avez déjà donné une adresse :</p><br>
-        <a href="" class="actualAddresslink1"><p>Je souhaite mettre à disposition mon adresse actuelle </p></a>
-        <a href="" class="actualAddresslink2"><p>Je souhaite ajouter une autre adresse </p></a>
+        <h3>Adresse d'accueil</h3>
+        <p><a href="" class="actualAddresslink1">Je souhaite mettre à disposition mon adresse actuelle.</a></p>
+        <p><a href="" class="actualAddresslink2">Je souhaite ajouter une autre adresse.</a></p>
     {{/if}}
 </template>
 

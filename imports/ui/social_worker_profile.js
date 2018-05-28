@@ -46,7 +46,7 @@ Template.social_worker_profil.helpers({
         }
     },
     
-    'phoneNumber': function(){
+    'phone': function(){
         data = Meteor.user();
         if(data.phoneNumber){
             phoneNumber = data && data.phoneNumber;

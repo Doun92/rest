@@ -3,7 +3,7 @@
 <template name="super_register_form">
     <div class="row justify-content-center">
     <div class="col-md-6 col-sm-8">
-    <h1>Inscription {{#if isActiveRoute 'register_social_worker'}}Travailleur social{{ else }}Accueillant{{/if}}</h1>
+    <h1>Créer votre compte {{#if isActiveRoute 'register_social_worker'}}de travailleur social{{/if}}</h1>
     <form class="registerForm">
 
     <div class="form-group">
@@ -24,21 +24,21 @@
     <div class="form-group">
         <label>Numéro de téléphone</label>
         <input type="text" class="form-control" id="phoneNumber" placeholder="Numéro de téléphone" required/>
-        {{#if isActiveRoute 'register'}}<p class="form-text">Pour un contact personnalisé</p>{{/if}}
+        {{#if isActiveRoute 'register'}}<p class="form-text text-muted">Pour un contact personnalisé</p>{{/if}}
     </div>
 
     {{#if isActiveRoute 'register_social_worker'}}
     <div class="form-group">
         <label>Institution</label>
         <input type="text" class="form-control" id="institute" placeholder="Institution" required/>
-        <p class="form-text">Nom de l'association, de l'organisation, etc.</p>
+        <p class="form-text text-muted">Nom de l'association, de l'organisation, etc.</p>
     </div>
     {{/if}}
 
     <div class="form-group">
         <label>Mot de passe</label>
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" required/>
-        <p class="form-text">Doit contenir au moins 6 caractères</p>
+        <p class="form-text text-muted">Doit contenir minimum 6 caractères</p>
     </div>
 
     <div class="form-group">
