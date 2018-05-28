@@ -9,7 +9,6 @@ Meteor.subscribe('userData');
 
 Template.accommodationTemplate.onCreated(function(){
     this.subscribe('userData');
-    // this.subscribe('accomodations');
 })
 
 Template.accommodationTemplate.helpers({
@@ -114,10 +113,7 @@ Template.addAccommodation.events({
         const location = template.find('#location').value;
         const availablePlaces = template.find('#availablePlaces').value;
 
-        //à rajouter
-
-        //const allTime 
-        //const last_call_hour
+        // add place on the Accommodation collection
 
         const creator = Meteor.userId();
 
@@ -129,11 +125,6 @@ Template.addAccommodation.events({
             availablePlaces : availablePlaces,
             availability : dateObj,
             host_id : creator,
-
-            //à rajouter
-
-            //allTime : allTime,
-            //last_call_hour : last_call_hour
             
         });
     },
@@ -169,30 +160,7 @@ Template.updateAccommodation.onCreated(function() {
     this.subscribe('accommodations');
     Session.keys = {};
 })
-/*
-Template.updateAccommodation.helpers({
-    'lastStorage' : function(){
 
-        tmpData = Accommodation.find({host_id:Meteor.userId()}).fetch();
-        tmp = Object.keys(tmpData[0].availability);
-
-        //console.log(`tmpData : ${tmpData[0].availability[1]}`)
-        console.log(`Session storage : ${JSON.stringify(Session.keys)}`)
-
-        tmp = Object.keys(tmpData[0].availability);
-        tmp.forEach(x => {
-            Session.set(x,JSON.stringify(tmpData[0].availability[x]));
-        });
-        console.log(`Session storage : ${JSON.stringify(Session.keys)}`)
-        //console.log(`Session data : ${tmpData[0].availability[1]}`)
-        
-    },
-    'clearSession':function(){
-       Session.keys = {}
-    
-    }
-})
-*/
 Template.updateAccommodation.events({
     'submit .updateAccommodation' (event, template) {
 
@@ -209,12 +177,6 @@ Template.updateAccommodation.events({
         const zipCode = template.find('#zipCode').value;
         const location = template.find('#location').value;
         const availablePlaces = template.find('#availablePlaces').value;
-
-        //à rajouter
-
-        //const allTime 
-        //const last_call_hour
-
         const creator = Meteor.userId();
 
         
@@ -226,13 +188,7 @@ Template.updateAccommodation.events({
                 location : location,
                 availablePlaces : availablePlaces,
                 host_id : creator
-            }
-            
-            //à rajouter
-
-            //allTime : allTime,
-            //last_call_hour : last_call_hour
-            
+            }            
         });
     },
 })
@@ -244,7 +200,6 @@ Template.addressForm.onCreated(function() {
 
 Template.addressForm.helpers({
     'isLocation':function(){
-        //tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
         if(Accommodation.find({host_id:Meteor.userId()}).count() === 0){
             return false
         }else{

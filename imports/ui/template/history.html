@@ -1,3 +1,6 @@
+<!--the history template render the reservation 
+    history of the users on hes profil page (historique)-->
+
 <template name="history_page">
 {{#if currentUser}}
     <h1>Historique de vos réservations</h1>
@@ -20,9 +23,7 @@
             
         </div>
         {{#each reservation in reservations}}
-
             {{> history_list_item reservation=reservation}}
-        
         {{/each}}
     {{else}}
         <p>Votre historique est vide.</p>

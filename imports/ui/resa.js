@@ -3,12 +3,6 @@ import { Template } from 'meteor/templating';
 import { HistoryLocation } from "../api/resa-methods.js"
 import { Meteor } from "meteor/meteor";
 
-// let now = new Date();
-// let actualMonth = now.getMonth()+1;
-// let actualDay = now.getDate();
-// let actualYear = now.getFullYear();
-// const today = `${actualYear}-${actualMonth}-${actualDay}`;
-// console.log(today);
 let startToday = new Date();
 startToday.setHours(0,0,0,0);
 
