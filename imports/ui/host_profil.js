@@ -2,9 +2,6 @@ import { Template } from 'meteor/templating';
 import './template/host_profil_template.html';
 import { Accommodation } from '../api/accommodation-methods';
 
-// const CLOUDINARY_URL= "https://api.cloudinary.com/v1_1/destox"
-// const CLOUDINARY_UPLOAD_PRESET ="i4qnlfix";
-
 // récupère la publication du fichier server main.js
 // permet notamment de récupérer les champs ajouté dans la collection
 // ATTENTION : nécessite la suppression de la librarie "autopublish"
@@ -233,6 +230,7 @@ Template.host_profil_template.events({
     }
 )
 
+// Allows user to change profile pictre - !!Acts more as a placeholder for now. To be fulle implemented by using Cloudinary. 
 Template.host_profil_template.events({
     'submit .profilPic':function(event,tempalte){
         var file = document.getElementById('profilePic-input').files[0];
