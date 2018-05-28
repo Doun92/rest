@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 
-import  './alerts.js';
 import './body.html';
 
 import './template/homepage.html'

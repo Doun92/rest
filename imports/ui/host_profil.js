@@ -52,7 +52,6 @@ Template.host_profil_template.helpers({
                 ville = '';
             }else{
                 ville = data && data.userAddress.city;
-                ville = ville+', '
             }
             if(data.userAddress.postcode==''){
                 npa = '';
@@ -62,7 +61,7 @@ Template.host_profil_template.helpers({
             if(rue == '' && ville == '' && npa == ''  ){
                 return ''
             }else{
-                return `${rue}${ville}${npa}`;         
+                return `${rue} ${npa} ${ville}`;         
             }
         }else{
             return ""; 

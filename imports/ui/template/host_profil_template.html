@@ -8,14 +8,14 @@
             <form class="profilPic">
                 <img id="profilePic" src="cover.jpg" alt="" class="profile-pic centered-and-cropped mx-auto d-block" width="200" height="200">
 
-                <div class="input-group px-md-5 mt-3 mx-auto">
+                <div class="px-md-5 my-3 mx-auto">
                     <div class="custom-file">
                         <label class="custom-file-label" for="profilePic-input">Choisissez un fichier</label>
                         <input type="file" class="custom-file-input" id="profilePic-input" accept='image/*'>
                     </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" id="submit-profile-pic" type="submit">Changer de photo</button>
-                    </div>
+
+                    <button class="btn btn-dark mx-auto d-block mt-3" id="submit-profile-pic" type="submit">Changer de photo</button>
+
                 </div>
             </form>
         </div>
@@ -33,7 +33,7 @@
                         {{#if userAddress}}
                             {{userAddress}}
                         {{else}}
-                            <a href="#addressForm">Ajouter votre adresse pour proposer votre logement</a>
+                            <a href="#addressForm">Ajouter votre adresse</a> ou <a href="ajouter-logement">proposer un autre logement</a>
                         {{/if}}
                     {{/if}}
                 </dd>
@@ -47,7 +47,7 @@
     
     <div class="mt-5 row">
         <div class="col-md-6">
-            <h2 id="addressForm">{{#if userAddress}}Modifier votre adresse{{else}}Ajouter votre adresse{{/if}}</h2>
+            <h3 id="addressForm">{{#if userAddress}}Modifier votre adresse{{else}}Ajouter votre adresse{{/if}}</h3>
             <form class="addressForm" >
                 <div class="form-row">
                     <div class="form-group col-md-9">
@@ -59,7 +59,7 @@
                         <input type="text" class="form-control" name="number" value="{{number}}" required>
                     </div>
                     <div class="form-group col-md-3">
-                        <label>Numéro postal</label>
+                        <label>NPA</label>
                         <input type="text" class="form-control" name="postcode" value="{{postCode}}" required>
                     </div>
                     <div class="form-group col-md-9">
@@ -72,7 +72,7 @@
             </form>
         </div>
         <div class="mt-sm-5 mt-md-0 col-md-6">
-            <h2>Modifier vos informations</h2>
+            <h3>Modifier vos informations</h3>
             <form class="profilForm">
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -99,7 +99,7 @@
     
 
         <div class="mt-5 col-md-6">
-            <h2>Modifier votre mot de passe</h2>
+            <h3>Modifier votre mot de passe</h3>
     
             <form id="modify-password-form">
                 <div class="form-group">
