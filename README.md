@@ -11,9 +11,9 @@ Lorsqu'un travailleur social propose un lit à un sans-abri, il réserve le loge
 Le travailleur social contacte alors l'accueillant par téléphone. Après discussion, l'accueillant signale s'il accepte ou décline la réservation.
 
 Un historique est disponible aussi bien pour l'accueillant que pour le travailleur social et un e-mail de confirmation aux deux parties.
-![Impression d'écran de la page "Proposition de logement"](public/01_Proposition de logement.PNG)
-![Impression d'écran de la page "Réservation de logement"](public/02_Réservation de logement.PNG)
-![Impression d'écran de la page "Confirmation de réservation"](public/03_Confirmation de réservation.PNG)
+![Impression d'écran de la page "Proposition de logement"](https://raw.githubusercontent.com/Doun92/rest/master/public/01_Proposition%20de%20logement.PNG)
+![Impression d'écran de la page "Réservation de logement"](https://github.com/Doun92/rest/blob/master/public/02_R%C3%A9servation%20de%20logement.PNG)
+![Impression d'écran de la page "Confirmation de réservation"](https://github.com/Doun92/rest/blob/master/public/03_Confirmation%20de%20r%C3%A9servation.PNG)
 
 
 ## Comment ça fonctionne ?
