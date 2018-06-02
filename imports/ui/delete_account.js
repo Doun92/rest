@@ -15,7 +15,7 @@ Template.host_profil_template.events({
     },
     function(isConfirm){
       if (isConfirm){
-        swal("Supprimer", "Votre compte a été supprimé.");
+        swal("Supprimer", "Votre compte a été supprimé.","warning");
         //Delete account based on user Id
         var username = Meteor.userId();
         Meteor.users.remove(username);
