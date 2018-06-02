@@ -127,6 +127,7 @@ Template.addAccommodation.events({
             host_id : creator,
             
         });
+        swal("Merci!", "Votre adresse a bien été enregistrée. Il ne vous reste plus qu'à sélectionner les dates.", "success");
     },
 });
 
@@ -190,6 +191,7 @@ Template.updateAccommodation.events({
                 host_id : creator
             }            
         });
+        swal("Merci!", "Votre adresse a bien été mis à jours.", "success");
     },
 })
 

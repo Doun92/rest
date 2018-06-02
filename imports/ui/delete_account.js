@@ -18,13 +18,10 @@ Template.host_profil_template.events({
         swal("Supprimer", "Votre compte a été supprimé.");
         //Delete account based on user Id
         var username = Meteor.userId();
-        //console.log(username);
         Meteor.users.remove(username);
-        //Delete accommodation based on accommodations id !! Verifier que supprime tout les logements dans les cas de propositions multiples !!
+        //Delete accommodation based on accommodations id
         var data = Accommodation.findOne()._id;
-        //console.log(data);
         Accommodation.remove(data);
-
       }
       else{
         swal("Annulée","Votre compte est sauf :)")

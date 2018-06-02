@@ -86,8 +86,6 @@ Template.social_worker_profil.events({
             // the result image data
             image.src = e.target.result;
          }
-         console.log(file.name);
-
          //For now the input is just a simple string which is the file name. In the end, the goal would be to setup a image hosting service (Cloudinary)
          Meteor.users.update(
              Meteor.userId(),{$set:{
@@ -106,7 +104,6 @@ Template.social_worker_profil.events({
         const oldPassword = template.$('#oldPassword').val();
         const newPassword = template.$('#newPassword').val();
         const newPasswordRepeat = template.$('#newPasswordRepeat').val();
-        console.log(newPasswordRepeat);
         if(newPassword===newPasswordRepeat){
             Accounts.changePassword(oldPassword, newPassword, function(err){
                 if (err) {

@@ -241,8 +241,6 @@ Template.host_profil_template.events({
             // the result image data
             image.src = e.target.result;
          }
-         console.log(file.name);
-
          //For now the input is just a simple string which is the file name. In the end, the goal would be to setup a image hosting service (Cloudinary)
          Meteor.users.update(
              Meteor.userId(),{$set:{
