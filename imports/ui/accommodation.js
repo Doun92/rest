@@ -167,8 +167,6 @@ Template.updateAccommodation.events({
 
         collection = Accommodation.find({host_id:Meteor.userId()}).fetch()
 
-        console.log(collection[0].availability)
-
         event.preventDefault();
 
         const target = event.target;
@@ -210,7 +208,6 @@ Template.addressForm.helpers({
     },
     'availableLocation' : function(){
         tmp = Accommodation.find({host_id:Meteor.userId()}).fetch()
-        //console.log(tmp[0].zipCode)
         tmpArr = [tmp[0].address, tmp[0].locNumber, tmp[0].location, tmp[0].zipCode, tmp[0].availablePlaces]
         return tmpArr
     }

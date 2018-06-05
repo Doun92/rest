@@ -36,5 +36,3 @@ if (Meteor.isServer) {
       });
   });
 }
-
-// export const AllUser = new Mongo.Collection('allUser');

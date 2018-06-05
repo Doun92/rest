@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import './template/history.html';
-import { HistoryLocation } from '../api/resa-methods';
+import { HistoryLocation } from '../api/reservations-methods';
 
 Template.history_list.onCreated(function(){
 
@@ -18,7 +18,7 @@ Template.history_list.helpers({
                     {socialWorker_id: Meteor.userId()},
                     {host_id: Meteor.userId()}
             ]
-            }, {sort:{date_resa:-1}
+            }, {sort:{reservationDate:-1}
         });
         
         if(reservations.fetch().length>1){
@@ -30,7 +30,7 @@ Template.history_list.helpers({
 Template.history_list_item.helpers({
     dateReservation(){
         let options = {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", hour12: false};
-        return new Intl.DateTimeFormat("fr-CH", options).format(this.reservation.date_resa);
+        return new Intl.DateTimeFormat("fr-CH", options).format(this.reservation.reservationDate);
     },
     hostName(){
         const host = Meteor.users.findOne({_id : this.reservation.host_id});
@@ -41,7 +41,7 @@ Template.history_list_item.helpers({
         return `${sw.firstname} ${sw.lastname}`;
     },
     reservationStatus(){
-        const reservationStatus = this.reservation.resa_status;
+        const reservationStatus = this.reservation.reservationStatus;
        switch (reservationStatus) {
             case "reserved":
                 return "réservé";

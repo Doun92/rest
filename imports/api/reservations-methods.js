@@ -14,8 +14,8 @@ if (Meteor.isServer) {
           socialWorker_id : 1,
           host_id : 1,
           place_id : 1,
-          date_resa : 1,
-          resa_status : 1,
+          reservationDate : 1,
+          reservationStatus : 1,
           alert_sw_status:1 
         }
       });

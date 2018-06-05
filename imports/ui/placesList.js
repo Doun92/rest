@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import { HistoryLocation } from "../api/resa-methods";
+import { HistoryLocation } from "../api/reservations-methods";
 
 Template.places_list.onCreated(function(){
 
@@ -16,13 +16,12 @@ Template.places_list.onCreated(function(){
 
     var filterActualDate = new Date();
     var filterActualMonth = filterActualDate.getMonth()+1;
-    var filterActualDay = filterActualDate.toDateString().substr(8,2);
-    console.log(`actual date : ${filterActualDay}`)
+    var filterActualDay = filterActualDate.getDate();
 
     //global var
-    filterQuery = {}
-    var tmpKey = `availability.${filterActualMonth}.${filterActualDay}`
-    filterQuery[tmpKey] = filterActualDate.toDateString()
+    filterQuery = {};
+    var tmpKey = `availability.${filterActualMonth}.${filterActualDay}`;
+    filterQuery[tmpKey] = filterActualDate.toDateString();
 
 })
 
@@ -37,15 +36,13 @@ Template.places_list.helpers({
  
         let reservedAccommodationsForToday = HistoryLocation.find(
             {$and : [
-                {resa_status:"reserved"},
-                {date_resa : {$gte: startToday, $lt: endToday}}
+                {reservationStatus:"reserved"},
+                {reservationDate : {$gte: startToday, $lt: endToday}}
             ]},
             {fields : {
                 place_id:1
             }}
         ).fetch();
-
-        console.log(reservedAccommodationsForToday)
         
         // Every accommodation filtered by the date of today
         let placesForToday = Accommodation.find(
@@ -69,11 +66,9 @@ Template.places_list.helpers({
 
         //if no reservation exists
         if(placesAvailableToday==0){
-            console.log("all Places")
             return placesForToday;
         }
         else{
-            console.log("only available");      
             return placesAvailableToday;
             
         }
@@ -98,16 +93,6 @@ Template.places_list_item.helpers({
         let lastname = number.lastname;
         return lastname;
         },
-    // C'est normale que ça ne s'affiche pas car les mails et les phoneNumbers sont pas dans la base de données des accueillants
-    // 'mail': function(){
-    //     Meteor.subscribe('places')
-    //     let hostId = this.host_id;
-    //     let number = Meteor.users.findOne(
-    //         {_id:hostId},
-    //     );
-    //     let mail = number.;
-    //     return mail;
-    // },
     
     'phone': function(){
          let hostId = this.host_id;

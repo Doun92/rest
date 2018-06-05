@@ -211,7 +211,7 @@ Template.host_profil_template.events({
         const oldPassword = template.$('#oldPassword').val();
         const newPassword = template.$('#newPassword').val();
         const newPasswordRepeat = template.$('#newPasswordRepeat').val();
-        console.log(newPasswordRepeat);
+        
         if(newPassword===newPasswordRepeat){
             Accounts.changePassword(oldPassword, newPassword, function(err){
                 if (err) {

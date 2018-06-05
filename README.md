@@ -3,7 +3,7 @@
 R.E.S.T. est l'acronyme de Réseau d'Entraide Sociale pour Tous. Notre projet a pour but de faciliter le lien entre une personne proposant un lit pour une nuitée et une personne sans abri, par l'intermédiaire d'un travailleur social sur le terrain.
 Nous proposons une interface épurée et simple d'accès tant pour l'accueillant que pour le travailleur social.
 
-## Comment proposer un lit ?
+## Description
 La personne qui souhaite accueillir un sans-abri complète son adresse ou celle du logement proposé si différente. Il sélectionne ensuite les dates où le logement est disponible. Seuls les travailleurs sociaux peuvent consulter la liste des logements disponibles la journée courante.
 
 Lorsqu'un travailleur social propose un lit à un sans-abri, il réserve le logement qui devient indisponible pour les autres travailleurs sociaux.
@@ -15,43 +15,31 @@ Un historique est disponible aussi bien pour l'accueillant que pour le travaille
 ![Impression d'écran de la page "Réservation de logement"](https://github.com/Doun92/rest/blob/master/public/02_R%C3%A9servation%20de%20logement.PNG)
 ![Impression d'écran de la page "Confirmation de réservation"](https://github.com/Doun92/rest/blob/master/public/03_Confirmation%20de%20r%C3%A9servation.PNG)
 
-
-## Comment ça fonctionne ?
-
-Les instructions ci-dessous vous guideront quant à l'installation et au déploiement du projet sur votre machine locale. 
-
-### Pré-requis
-
-#### Meteor.js
+## Installation
 
 Notre projet est développé sous l'environnement Meteor.js, un package particulier de javascript. Pour le télécharger, veuillez suivre les instructions présentes sur leur site Internet : (https://www.meteor.com/).
 
-#### Bootstrap 4
+Lorsque vous aurez finalisé l'installation de Meteor sur votre machine, téléchargez les sources de notre projet.
 
-Nous utilisons le framework Bootstrap pour les styles de l'application. Aussi il vous faudra donc installer les dépendances suivantes :
-
-```
-meteor npm install bootstrap
-meteor npm install popper
-meteor npm install jquery
-```
-
-Pour modifier le style, il vous faudra utiliser Sass (http://sass-lang.com/).
-
-### Installation
-
-Lorsque vous aurez finalisé l'installation de Meteor, téléchargez les sources de notre projet.
-
-Ensuite ouvrez le terminal, accédez au dossier du projet puis lancez Meteor.
+Dans un terminal, accédez au dossier du projet et effectuer les commandes suivantes.
 
 ```
-C:\Users\UserName\Documents\GitHub\rest>meteor
+# pour installer les packages
+meteor npm install
+
+# pour démarrer le serveur Meteor
+meteor
 ```
 
-Le premier lancement de notre programme prendra du temps puisqu'il y a les packages ci-dessous à installer.
-Une fois le tout installé et le serveur local en place, vous pouvez démarrer son utilisation.
+Dans votre navigateur, vous pouvez maintenant consulter le projet à l'adresse suivante : http://localhost:3000
 
-#### Packages atmosphere
+### Packages utilisés
+
+#### via NPM
+- Bootstrap 4
+- jQuery (dépendance de Bootstrap 4)
+
+#### Atmosphere
 - `kadira:flow-router`, `kadira:blaze-layout`, `arillo:flow-router-helpers` et `zimme:active-route`: pour un rendu en fonction de l'URL
 - `kevohagan:sweetalert` et `matdutour:popup-confirm`: pour des fenêtres modales
 - `fortawesome:fontawesome`: pour des icônes

@@ -1,6 +1,6 @@
 import { Accommodation } from "../api/accommodation-methods.js";
 import { Template } from 'meteor/templating';
-import { HistoryLocation } from "../api/resa-methods.js"
+import { HistoryLocation } from "../api/reservations-methods.js"
 import { Meteor } from "meteor/meteor";
 
 let startToday = new Date();
@@ -10,9 +10,9 @@ let endToday = new Date();
 endToday.setHours(23,59,59,999);
 
 // change the value to send email
-const emailAddress = "localhost"
+const emailAddress = "localhost";
 
-Template.resa.events({
+Template.reservations.events({
     'click #reservate': function(event){
 
         const host = this.host_id;
@@ -33,22 +33,22 @@ Template.resa.events({
                     socialWorker_id : Meteor.userId(),
                     host_id : host,
                     place_id : place,
-                    date_resa : new Date(),
-                    resa_status : 'pending'
+                    reservationDate : new Date(),
+                    reservationStatus : 'pending'
                 });
             }        
         });        
     }
 });
 
-Template.resa.helpers({
+Template.reservations.helpers({
     isPending : function(){
         let place = this._id;
 
         if(HistoryLocation.find({
             $and : [
-            {resa_status : "pending"},
-            {date_resa : {$gte: startToday, $lt: endToday}},
+            {reservationStatus : "pending"},
+            {reservationDate : {$gte: startToday, $lt: endToday}},
             {place_id : place}
         ]}
         ).count()) {
@@ -70,18 +70,18 @@ Template.resa.helpers({
     }
 });
 
-Template.resa_notif_host_box.onCreated(function(){
+Template.reservation_notif_host_box.onCreated(function(){
     Meteor.subscribe('history');
 });
 
-Template.resa_notif_host_box.helpers({
+Template.reservation_notif_host_box.helpers({
     'notif' : function(){
 
         if(HistoryLocation.find({
             $and : [
                 {host_id : Meteor.userId()},
-                {date_resa : {$gte: startToday, $lt: endToday}},
-                {resa_status : "pending"}
+                {reservationDate : {$gte: startToday, $lt: endToday}},
+                {reservationStatus : "pending"}
             ]}
         ).count() === 0){
             return false
@@ -91,17 +91,17 @@ Template.resa_notif_host_box.helpers({
     }
 });
 
-Template.resa_notif_socialWorker_box.onCreated(function(){
+Template.reservation_notif_socialWorker_box.onCreated(function(){
     Meteor.subscribe('history');
     Meteor.subscribe('usersPublication');
 });
 
-Template.resa_notif_socialWorker_box.helpers({
+Template.reservation_notif_socialWorker_box.helpers({
     'notif' : function(){
         return HistoryLocation.find({
             $and : [
                 {socialWorker_id : Meteor.userId()},
-                {date_resa : {$gte: startToday, $lt: endToday}},
+                {reservationDate : {$gte: startToday, $lt: endToday}},
                 {alert_sw_status : "pending"}
             ]}
         ).fetch();
@@ -113,7 +113,7 @@ Template.resa_notif_socialWorker_box.helpers({
             $and : [
                 {socialWorker_id : Meteor.userId()},
                 {alert_sw_status : "pending"},
-                {resa_status : "declined"},
+                {reservationStatus : "declined"},
                 {_id : this._id}
             ]}
         );
@@ -130,11 +130,11 @@ Template.resa_notif_socialWorker_box.helpers({
     }
 });
 
-Template.resa_notif_host_box.events({
+Template.reservation_notif_host_box.events({
     'click #acceptButton'(event){
         const history = HistoryLocation.find({
             $and : [
-            {resa_status : "pending"},
+            {reservationStatus : "pending"},
             {host_id : Meteor.userId()}
         ]},{
             fields:
@@ -143,7 +143,7 @@ Template.resa_notif_host_box.events({
         
         Meteor.call(
             'sendEmail',
-            'emailAddress',
+            emailAddress,
             'noreply@rest.com',
             "Réservation REST acceptée",
             "Nous vous remercions d'avoir accepté de mettre un toit à disposition ce soir !",
@@ -151,7 +151,7 @@ Template.resa_notif_host_box.events({
 
         HistoryLocation.update(history[0]._id, {
             $set : {
-                resa_status : "reserved",
+                reservationStatus : "reserved",
                 alert_sw_status : "pending"
             }
         });
@@ -159,7 +159,7 @@ Template.resa_notif_host_box.events({
     'click #declineButton'(event){
         const history = HistoryLocation.find({
             $and : [
-            {resa_status : "pending"},
+            {reservationStatus : "pending"},
             {host_id : Meteor.userId()}
         ]},{
             fields:
@@ -168,7 +168,7 @@ Template.resa_notif_host_box.events({
 
         Meteor.call(
             'sendEmail',
-            'emailAddress',
+            emailAddress,
             'noreply@rest.com',
             "Réservation REST refusée",
             "Vous avez décliné une demande de réservation. Si votre logement n'est pas disponible, nous vous recommandons de mettre à jour votre calendrier."
@@ -176,14 +176,14 @@ Template.resa_notif_host_box.events({
 
         HistoryLocation.update(history[0]._id, {
             $set : {
-                resa_status : "declined",
+                reservationStatus : "declined",
                 alert_sw_status : "pending"
             } 
         });
     }
 })
 
-Template.resa_notif_socialWorker_box.events({
+Template.reservation_notif_socialWorker_box.events({
     'click #notifSwClose'(event){
         HistoryLocation.update(this._id, {
             $set : {alert_sw_status: "checked"}
@@ -191,7 +191,7 @@ Template.resa_notif_socialWorker_box.events({
         
         Meteor.call(
             'sendEmail',
-            'emailAddress',
+            emailAddress,
             'noreply@rest.com',
             "Réservation REST acceptée par l'accueillant",
             "Vous avez effectué une demande de réservation et elle a été acceptée !"

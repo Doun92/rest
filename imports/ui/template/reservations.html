@@ -1,11 +1,11 @@
-<!--the resa template offers a way for interacting 
+<!--the reservations template offers a way for interacting 
     with the places list displayed on the social
     worker profil page. The process is 1) ask for 
     a place to a user, 2) send a mail and a place 
     request to the user 3) accept the request 
     4) send a confirmation notification to the social worker -->
 
-<template name="resa">
+<template name="reservations">
     {{#if isPending}}
         <button class="btn btn-outline-secondary btn-sm" disabled>
             {{#if isTheReserver}}
@@ -19,7 +19,7 @@
     {{/if}}
 </template>
 
-<template name="resa_notif_host_box">
+<template name="reservation_notif_host_box">
     {{#if notif}}
     <div class="alert alert-secondary row align-items-center fade show">
         Vous avez une demande d'accueil.
@@ -32,7 +32,7 @@
     {{/if}}
 </template>
 
-<template name="resa_notif_socialWorker_box">
+<template name="reservation_notif_socialWorker_box">
         {{#each notif}}
         <div class="alert {{# if declinedAlertSw}}alert-danger{{else}}alert-success{{/if}} fade show">
             {{#if declinedAlertSw}}        

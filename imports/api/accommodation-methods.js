@@ -2,15 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-/*
-if (Meteor.isServer) {
-    // This code only runs on the server
-    Meteor.publish('accommodations', function tasksPublication() {
-      return Accommodation.find();
-    });
-  }
-*/
-
 if (Meteor.isServer) {
     Meteor.publish('accommodations', function () {
       if (this.userId) {

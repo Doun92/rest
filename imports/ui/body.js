@@ -23,8 +23,8 @@ import './calendar.js';
 import './template/placesList.html';
 import './placesList.js';
 
-import './template/resa.html';
-import './resa.js';
+import './template/reservations.html';
+import './reservations.js';
 import './delete_account.js';
 
 import './template/emailTemplate.html';
